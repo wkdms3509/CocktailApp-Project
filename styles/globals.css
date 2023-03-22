@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+/* layout navbar */
+
 .nav {
   /* background-color: aqua; */
   padding: 1.5rem 7rem;
@@ -36,3 +38,40 @@
 .sub_category_menu {
   padding-right: 0.8rem;
 }
+
+/* -------------------- */
+
+/* footer */
+
+.footer_container {
+  background-color: black;
+  width: 100%;
+  height: 83%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 2.5rem 0;
+}
+
+.footer_menu {
+  color: white;
+  text-align: center;
+  font-size: small;
+  display: flex;
+  justify-content: space-around;
+  height: 100%;
+  width: 20%;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.sns_icons {
+  display: flex;
+  flex-direction: row;
+  width: 9rem;
+  margin: 0 auto;
+  justify-content: space-around;
+  margin-bottom: 2.5rem;
+}
+
+/* -------------------- */
