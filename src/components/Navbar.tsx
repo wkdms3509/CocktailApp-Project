@@ -1,6 +1,7 @@
 import { FaUserCircle, FaUserAlt } from "react-icons/fa";
 import { FiSearch, FiEdit2 } from "react-icons/fi";
 import { BsSearch } from "react-icons/bs";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
@@ -9,7 +10,9 @@ const Navbar = () => {
         <div>
           <ul className="side_category">
             <li className="side_category_menu">관심상품</li>
-            <li className="side_category_menu">로그인</li>
+            <li className="side_category_menu">
+              <Link href="/login">로그인</Link>
+            </li>
           </ul>
         </div>
         <div className="main_category">
