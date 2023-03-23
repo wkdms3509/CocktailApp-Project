@@ -6,6 +6,12 @@ const Navbar = () => {
   return (
     <>
       <header className="nav">
+        <div>
+          <ul className="side_category">
+            <li className="side_category_menu">관심상품</li>
+            <li className="side_category_menu">로그인</li>
+          </ul>
+        </div>
         <div className="main_category">
           <div className="text-3xl pt-1 italic font-bold">COCKTAIL</div>
           <ul className="main_category_right">

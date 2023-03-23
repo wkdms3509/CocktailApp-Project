@@ -39,6 +39,20 @@
   padding-right: 0.8rem;
 }
 
+.side_category {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 0 1rem;
+}
+
+.side_category_menu {
+  font-size: 0.75rem;
+  padding-left: 1.2rem;
+  margin-top: -1.2rem;
+  color: #666;
+}
+
 /* -------------------- */
 
 /* footer */
