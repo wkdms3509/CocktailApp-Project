@@ -16,9 +16,13 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="main_category">
-          <div className="text-3xl pt-1 italic font-bold">COCKTAIL</div>
+          <div className="text-3xl pt-1 italic font-bold">
+            <Link href="/">COCKTAIL</Link>
+          </div>
           <ul className="main_category_right">
-            <li className="category_right_menu">HOME</li>
+            <Link href="/">
+              <li className="category_right_menu">HOME</li>
+            </Link>
             <li className="category_right_menu">RECOMMAND</li>
             <li className="category_right_menu">NEW</li>
             <li className="category_right_menu">MY</li>
