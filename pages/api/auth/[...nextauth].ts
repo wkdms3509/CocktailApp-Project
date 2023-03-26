@@ -6,7 +6,7 @@ import NextAuth from "next-auth";
 export default NextAuth({
   providers: [
     CredentialsProvider({
-      name: "User Id",
+      name: "User-Id",
       type: "credentials",
       credentials: {
         username: { label: "Username", type: "text", placeholder: "username" },
