@@ -9,7 +9,7 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import { MdLockOutline } from "react-icons/md";
 import Image from "next/image";
 
-const Login = () => {
+const LoginForm = () => {
   return (
     <div className="login_container">
       <main className="login_main_container">
@@ -86,7 +86,7 @@ const Login = () => {
             <h2 className="text-3xl font-bold mb-2">Welcome !</h2>
             <div className="border-2 border-white w-10 inline-block m-4"></div>
             <p className="mb-6">Don`t have an account?</p>
-            <Link href="/signin" className="">
+            <Link href="/register" className="">
               <span className="login_signup_btn">Sign up</span>
             </Link>
           </div>
@@ -96,4 +96,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginForm;
