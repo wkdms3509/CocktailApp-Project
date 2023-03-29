@@ -1,7 +1,11 @@
 import { pool } from "../../../src/config/db";
 import crypto from "crypto";
+import type { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(req, res) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   switch (req.method) {
     case "GET":
       return await checkId(req, res);
@@ -12,7 +16,7 @@ export default async function handler(req, res) {
   }
 }
 
-const checkId = async (req, res) => {
+const checkId = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const userInputId = req.query.id;
     const [result] = await pool.query(
@@ -21,14 +25,14 @@ const checkId = async (req, res) => {
     );
 
     if (result.length > 0) {
-      res.status(400).json({
+      return res.status(400).json({
         code: 400,
         is_success: false,
         message: "중복된 아이디가 있습니다.",
       });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       code: 200,
       is_success: true,
       message: "사용 가능한 아이디입니다.",
@@ -38,7 +42,7 @@ const checkId = async (req, res) => {
   }
 };
 
-const postNewUser = async (req, res) => {
+const postNewUser = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { name, email, id, password } = req.body;
 

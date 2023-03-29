@@ -2,8 +2,12 @@ import { FaUserCircle, FaUserAlt } from "react-icons/fa";
 import { FiSearch, FiEdit2 } from "react-icons/fi";
 import { BsSearch } from "react-icons/bs";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
+import IsLogin from "./user/IsLogin";
 
 const Navbar = () => {
+  const { data: session, status } = useSession();
+
   return (
     <>
       <header className="nav">
@@ -11,7 +15,7 @@ const Navbar = () => {
           <ul className="side_category">
             <li className="side_category_menu">관심상품</li>
             <li className="side_category_menu">
-              <Link href="/login">로그인</Link>
+              <IsLogin />
             </li>
           </ul>
         </div>
@@ -25,7 +29,11 @@ const Navbar = () => {
             </Link>
             <li className="category_right_menu">RECOMMAND</li>
             <li className="category_right_menu">NEW</li>
-            <li className="category_right_menu">MY</li>
+            {status === "authenticated" ? (
+              <li className="category_right_menu">MY</li>
+            ) : (
+              ""
+            )}
             <li className="category_right_menu">
               <BsSearch size="22" />
             </li>

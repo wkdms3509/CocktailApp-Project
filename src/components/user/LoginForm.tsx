@@ -8,8 +8,41 @@ import {
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { MdLockOutline } from "react-icons/md";
 import Image from "next/image";
+import { useState } from "react";
+import axios from "axios";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import { unstable_getServerSession } from "next-auth";
+// import { NextPage } from "next";
 
 const LoginForm = () => {
+  const router = useRouter();
+  const { data: session, status } = useSession();
+  const [userInput, setUserInput] = useState({
+    id: "",
+    password: "",
+  });
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setUserInput({ ...userInput, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const status = await signIn("credentials", {
+      redirect: false,
+      id: userInput.id,
+      password: userInput.password,
+      callbackUrl: "/",
+    });
+
+    if (status.ok) router.push(status.url);
+  };
+
+  // const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+
+  // };
+
   return (
     <div className="login_container">
       <main className="login_main_container">
@@ -35,16 +68,18 @@ const LoginForm = () => {
                 </button>
               </div>
               <p className="text-gray-400 my-3">or use your account</p>
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div className="flex flex-col items-center">
                   <div className="bg-gray-100 w-64 p-2 flex items-center mb-2">
                     <FaRegEnvelope className="text-gray-400 mr-2" />
                     <input
                       type="text"
-                      name="username"
+                      name="id"
                       placeholder="Enter your Username"
                       className="login_input"
                       required
+                      value={userInput.id}
+                      onChange={handleChange}
                       //   {...formik.getFieldProps("username")}
                     />
                   </div>
@@ -56,6 +91,8 @@ const LoginForm = () => {
                       placeholder="Enter your Password"
                       className="login_input"
                       required
+                      value={userInput.password}
+                      onChange={handleChange}
                       //   {...formik.getFieldProps("password")}
                     />
                   </div>
@@ -95,5 +132,9 @@ const LoginForm = () => {
     </div>
   );
 };
+
+// export async function getServerSideProps(context) {
+//   const session = unstable_getServerSession(context.req, context.res, )
+// }
 
 export default LoginForm;
