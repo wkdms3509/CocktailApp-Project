@@ -30,7 +30,9 @@ const Navbar = () => {
             <li className="category_right_menu">RECOMMAND</li>
             <li className="category_right_menu">NEW</li>
             {status === "authenticated" ? (
-              <li className="category_right_menu">MY</li>
+              <Link href="/mypage">
+                <li className="category_right_menu">MY</li>
+              </Link>
             ) : (
               ""
             )}
