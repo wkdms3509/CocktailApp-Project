@@ -13,12 +13,13 @@ import axios from "axios";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { unstable_getServerSession } from "next-auth";
+import type { User } from "@/src/constants/userType";
 // import { NextPage } from "next";
 
 const LoginForm = () => {
   const router = useRouter();
   const { data: session, status } = useSession();
-  const [userInput, setUserInput] = useState({
+  const [userInput, setUserInput] = useState<User>({
     id: "",
     password: "",
   });

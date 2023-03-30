@@ -52,7 +52,7 @@ const authOptions: NextAuthOptions = {
 
         const { id, password } = credentials;
 
-        const res = await axios.post("http://localhost:3001/api/users/login", {
+        const res = await axios.post("http://localhost:3000/api/users/login", {
           id,
           password,
         });

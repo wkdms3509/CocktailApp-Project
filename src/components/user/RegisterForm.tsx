@@ -1,10 +1,12 @@
+import type { UserInput } from "@/src/constants/userType";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { EventHandler, useState } from "react";
 
 const RegisterForm = () => {
   const router = useRouter();
-  const [userInput, setUserInput] = useState({
+
+  const [userInput, setUserInput] = useState<UserInput>({
     name: "",
     email: "",
     id: "",
