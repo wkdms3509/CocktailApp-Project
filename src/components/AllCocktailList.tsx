@@ -6,9 +6,18 @@ import ProductCard from "./ProductCard";
 
 const AllCocktailList = (props: AllCocktailListProps) => {
   const { allProductList } = props;
+  // 첫 번째 pagination
   const [limit, setLimit] = useState<number>(9);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
+
+  // 두 번째 pagination
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const pageSize = 42;
+
+  // const onPageChange = (page) => {
+  //   setCurrentPage(page);
+  // };
 
   return (
     <>
@@ -22,7 +31,7 @@ const AllCocktailList = (props: AllCocktailListProps) => {
             Shop Now
           </Link>
         </div>
-        <div className="ml-3 mb-3">
+        <div className="ml-2 mb-3">
           <label className="text-sm w-1/5 text-gray-400">
             페이지 당 표시할 게시물 수:&nbsp;
             <select
@@ -50,14 +59,21 @@ const AllCocktailList = (props: AllCocktailListProps) => {
         </div>
 
         <div className="bg-green-300"></div>
-        {/* <div>
+        {/* <Pagination
+          items={allProductList.length} // 상품 개수
+          currentPage={currentPage} // 1
+          pageSize={pageSize} // 10
+          onPageChange={onPageChange}
+          limitPageCount={5}
+        /> */}
+        <div>
           <Pagination
             total={allProductList.length}
             limit={limit}
             page={page}
             setPage={setPage}
           />
-        </div> */}
+        </div>
       </div>
     </>
   );

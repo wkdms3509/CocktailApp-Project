@@ -6,14 +6,19 @@ import MainBanner from "@/src/components/MainBanner";
 import Catecory from "@/src/components/Catecory";
 import AllCocktailList from "@/src/components/AllCocktailList";
 import axios from "axios";
-import { GetServerSideProps } from "next";
-import type { Product } from "@/src/constants/productTypes";
+import { GetServerSideProps, GetStaticProps } from "next";
+import type {
+  AllCocktailListProps,
+  Product,
+} from "@/src/constants/productTypes";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home({ allProductList }: Product[]) {
+export default function Home(props: AllCocktailListProps) {
+  const { allProductList } = props;
+
   return (
-    <div className="w-full p-28">
+    <div className="w-full p-32 mx-auto">
       <section>
         <MainBanner />
       </section>
@@ -27,9 +32,8 @@ export default function Home({ allProductList }: Product[]) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const res = await axios.get("http://localhost:3000/api/products");
-
   if (!res.data) {
     return {
       notFound: true,
@@ -37,10 +41,27 @@ export const getServerSideProps: GetServerSideProps = async () => {
   }
 
   const { data } = res.data;
-
   return {
     props: {
       allProductList: data,
     },
   };
 };
+
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   const res = await axios.get("http://localhost:3000/api/products");
+
+//   if (!res.data) {
+//     return {
+//       notFound: true,
+//     };
+//   }
+
+//   const { data } = res.data;
+
+//   return {
+//     props: {
+//       allProductList: data,
+//     },
+//   };
+// };

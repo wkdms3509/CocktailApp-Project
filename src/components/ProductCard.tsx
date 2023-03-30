@@ -10,12 +10,12 @@ const ProductCard = (props: ProductCardType) => {
       <div className="">
         <div key={product.id}>
           <Link href={`/`} key={product.id}>
-            <div className="" key={product.id}>
+            <div key={product.id}>
               <Image
                 src={product.img}
                 alt={product.name}
                 width={400}
-                height={500}
+                height={300}
                 className="hover:scale-105 duration-300"
                 priority
               />
