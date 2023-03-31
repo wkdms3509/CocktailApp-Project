@@ -32,25 +32,9 @@ export default function Home(props: AllCocktailListProps) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const res = await axios.get("http://localhost:3000/api/products");
-  if (!res.data) {
-    return {
-      notFound: true,
-    };
-  }
-
-  const { data } = res.data;
-  return {
-    props: {
-      allProductList: data,
-    },
-  };
-};
-
-// export const getServerSideProps: GetServerSideProps = async () => {
+// 빌드 타임에 html 생성
+// export const getStaticProps: GetStaticProps = async () => {
 //   const res = await axios.get("http://localhost:3000/api/products");
-
 //   if (!res.data) {
 //     return {
 //       notFound: true,
@@ -58,10 +42,27 @@ export const getStaticProps: GetStaticProps = async () => {
 //   }
 
 //   const { data } = res.data;
-
 //   return {
 //     props: {
 //       allProductList: data,
 //     },
 //   };
 // };
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const res = await axios.get("http://localhost:3000/api/products");
+
+  if (!res.data) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const { data } = res.data;
+
+  return {
+    props: {
+      allProductList: data,
+    },
+  };
+};
