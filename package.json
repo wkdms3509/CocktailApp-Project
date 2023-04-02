@@ -29,8 +29,10 @@
     "@types/react-redux": "^7.1.25",
     "autoprefixer": "^9.8.8",
     "eslint": "^8.36.0",
+    "next-redux-wrapper": "^8.1.0",
     "postcss": "^7.0.39",
     "react-icons": "^4.8.0",
+    "redux-devtools-extension": "^2.13.9",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
     "typescript": "^5.0.2"
   }

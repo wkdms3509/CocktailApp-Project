@@ -2,9 +2,11 @@ import type { UserInput } from "@/src/constants/userType";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { EventHandler, useState } from "react";
+import { useDispatch } from "react-redux";
 
 const RegisterForm = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const [userInput, setUserInput] = useState<UserInput>({
     name: "",
@@ -27,6 +29,7 @@ const RegisterForm = () => {
           alert("사용 가능한 아이디입니다.");
         }
         if (res.status === 400) {
+          setCheckId(false);
           alert("아이디를 다시 확인해주세요.");
         }
       });
