@@ -13,16 +13,18 @@ import type {
 } from "@/src/constants/productTypes";
 import { useSession } from "next-auth/react";
 import LoginForm from "@/src/components/user/LoginForm";
+import { useSelector } from "react-redux";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home(props: AllCocktailListProps) {
   const { allProductList } = props;
   const { data: session, status } = useSession();
+  const userSelector = useSelector((state) => state.userReducer);
 
   return (
     <>
-      {status === "authenticated" ? (
+      {status === "authenticated" && userSelector.isLogin ? (
         <div className="w-full p-32 mx-auto">
           <section>
             <MainBanner />

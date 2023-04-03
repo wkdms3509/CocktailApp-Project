@@ -14,11 +14,13 @@ import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { unstable_getServerSession } from "next-auth";
 import type { User } from "@/src/constants/userType";
-// import { NextPage } from "next";
+import { useDispatch } from "react-redux";
+import { login } from "@/src/reducer/user";
 
 const LoginForm = () => {
   const router = useRouter();
   const { data: session, status } = useSession();
+  const dispatch = useDispatch();
   const [userInput, setUserInput] = useState<User>({
     id: "",
     password: "",
@@ -37,12 +39,13 @@ const LoginForm = () => {
       callbackUrl: "/",
     });
 
-    if (status.ok) router.push(status.url);
+    if (status.ok) {
+      dispatch(login(userInput.id));
+      console.log("로그인 디스패치 실행");
+
+      router.push(status.url);
+    }
   };
-
-  // const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-
-  // };
 
   return (
     <div className="login_container">
