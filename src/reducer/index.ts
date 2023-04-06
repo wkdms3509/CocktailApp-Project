@@ -5,38 +5,28 @@ import { configureStore } from "@reduxjs/toolkit";
 
 const rootReducer = combineReducers({ userReducer });
 
-export const makeStore = () => {
-  const store = configureStore({
-    reducer: (state, action) => {
-      switch (action.type) {
-        case HYDRATE:
-          return action.payload;
+// export const makeStore = () => {
+//   const store = configureStore({
+//     reducer: (state, action) => {
+//       switch (action.type) {
+//         case HYDRATE:
+//           return action.payload;
 
-        default:
-          return rootReducer(state, action);
-      }
-    },
-    devTools: process.env.NODE_ENV !== "production",
-  });
-  return store;
-};
-
-const wrapper = createWrapper(makeStore, {
-  debug: process.env.NODE_ENV === "development",
-});
-
-export type RootState = ReturnType<typeof rootReducer>;
-
-export default wrapper;
-
-// const rootReducer = (state, action) => {
-//   if (action.type === HYDRATE) {
-//     return {
-//       ...state,
-//       ...action.payload,
-//     };
-//   }
-//   return combineReducers({ userReducer })(state, action);
+//         default:
+//           return rootReducer(state, action);
+//       }
+//     },
+//     devTools: process.env.NODE_ENV !== "production",
+//   });
+//   return store;
 // };
 
-// export default rootReducer;
+// const wrapper = createWrapper(makeStore, {
+//   debug: process.env.NODE_ENV === "development",
+// });
+
+// export type RootState = ReturnType<typeof rootReducer>;
+
+// export default wrapper;
+
+export default rootReducer;

@@ -11,9 +11,11 @@ import type {
   AllCocktailListProps,
   Product,
 } from "@/src/constants/productTypes";
-import { useSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import LoginForm from "@/src/components/user/LoginForm";
 import { useSelector } from "react-redux";
+import wrapper from "@/src/reducer";
+import { useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,11 +23,13 @@ export default function Home(props: AllCocktailListProps) {
   const { allProductList } = props;
   const { data: session, status } = useSession();
   const userSelector = useSelector((state) => state.userReducer);
+  console.log("Home session", session);
 
   return (
     <>
-      {status === "authenticated" && userSelector.isLogin ? (
+      {status === "authenticated" ? (
         <div className="w-full p-32 mx-auto">
+          {/* <h1>{userSelector.user}</h1> */}
           <section>
             <MainBanner />
           </section>
@@ -43,7 +47,26 @@ export default function Home(props: AllCocktailListProps) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+// export const getServerSideProps: GetServerSideProps =
+//   wrapper.getServerSideProps((store) => async (context) => {
+//     const res = await axios.get("http://localhost:3000/api/products");
+
+//     if (!res.data) {
+//       return {
+//         notFound: true,
+//       };
+//     }
+
+//     const { data } = res.data;
+
+//     return {
+//       props: {
+//         allProductList: data,
+//       },
+//     };
+//   });
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const res = await axios.get("http://localhost:3000/api/products");
 
   if (!res.data) {
@@ -57,6 +80,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   return {
     props: {
       allProductList: data,
+      session: await getSession(context),
     },
   };
 };

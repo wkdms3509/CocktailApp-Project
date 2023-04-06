@@ -1,6 +1,8 @@
 import axios from "axios";
+import { NextApiRequest } from "next";
 import NextAuth, { CookiesOptions, NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { signIn } from "next-auth/react";
 
 const cookies: Partial<CookiesOptions> = {
   sessionToken: {
@@ -46,21 +48,31 @@ const authOptions: NextAuthOptions = {
           placeholder: "password",
         },
       },
-      // 로그인 유효성 검사
-      async authorize(credentials, req) {
+      // 로그인 유효성 검사 (로그인 인증)
+      async authorize(credentials, req: NextApiRequest) {
         if (!credentials)
           throw new Error("잘못된 입력값으로 인한 오류가 발생했습니다.");
 
         const { id, password } = credentials;
 
-        const res = await axios.post("http://localhost:3000/api/users/login", {
-          id,
-          password,
+        const res = await fetch("http://localhost:3000/api/users/login", {
+          method: "POST",
+          body: JSON.stringify(credentials),
+          headers: { "Content-Type": "application/json" },
         });
 
-        const user = res.data.data;
+        // const res = await axios({
+        //   url: "http://localhost:3000/api/users/login",
+        //   method: "POST",
+        //   data: {
+        //     id,
+        //     password,
+        //   },
+        // });
 
-        if (res.status === 200 && user) {
+        const user = await res.json();
+
+        if (res.ok && user) {
           return user;
         }
         // return null;
@@ -69,16 +81,23 @@ const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.accessToken = user.access_token;
+    // async signIn({ user, account, credentials }) {
+    //   console.log("signIn", props);
+    // },
+    async jwt({ token, user, account }) {
+      if (account && user) {
+        console.log("jwt user", user);
+
+        token.accessToken = account.access_token;
         token.userRole = "admin";
       }
       return token;
     },
     // 세션에 로그인한 유저 데이터 입력
     async session({ session, token, user }) {
+      session.user_id = token.name;
       session.accessToken = token.accessToken;
+
       return session;
     },
   },

@@ -10,12 +10,19 @@ import { MdLockOutline } from "react-icons/md";
 import Image from "next/image";
 import { useState } from "react";
 import axios from "axios";
-import { signIn, useSession } from "next-auth/react";
+import { getCsrfToken, signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { unstable_getServerSession } from "next-auth";
 import type { User } from "@/src/constants/userType";
 import { useDispatch } from "react-redux";
 import { login } from "@/src/reducer/user";
+import {
+  GetServerSideProps,
+  GetServerSidePropsContext,
+  InferGetServerSidePropsType,
+} from "next";
+import wrapper from "@/src/reducer";
+import { getServerSideProps } from "@/pages";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -137,8 +144,24 @@ const LoginForm = () => {
   );
 };
 
-// export async function getServerSideProps(context) {
-//   const session = unstable_getServerSession(context.req, context.res, )
+// export async const getServerSiseProps = (context: GetServerSidePropsContext) => {
+//   return {
+//     props: {
+//       csrfToken: await getCsrfToken(context)
+//     }
+//   }
 // }
+
+// export const getServerSideProps: GetServerSideProps =
+//   wrapper.getServerSideProps(async ({ store }) => {
+//     // const res = await axios.get();
+//     console.log("loginform", store);
+
+//     return {
+//       props: {
+//         selectUser,
+//       },
+//     };
+//   });
 
 export default LoginForm;

@@ -35,29 +35,33 @@ export type UserAction = ReturnType<
 
 interface User {
   id: string;
-  //   name: string;
-  //   auth: string;
-  isLogin: boolean;
 }
 
-const initialState: User = {
-  id: "",
-  //   name: "",
-  //   auth: "",
+interface InitialType {
+  isLogin: boolean;
+  user: User;
+}
+
+const initialState: InitialType = {
   isLogin: false,
+  user: null,
 };
 
 export default function userReducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN_USER:
-      console.log("LOGIN_USER", action.payload);
+      console.log("userReducer", action.payload);
       return {
         ...state,
-        // name: action.payload.user.name,
-        // auth: action.payload.user.auth,
-        id: action.payload.user,
+        user: { id: action.payload.user },
         isLogin: true,
       };
+    //   case REGISTER_USER:
+    //       console.log();
+    //       return {
+    //           ...state, user: action.payload.user
+    //       }
+
     //     case REGISTER_USER:
     //       return {
     //         message: action.payload.result,

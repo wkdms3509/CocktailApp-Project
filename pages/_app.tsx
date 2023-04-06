@@ -7,8 +7,14 @@ import rootReducer, { ReducerType } from "@/src/reducer";
 import { Provider } from "react-redux";
 import wrapper from "@/src/reducer";
 
-export default function App({ Component, pageProps }: AppProps) {
-  const { store, props } = wrapper.useWrappedStore(pageProps);
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
+  const store = createStore(rootReducer);
+
+  // const { store, props } = wrapper.useWrappedStore(pageProps);
+
   return (
     <Provider store={store}>
       <SessionProvider session={pageProps.session}>
