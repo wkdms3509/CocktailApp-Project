@@ -23,7 +23,7 @@ export default function Home(props: AllCocktailListProps) {
   const { allProductList } = props;
   const { data: session, status } = useSession();
   const userSelector = useSelector((state) => state.userReducer);
-  console.log("Home session", session);
+  // console.log("Home session 3", session);
 
   return (
     <>
@@ -80,7 +80,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
       allProductList: data,
-      session: await getSession(context),
+      // session: await getSession(context),
     },
   };
 };

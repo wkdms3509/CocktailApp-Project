@@ -19,8 +19,6 @@ export default async function handler(
 
 const postLogin = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   try {
-    // console.log("req", req);
-
     const { id, password } = req.body;
 
     const [result] = await pool.query(
@@ -59,7 +57,11 @@ const postLogin = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       name: result[0].name,
       email: result[0].email,
       id: result[0].id,
+      user_id: result[0].user_id,
+      auth: result[0].auth,
     };
+
+    // console.log("user", user);
 
     return res.status(200).json({
       code: 200,

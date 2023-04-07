@@ -1,4 +1,4 @@
-import LoginForm from "../src/components/user/LoginForm";
+import LoginForm from "../../src/components/user/LoginForm";
 
 const LoginPage = () => {
   return <LoginForm />;

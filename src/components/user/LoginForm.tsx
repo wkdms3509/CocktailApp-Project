@@ -47,8 +47,8 @@ const LoginForm = () => {
     });
 
     if (status.ok) {
-      dispatch(login(userInput.id));
-      console.log("로그인 디스패치 실행");
+      // dispatch(login(userInput.id));
+      // console.log("로그인 디스패치 실행");
 
       router.push(status.url);
     }
