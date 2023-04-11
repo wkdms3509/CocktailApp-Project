@@ -1,5 +1,6 @@
 import Layout from "@/src/components/Layout";
-import "@/styles/globals.css";
+import "../styles/globals.css";
+import "../styles/tailwind.css";
 import type { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
 import { createStore } from "redux";
@@ -11,9 +12,7 @@ export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }: AppProps) {
-  const store = createStore(rootReducer);
-
-  // const { store, props } = wrapper.useWrappedStore(pageProps);
+  const { store, props } = wrapper.useWrappedStore(pageProps);
 
   return (
     <Provider store={store}>

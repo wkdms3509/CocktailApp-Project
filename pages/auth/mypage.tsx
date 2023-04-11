@@ -1,4 +1,4 @@
-import MyPageForm from "@/src/components/user/MyPageForm";
+import MyPageForm from "../../src/components/user/MyPageForm";
 
 const mypage = () => {
   return <MyPageForm />;

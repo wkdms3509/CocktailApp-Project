@@ -2,6 +2,7 @@ import { pool } from "@/src/config/db";
 import { Data } from "@/src/constants/apiTypes";
 import crypto from "crypto";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { getToken } from "next-auth/jwt";
 
 export default async function handler(
   req: NextApiRequest,
@@ -60,8 +61,6 @@ const postLogin = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       user_id: result[0].user_id,
       auth: result[0].auth,
     };
-
-    // console.log("user", user);
 
     return res.status(200).json({
       code: 200,

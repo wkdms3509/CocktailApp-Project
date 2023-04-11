@@ -7,23 +7,19 @@ export default async function handler(
 ) {
   switch (req.method) {
     case "GET":
-      return await getAllProductList(req, res);
-      break;
+      return await getProduct(req, res);
 
     default:
       break;
   }
 }
 
-const getAllProductList = async (req: NextApiRequest, res: NextApiResponse) => {
+const getProduct = async (req, res) => {
   try {
     const [result] = await pool.query("SELECT * FROM cocktail2");
-    if (result.length === 0) {
-      res.status(400).json({
-        code: 400,
-        is_success: false,
-        message: "데이터가 존재하지 않습니다.",
-      });
+
+    if (!result) {
+      res.json({ code: 400, is_success: false });
     }
     res.status(200).json({ code: 200, is_success: true, data: result });
   } catch (error) {

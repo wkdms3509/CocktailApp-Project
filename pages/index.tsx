@@ -16,27 +16,38 @@ import LoginForm from "@/src/components/user/LoginForm";
 import { useSelector } from "react-redux";
 import wrapper from "@/src/reducer";
 import { useEffect } from "react";
+import { addItem, initializeItems, upCount } from "@/src/reducer/products";
+import { END } from "@redux-saga/core";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home(props: AllCocktailListProps) {
-  const { allProductList } = props;
+export default function Home({ allProductList }) {
   const { data: session, status } = useSession();
-  const userSelector = useSelector((state) => state.userReducer);
-  // console.log("Home session 3", session);
+  // const productsList = useSelector((state) => state.products);
+  // console.log("productsList", productsList);
+
+  // useEffect(() => {
+  //   try {
+  //     async function fetchData() {
+  //       const res = await axios.get("/api/products");
+  //       console.log("useEffect", await res.data);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, []);
 
   return (
     <>
       {status === "authenticated" ? (
-        <div className="w-full p-32 mx-auto">
-          {/* <h1>{userSelector.user}</h1> */}
+        <div className="w-full mx-auto">
           <section>
             <MainBanner />
           </section>
-          <section>
-            <Catecory />
+          <section className=" p-5">
+            <Catecory allProductList={allProductList} />
           </section>
-          <section>
+          <section className="p-32">
             <AllCocktailList allProductList={allProductList} />
           </section>
         </div>
@@ -47,47 +58,62 @@ export default function Home(props: AllCocktailListProps) {
   );
 }
 
-// export const getServerSideProps: GetServerSideProps =
-//   wrapper.getServerSideProps((store) => async (context) => {
-//     const res = await axios.get("http://localhost:3000/api/products");
+export const getServerSideProps: GetServerSideProps =
+  wrapper.getServerSideProps((store) => async (context) => {
+    const items = [
+      {
+        id: 3,
+        type: "gin",
+        name: "칵테일",
+        description: "테스트",
+        alcohol: "5",
+        sugar: "10",
+        sourness: "2",
+        bitter: "4",
+        recipe: "",
+        img: "image/image.com",
+        create_at: "2023-4-10",
+      },
+      {
+        id: 4,
+        type: "gin",
+        name: "칵테일2",
+        description: "테스트2",
+        alcohol: "5",
+        sugar: "10",
+        sourness: "2",
+        bitter: "4",
+        recipe: "",
+        img: "image/image.com",
+        create_at: "2023-4-10",
+      },
+    ];
 
-//     if (!res.data) {
-//       return {
-//         notFound: true,
-//       };
-//     }
+    // console.log('store state', store.getState);
 
-//     const { data } = res.data;
+    // store.dispatch(initializeItems(items));
+    const res = await axios.get("http://localhost:3000/api/products");
 
-//     return {
-//       props: {
-//         allProductList: data,
-//       },
-//     };
-//   });
+    if (!res.data) {
+      return {
+        notFound: true,
+      };
+    }
+    const { data } = res.data;
+    // store.dispatch(data);
+    // store.dispatch(END);
+    // await store.sagaTask?.toPromise();
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const res = await axios.get("http://localhost:3000/api/products");
-
-  if (!res.data) {
     return {
-      notFound: true,
+      props: {
+        allProductList: data,
+      },
     };
-  }
+  });
 
-  const { data } = res.data;
-
-  return {
-    props: {
-      allProductList: data,
-      // session: await getSession(context),
-    },
-  };
-};
-
-// 빌드 타임에 html 생성
-// export const getStaticProps: GetStaticProps = async () => {
+// export const getServerSideProps: GetServerSideProps = async (context) => {
 //   const res = await axios.get("http://localhost:3000/api/products");
+
 //   if (!res.data) {
 //     return {
 //       notFound: true,
@@ -95,6 +121,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 //   }
 
 //   const { data } = res.data;
+
 //   return {
 //     props: {
 //       allProductList: data,

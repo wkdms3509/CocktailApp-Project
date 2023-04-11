@@ -29,7 +29,7 @@ export const auth = (user) => {
   };
 };
 
-export type UserAction = ReturnType<
+export type UserActionsType = ReturnType<
   typeof register | typeof login | typeof auth
 >;
 
@@ -47,7 +47,10 @@ const initialState: InitialType = {
   user: null,
 };
 
-export default function userReducer(state = initialState, action) {
+export default function userReducer(
+  state = initialState,
+  action: UserActionsType
+) {
   switch (action.type) {
     case LOGIN_USER:
       console.log("userReducer", action.payload);

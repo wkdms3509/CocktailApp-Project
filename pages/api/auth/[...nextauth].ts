@@ -1,7 +1,7 @@
 import axios from "axios";
 import { NextApiRequest } from "next";
 import NextAuth, { CookiesOptions, NextAuthOptions, User } from "next-auth";
-import { JWT } from "next-auth/jwt";
+import { getToken, JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { signIn } from "next-auth/react";
 
@@ -79,6 +79,10 @@ const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
+    async signIn({ user, account }) {
+      account.access_token = user.access_token;
+      return true;
+    },
     async jwt({ token, user, account }) {
       if (account && user) {
         token.accessToken = account.access_token;
@@ -90,7 +94,7 @@ const authOptions: NextAuthOptions = {
     async session({ session, token, user }) {
       session.user_id = token.name;
       session.accessToken = token.accessToken;
-      console.log("session", session);
+      // console.log("session", session);
 
       return session;
     },

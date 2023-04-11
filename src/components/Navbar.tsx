@@ -28,10 +28,12 @@ const Navbar = () => {
               <Link href="/">
                 <li className="category_right_menu">HOME</li>
               </Link>
-              <li className="category_right_menu">RECOMMAND</li>
+              <Link href="/products/recommend">
+                <li className="category_right_menu">RECOMMAND</li>
+              </Link>
               <li className="category_right_menu">NEW</li>
               {status === "authenticated" ? (
-                <Link href="/mypage">
+                <Link href="/auth/mypage">
                   <li className="category_right_menu">MY</li>
                 </Link>
               ) : (
