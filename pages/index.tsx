@@ -14,7 +14,7 @@ import type {
 import { getSession, useSession } from "next-auth/react";
 import LoginForm from "@/src/components/user/LoginForm";
 import { useSelector } from "react-redux";
-import wrapper from "@/src/reducer";
+import wrapper, { persistor } from "@/src/reducer";
 import { useEffect } from "react";
 import { addItem, initializeItems, upCount } from "@/src/reducer/products";
 import { END } from "@redux-saga/core";
@@ -23,19 +23,9 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home({ allProductList }) {
   const { data: session, status } = useSession();
-  // const productsList = useSelector((state) => state.products);
+  // const productsList = useSelector((state) => state);
   // console.log("productsList", productsList);
-
-  // useEffect(() => {
-  //   try {
-  //     async function fetchData() {
-  //       const res = await axios.get("/api/products");
-  //       console.log("useEffect", await res.data);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }, []);
+  // console.log("persistor", persistor);
 
   return (
     <>
@@ -58,8 +48,24 @@ export default function Home({ allProductList }) {
   );
 }
 
+// export const getStaticPaths: GetStaticPaths = async (context) => {
+//   const res = await fetch("http://localhost:3000/api/products");
+//   const posts = await res.json();
+
+//   const paths = posts.data.map((post) => ({
+//     params: { id: post.id },
+//   }));
+//   // console.log("getStaticPaths", posts.data);
+
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// };
+
 export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps((store) => async (context) => {
+    const res = await axios.get("http://localhost:3000/api/products");
     const items = [
       {
         id: 3,
@@ -89,10 +95,7 @@ export const getServerSideProps: GetServerSideProps =
       },
     ];
 
-    // console.log('store state', store.getState);
-
-    // store.dispatch(initializeItems(items));
-    const res = await axios.get("http://localhost:3000/api/products");
+    store.dispatch(initializeItems(items));
 
     if (!res.data) {
       return {
@@ -100,9 +103,6 @@ export const getServerSideProps: GetServerSideProps =
       };
     }
     const { data } = res.data;
-    // store.dispatch(data);
-    // store.dispatch(END);
-    // await store.sagaTask?.toPromise();
 
     return {
       props: {
@@ -111,20 +111,49 @@ export const getServerSideProps: GetServerSideProps =
     };
   });
 
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//   const res = await axios.get("http://localhost:3000/api/products");
+// export const getServerSideProps: GetServerSideProps =
+//   wrapper.getServerSideProps((store) => async (context) => {
+//     const res = await axios.get("http://localhost:3000/api/products");
 
-//   if (!res.data) {
+//     if (!res.data) {
+//       return {
+//         notFound: true,
+//       };
+//     }
+//     const { data } = res.data;
+
 //     return {
-//       notFound: true,
+//       props: {
+//         allProductList: data,
+//       },
 //     };
-//   }
+//   });
 
-//   const { data } = res.data;
-
-//   return {
-//     props: {
-//       allProductList: data,
-//     },
-//   };
-// };
+// const items = [
+//   {
+//     id: 3,
+//     type: "gin",
+//     name: "칵테일",
+//     description: "테스트",
+//     alcohol: "5",
+//     sugar: "10",
+//     sourness: "2",
+//     bitter: "4",
+//     recipe: "",
+//     img: "image/image.com",
+//     create_at: "2023-4-10",
+//   },
+//   {
+//     id: 4,
+//     type: "gin",
+//     name: "칵테일2",
+//     description: "테스트2",
+//     alcohol: "5",
+//     sugar: "10",
+//     sourness: "2",
+//     bitter: "4",
+//     recipe: "",
+//     img: "image/image.com",
+//     create_at: "2023-4-10",
+//   },
+// ];

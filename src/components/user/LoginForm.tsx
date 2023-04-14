@@ -21,7 +21,7 @@ import {
   GetServerSidePropsContext,
   InferGetServerSidePropsType,
 } from "next";
-import wrapper from "@/src/reducer";
+import wrapper, { persistor, store } from "@/src/reducer";
 import { getServerSideProps } from "@/pages";
 
 const LoginForm = () => {
@@ -47,6 +47,8 @@ const LoginForm = () => {
     });
 
     if (status.ok) {
+      // store.dispatch(login(userInput.id));
+
       // dispatch(login(userInput.id));
       // console.log("로그인 디스패치 실행");
 
@@ -152,16 +154,17 @@ const LoginForm = () => {
 //   }
 // }
 
-// export const getServerSideProps: GetServerSideProps =
-//   wrapper.getServerSideProps(async ({ store }) => {
-//     // const res = await axios.get();
-//     console.log("loginform", store);
+// export const getServerSideProp = wrapper.getServerSideProps(
+//   (store) => async (context) => {
+//     const storeInfo = store.getState()
+//     console.log("storeInfo", storeInfo);
 
 //     return {
 //       props: {
 //         selectUser,
 //       },
 //     };
-//   });
+//   }
+// );
 
 export default LoginForm;

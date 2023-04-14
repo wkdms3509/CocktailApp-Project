@@ -98,3 +98,9 @@
   background-color: black;
   -webkit-appearance: none;
 }
+
+.ProductCardImg:hover {
+  transform: scale(1.05);
+  transition: all 200ms;
+  /* hover:scale-105 duration-300 w-auto h-auto border-8 border-red-600 */
+}

@@ -1,9 +1,11 @@
 import axios from "axios";
+import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useState } from "react";
 import type { AllCocktailListProps, Product } from "../constants/productTypes";
+import wrapper from "../reducer";
 import Pagination from "./Pagination";
-import ProductCard from "./ProductCard";
+import ProductCard from "./product/ProductCard";
 
 const AllCocktailList = (props: AllCocktailListProps) => {
   const { allProductList } = props;
