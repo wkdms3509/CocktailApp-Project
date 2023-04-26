@@ -1,22 +1,29 @@
 export const REGISTER_USER = "REGISTER_USER" as const;
 export const LOGIN_USER = "LOGIN_USER" as const;
+export const LOGOUT_USER = "LOGOUT_USER" as const;
 export const AUTH_USER = "AUTH_USER" as const;
 
-export const register = (user) => {
+export const register = (message: string) => {
   return {
     type: REGISTER_USER,
     payload: {
-      result: user,
+      message,
     },
   };
 };
 
-export const login = (user) => {
+export const login = (user: string) => {
   return {
     type: LOGIN_USER,
     payload: {
       user,
     },
+  };
+};
+
+export const logout = () => {
+  return {
+    type: LOGOUT_USER,
   };
 };
 
@@ -34,12 +41,14 @@ export type UserActionsType = ReturnType<
 >;
 
 interface User {
-  id: string;
+  id?: string;
+  email?: string;
 }
 
 interface InitialType {
   isLogin: boolean;
   user: User;
+  message?: string;
 }
 
 const initialState: InitialType = {
@@ -53,22 +62,22 @@ export default function userReducer(
 ) {
   switch (action.type) {
     case LOGIN_USER:
-      console.log("userReducer", action.payload);
       return {
         ...state,
-        user: { id: action.payload.user },
+        user: { email: action.payload.user },
         isLogin: true,
       };
-    //   case REGISTER_USER:
-    //       console.log();
-    //       return {
-    //           ...state, user: action.payload.user
-    //       }
-
-    //     case REGISTER_USER:
-    //       return {
-    //         message: action.payload.result,
-    //       };
+    case LOGOUT_USER:
+      return {
+        ...state,
+        user: null,
+        isLogin: false,
+      };
+    case REGISTER_USER:
+      return {
+        ...state,
+        message: action.payload.message,
+      };
 
     default:
       return state;

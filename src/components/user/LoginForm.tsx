@@ -41,7 +41,7 @@ const LoginForm = () => {
     e.preventDefault();
     const status = await signIn("credentials", {
       redirect: false,
-      id: userInput.id,
+      username: userInput.id,
       password: userInput.password,
       callbackUrl: "/",
     });
@@ -136,7 +136,7 @@ const LoginForm = () => {
             <h2 className="text-3xl font-bold mb-2">Welcome !</h2>
             <div className="border-2 border-white w-10 inline-block m-4"></div>
             <p className="mb-6">Don`t have an account?</p>
-            <Link href="/register" className="">
+            <Link href="/auth/register" className="">
               <span className="login_signup_btn">Sign up</span>
             </Link>
           </div>

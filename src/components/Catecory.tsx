@@ -18,31 +18,36 @@ const Catecory = ({ allProductList }) => {
   return (
     <div className="w-full mt-20">
       <ul className="flex flex-row px-28 justify-between text-center">
-        {/* <Link href={`/category/${type.gin}`}> */}
-        <li className="border border-black rounded-md flex-1 m-1 py-8 text-2xl cursor-pointer bg-black text-white hover:bg-black/80">
-          GIN
-        </li>
-        {/* </Link> */}
-        {/* <Link href={`category/${type.non_alc}`}> */}
-        <li className="border border-black rounded-md flex-1 m-1 py-8 text-2xl cursor-pointer bg-black text-white hover:bg-black/80">
-          NON-ALCOL
-        </li>
-        {/* </Link> */}
-        {/* <Link href={`category/${type.vodka}`}> */}
-        <li className="border border-black rounded-md flex-1 m-1 py-8 text-2xl cursor-pointer bg-black text-white hover:bg-black/80">
-          VODKA
-        </li>
-        {/* </Link> */}
-        {/* <Link href={`category/${type.rum}`}> */}
-        <li className="border border-black rounded-md flex-1 m-1 py-8 text-2xl cursor-pointer bg-black text-white hover:bg-black/80">
-          RUM
-        </li>
-        {/* </Link> */}
-        {/* <Link href={`category/${type.whiskey}`}> */}
-        <li className="border border-black rounded-md flex-1 m-1 py-8 text-2xl cursor-pointer bg-black text-white hover:bg-black/80">
-          WHISKY
-        </li>
-        {/* </Link> */}
+        <Link
+          href={`/category/${type.gin}`}
+          className="border border-black rounded-md flex-1 m-1 py-8 text-2xl cursor-pointer bg-black text-white hover:bg-black/80"
+        >
+          <li>GIN</li>
+        </Link>
+        <Link
+          href={`category/${type.non_alc}`}
+          className="border border-black rounded-md flex-1 m-1 py-8 text-2xl cursor-pointer bg-black text-white hover:bg-black/80"
+        >
+          <li>NON-ALCOL</li>
+        </Link>
+        <Link
+          href={`category/${type.vodka}`}
+          className="border border-black rounded-md flex-1 m-1 py-8 text-2xl cursor-pointer bg-black text-white hover:bg-black/80"
+        >
+          <li>VODKA</li>
+        </Link>
+        <Link
+          href={`category/${type.rum}`}
+          className="border border-black rounded-md flex-1 m-1 py-8 text-2xl cursor-pointer bg-black text-white hover:bg-black/80"
+        >
+          <li>RUM</li>
+        </Link>
+        <Link
+          href={`category/${type.whiskey}`}
+          className="border border-black rounded-md flex-1 m-1 py-8 text-2xl cursor-pointer bg-black text-white hover:bg-black/80"
+        >
+          <li>WHISKY</li>
+        </Link>
       </ul>
     </div>
   );

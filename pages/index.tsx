@@ -14,15 +14,25 @@ import type {
 import { getSession, useSession } from "next-auth/react";
 import LoginForm from "@/src/components/user/LoginForm";
 import { useSelector } from "react-redux";
-import wrapper, { persistor } from "@/src/reducer";
+import wrapper, { persistor, store } from "@/src/reducer";
 import { useEffect } from "react";
 import { addItem, initializeItems, upCount } from "@/src/reducer/products";
 import { END } from "@redux-saga/core";
+import { useDispatch } from "react-redux";
+import { login } from "@/src/reducer/user";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home({ allProductList }) {
   const { data: session, status } = useSession();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (session) {
+      dispatch(login(session.user?.email));
+    }
+  }, [dispatch, session]);
+
   // const productsList = useSelector((state) => state);
   // console.log("productsList", productsList);
   // console.log("persistor", persistor);

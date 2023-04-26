@@ -20,11 +20,11 @@ export default async function handler(
 
 const postLogin = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   try {
-    const { id, password } = req.body;
+    const { username, password } = req.body;
 
     const [result] = await pool.query(
       "SELECT * FROM user WHERE user_id = ?",
-      id
+      username
     );
 
     if (!result[0]) {

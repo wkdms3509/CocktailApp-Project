@@ -8,6 +8,13 @@ import IsLogin from "./user/IsLogin";
 const Navbar = () => {
   const { data: session, status } = useSession();
 
+  const type = {
+    gin: "gin",
+    non_alc: "non-alc",
+    vodka: "vodka",
+    rum: "RUM",
+  };
+
   return (
     <>
       {status === "authenticated" ? (
@@ -48,11 +55,21 @@ const Navbar = () => {
           </div>
           <div>
             <ul className="sub_category">
-              <li className="pr-3 text-blue-500">Today`s Cocktail</li>
-              <li className="sub_category_menu">GIN</li>
-              <li className="sub_category_menu">NON-ALCOL</li>
-              <li className="sub_category_menu">VODKA</li>
-              <li className="sub_category_menu">RUM</li>
+              <Link href="/products/today">
+                <li className="pr-3 text-blue-500">Today`s Cocktail</li>
+              </Link>
+              <Link href={`/category/${type.gin}`}>
+                <li className="sub_category_menu">GIN</li>
+              </Link>
+              <Link href={`/category/${type.non_alc}`}>
+                <li className="sub_category_menu">NON-ALCOL</li>
+              </Link>
+              <Link href={`/category/${type.vodka}`}>
+                <li className="sub_category_menu">VODKA</li>
+              </Link>
+              <Link href={`/category/${type.rum}`}>
+                <li className="sub_category_menu">RUM</li>
+              </Link>
             </ul>
           </div>
         </header>

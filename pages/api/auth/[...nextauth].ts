@@ -49,7 +49,7 @@ const authOptions: NextAuthOptions = {
       name: "User-Id",
       type: "credentials",
       credentials: {
-        id: { label: "Id", type: "text", placeholder: "id" },
+        username: { label: "Id", type: "text", placeholder: "id" },
         password: {
           label: "Password",
           type: "password",
@@ -61,7 +61,7 @@ const authOptions: NextAuthOptions = {
         if (!credentials)
           throw new Error("잘못된 입력값으로 인한 오류가 발생했습니다.");
 
-        const { id, password } = credentials;
+        const { username, password } = credentials;
 
         const res = await fetch("http://localhost:3000/api/users/login", {
           method: "POST",
@@ -79,22 +79,29 @@ const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async signIn({ user, account }) {
-      account.access_token = user.access_token;
-      return true;
-    },
+    // async signIn({ user, account }) {
+    //   account.access_token = user.access_token;
+    //   return true;
+    // },
     async jwt({ token, user, account }) {
-      if (account && user) {
-        token.accessToken = account.access_token;
+      if (user) {
+        token.id = user.id;
+        // token.accessToken = account.access_token;
+        // console.log("1. callback user", user);
+        // console.log("3. callback account", account);
       }
 
       return token;
     },
     // 세션에 로그인한 유저 데이터 입력
     async session({ session, token, user }) {
-      session.user_id = token.name;
-      session.accessToken = token.accessToken;
-      // console.log("session", session);
+      // const gettoken = getToken;
+      if (token) {
+        session.id = token.id;
+        session.accessToken = token.accessToken;
+      }
+      // console.log("callback session", session);
+      // console.log("callback token", token);
 
       return session;
     },
