@@ -126,15 +126,15 @@
   width: 1.25rem;
 }
 
-.login_input {
+/* .login_input {
   background-color: rgb(243 244 246);
   outline: none;
   font-size: 0.875rem;
   line-height: 1.25rem;
   color: black;
-}
+} */
 
-.login_signin_btn {
+/* .login_signin_btn {
   color: #000;
   border-radius: 9999px;
   border: 1px solid #999;
@@ -148,18 +148,18 @@
   background-color: #000;
   transition-duration: 200ms;
   transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
-}
+} */
 
-.login_signup_form {
+/* .login_signup_form {
   width: 45%;
   padding: 9rem 1.25rem;
   background-color: #000;
   color: #fff;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
-}
+} */
 
-.login_signup_btn {
+/* .login_signup_btn {
   border: 1px solid #fff;
   border-radius: 9999px;
   display: inline-block;
@@ -172,7 +172,7 @@
 .login_signup_btn:hover {
   background-color: #fff;
   color: #000;
-}
+} */
 
 /* pagination */
 .pagination {

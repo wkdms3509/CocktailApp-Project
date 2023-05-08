@@ -59,13 +59,13 @@ const LoginForm = () => {
   return (
     <div className="login_container">
       <main className="login_main_container">
-        <div className="bg-white rounded-2xl shadow-2xl flex w-2/3 max-w-4xl">
-          <div className="w-3/5 p-5">
+        <div className="bg-white rounded-2xl shadow-2xl flex flex-col max-w-4xl w-80 md:w-5/6 md:flex-row lg:w-2/3 lg:flex-row">
+          <div className="p-5 md:w-3/5 lg:w-3/5">
             <div className="text-left font-bold">
               <span className="text-[#71223E] ml-2 italic">Cocktail</span>
             </div>
             <div className="py-10">
-              <h2 className="text-[#71223E] text-3xl font-bold mb-2">
+              <h2 className="text-[#71223E] font-bold mb-2 text-lg md:text-2xl lg:text-3xl">
                 Sign in to Account
               </h2>
               <div className="border-2 border-[#71223E] w-10 inline-block m-4"></div>
@@ -80,10 +80,12 @@ const LoginForm = () => {
                   <FaLinkedinIn className="login_sns_icon" />
                 </button>
               </div>
-              <p className="text-gray-400 my-3">or use your account</p>
+              <p className="text-gray-400 my-3 text-xs lg:text-sm">
+                or use your account
+              </p>
               <form onSubmit={handleSubmit}>
                 <div className="flex flex-col items-center">
-                  <div className="bg-gray-100 w-64 p-2 flex items-center mb-2">
+                  <div className="bg-gray-100 p-2 flex items-center mb-2 w-4/6 md:w-4/6 lg:w-64">
                     <FaRegEnvelope className="text-gray-400 mr-2" />
                     <input
                       type="text"
@@ -96,7 +98,7 @@ const LoginForm = () => {
                       //   {...formik.getFieldProps("username")}
                     />
                   </div>
-                  <div className="bg-gray-100 w-64 p-2 flex items-center">
+                  <div className="bg-gray-100 p-2 flex items-center w-4/6 md:w-4/6 lg:w-64">
                     <MdLockOutline className="text-gray-400 mr-2" />
                     <input
                       type="password"
@@ -109,8 +111,8 @@ const LoginForm = () => {
                       //   {...formik.getFieldProps("password")}
                     />
                   </div>
-                  <div className="flex justify-between w-64 mb-5 mt-2 text-gray-400">
-                    <label className="flex items-center text-xs">
+                  <div className="flex flex-col justify-between items-center mb-5 mt-2 text-gray-400 w-4/6 md:w-4/6 md:flex-row md:justify-between lg:w-64 lg:flex-row lg:justify-between">
+                    <label className="hidden items-center text-xs py-2 md:flex md:py-0 lg:flex lg:py-0">
                       <input type="checkbox" name="remember" className="mr-1" />
                       Remember me
                     </label>
@@ -119,6 +121,9 @@ const LoginForm = () => {
                   <button className="login_signin_btn" type="submit">
                     Sign in
                   </button>
+                  <Link href="/auth/register">
+                    <span className="login_signup_btn_one">Sign up</span>
+                  </Link>
                   <div className="flex">
                     <button
                       className="mt-3 text-black px-4 py-1 pt-3 border-b-2 inline-block text-xs hover:text-[#ff5203] hover:border-b-[#ff5203]"
@@ -133,11 +138,15 @@ const LoginForm = () => {
           </div>
 
           <div className="login_signup_form">
-            <h2 className="text-3xl font-bold mb-2">Welcome !</h2>
+            <h2 className="font-bold mb-2 text-lg md:text-2xl lg:text-3xl">
+              Welcome !
+            </h2>
             <div className="border-2 border-white w-10 inline-block m-4"></div>
-            <p className="mb-6">Don`t have an account?</p>
-            <Link href="/auth/register" className="">
-              <span className="login_signup_btn">Sign up</span>
+            <p className="mb-6 text-sm md:text-base lg:text-base">
+              Don`t have an account?
+            </p>
+            <Link href="/auth/register">
+              <span className="login_signup_btn_two">Sign up</span>
             </Link>
           </div>
         </div>

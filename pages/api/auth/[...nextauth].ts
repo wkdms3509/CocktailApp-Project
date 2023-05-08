@@ -79,29 +79,26 @@ const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    // async signIn({ user, account }) {
-    //   account.access_token = user.access_token;
-    //   return true;
-    // },
     async jwt({ token, user, account }) {
       if (user) {
-        token.id = user.id;
+        // token.id = user.id;
         // token.accessToken = account.access_token;
-        // console.log("1. callback user", user);
-        // console.log("3. callback account", account);
+        return {
+          accessToken: account.access_token,
+          accessTokenExpires: account.expires_at,
+          refreshToken: account.refresh_token,
+          user,
+        };
       }
 
       return token;
     },
     // 세션에 로그인한 유저 데이터 입력
     async session({ session, token, user }) {
-      // const gettoken = getToken;
       if (token) {
         session.id = token.id;
         session.accessToken = token.accessToken;
       }
-      // console.log("callback session", session);
-      // console.log("callback token", token);
 
       return session;
     },

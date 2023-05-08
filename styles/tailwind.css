@@ -3,18 +3,39 @@
 @tailwind utilities;
 
 @layer components {
-  /* .title_name {
-    @apply font-light pb-4;
+  .login_input {
+    @apply outline-none text-xs leading-5 text-black bg-gray-100 lg:text-sm;
   }
 
-  .card_description {
-    @apply text-sm pb-2;
+  .login_signin_btn {
+    @apply inline-block font-bold py-2 px-12 rounded-full border border-solid border-black text-black text-sm md:text-base lg:text-base;
   }
 
-  .card_info {
-    @apply text-sm;
+  .login_signin_btn:hover {
+    @apply text-white bg-black duration-200 ease-in;
   }
 
+  .login_signup_form {
+    @apply hidden py-48 px-5 bg-black text-white rounded-tr-2xl rounded-br-2xl md:block md:w-2/5 lg:w-2/5 lg:block;
+  }
+
+  .login_signup_btn_one {
+    @apply inline-block rounded-full font-bold bg-black text-white border border-solid border-black mt-1 py-2 px-12 duration-200 ease-in text-sm md:hidden lg:hidden;
+  }
+
+  /* .login_signup_btn_one:hover {
+    @apply bg-gray-600 text-white;
+  } */
+
+  .login_signup_btn_two {
+    @apply inline-block rounded-full font-bold border border-solid border-white py-2 px-12 duration-200 ease-in text-sm md:text-base lg:text-base;
+  }
+
+  .login_signup_btn_two:hover {
+    @apply bg-white text-black;
+  }
+
+  /* 
   .card_hover {
     @apply hover:bg-stone-200 hover:bg-right-bottom text-white to-white/40 from-[#71223E] bg-[#71223E] bg-gradient-to-t transition-all bg-size-200 duration-500 rounded p-2 ease-in-out hover:scale-90;
   }

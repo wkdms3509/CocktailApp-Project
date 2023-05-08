@@ -11,7 +11,6 @@ import logger from "redux-logger";
 import createSagaMiddleware from "@redux-saga/core";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { rootSaga } from "../saga/saga";
-// import storage from "redux-persist/lib/storage";
 import {
   FLUSH,
   PAUSE,
@@ -59,9 +58,9 @@ const wrapper = createWrapper<Store>(makeStore);
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.dispatch>;
 
-// export type RootState = ReturnType<typeof rootReducer>; //기존
-
 export default wrapper;
+
+// export type RootState = ReturnType<typeof rootReducer>; //기존
 
 // 1
 // export const makeStore = () => {

@@ -34,8 +34,6 @@ export default function Home({ allProductList }) {
   }, [dispatch, session]);
 
   // const productsList = useSelector((state) => state);
-  // console.log("productsList", productsList);
-  // console.log("persistor", persistor);
 
   return (
     <>
@@ -76,36 +74,8 @@ export default function Home({ allProductList }) {
 export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps((store) => async (context) => {
     const res = await axios.get("http://localhost:3000/api/products");
-    const items = [
-      {
-        id: 3,
-        type: "gin",
-        name: "칵테일",
-        description: "테스트",
-        alcohol: "5",
-        sugar: "10",
-        sourness: "2",
-        bitter: "4",
-        recipe: "",
-        img: "image/image.com",
-        create_at: "2023-4-10",
-      },
-      {
-        id: 4,
-        type: "gin",
-        name: "칵테일2",
-        description: "테스트2",
-        alcohol: "5",
-        sugar: "10",
-        sourness: "2",
-        bitter: "4",
-        recipe: "",
-        img: "image/image.com",
-        create_at: "2023-4-10",
-      },
-    ];
 
-    store.dispatch(initializeItems(items));
+    store.dispatch(initializeItems(res.data.data));
 
     if (!res.data) {
       return {
