@@ -6,6 +6,7 @@ import { EventHandler, useState } from "react";
 import { useDispatch } from "react-redux";
 import { AiOutlineCheck } from "react-icons/ai";
 import { BiArrowBack } from "react-icons/bi";
+import { BsCheckLg } from "react-icons/bs";
 import Link from "next/link";
 
 const RegisterForm = () => {
@@ -66,53 +67,58 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="bg-gray-100 flex flex-col items-center justify-center min-h-screen py-2">
-      <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
-        <div className="rounded-2xl bg-black shadow-2xl flex w-2/3 max-w-4xl justify-center">
+    <div className="register_container">
+      <main className="register_main_container">
+        <div className="register_main_form">
           <div className="py-10">
             <Link href="/">
-              <BiArrowBack className="text-white -ml-44 mb-6" size="20" />
+              <BiArrowBack
+                className="text-white md:-ml-32 lg:-ml-52 mb-6"
+                size="20"
+              />
             </Link>
-            <h2 className="text-white text-3xl font-bold mb-2">Sign up</h2>
+            <h2 className="text-white font-bold mb-2 text-lg md:text-2xl lg:text-3xl">
+              Sign up
+            </h2>
             <form
               onSubmit={handleSubmit}
               className="mx-auto w-full flex flex-col items-center py-2"
             >
-              <div className="m-4 w-60 flex flex-col items-start">
-                <label htmlFor="name" className="mb-2 mr-4 text-sm text-white">
+              <div className="m-4 flex flex-col items-start w-48 md:w-52 lg:w-60">
+                <label htmlFor="name" className="label_name">
                   Username
                 </label>
                 <input
                   name="name"
                   placeholder="Enter your Name"
-                  className="border-b-2 p-2 text-xs w-full rounded bg-white/60 border-gray-300 outline-none dark:focus:border-orange-500 focus:border-sky-400"
+                  className="register_input"
                   onChange={handleChange}
                   value={userInput.name}
                   required
                 ></input>
               </div>
-              <div className="m-4 w-60 flex flex-col items-start">
-                <label htmlFor="email" className="mb-2 mr-4 text-sm text-white">
+              <div className="m-4 flex flex-col items-start w-48 md:w-52 lg:w-60">
+                <label htmlFor="email" className="label_name">
                   Email
                 </label>
                 <input
                   name="email"
                   placeholder="Enter your Email"
-                  className="border-b-2 p-2 text-xs w-full rounded bg-white/60 border-gray-300 outline-none dark:focus:border-orange-500 focus:border-sky-400"
+                  className="register_input"
                   onChange={handleChange}
                   value={userInput.email}
                   required
                 ></input>
               </div>
-              <div className="m-4 w-60 flex flex-col items-start">
-                <label htmlFor="id" className="mb-2 mr-4 text-sm text-white">
+              <div className="m-4 flex flex-col items-start w-48 md:w-52 lg:w-60">
+                <label htmlFor="id" className="label_name">
                   User Id
                 </label>
                 <div className="flex w-full">
                   <input
                     name="id"
                     placeholder="Enter your User Id"
-                    className="flex-1 border-b-2 p-2 text-xs rounded bg-white/60 border-gray-300 outline-none dark:focus:border-orange-500 focus:border-sky-400"
+                    className="register_input flex-1"
                     onChange={handleChange} // w-44
                     value={userInput.id}
                     required
@@ -122,17 +128,18 @@ const RegisterForm = () => {
                     onClick={() => handleIdCheck(userInput.id)}
                     className="flex-0.5 w-1/5 border rounded p-1.5 py-2 text-xs ml-2 text-white hover:border-gray-500 hover:text-gray-500 duration-100"
                   >
-                    {checkId ? <AiOutlineCheck className="mx-auto" /> : "Check"}
+                    {checkId ? (
+                      <AiOutlineCheck className="mx-auto" />
+                    ) : (
+                      <BsCheckLg className="mx-auto" size="15" />
+                    )}
                   </button>
                 </div>
 
                 {/* {router.query.isChecked ? <p>사용가능한 아이디입니다</p> : ''} */}
               </div>
-              <div className="m-4 w-60 flex flex-col items-start">
-                <label
-                  htmlFor="password"
-                  className="mb-2 mr-4 text-sm text-white"
-                >
+              <div className="m-4 flex flex-col items-start w-48 md:w-52 lg:w-60">
+                <label htmlFor="password" className="label_name">
                   Password
                 </label>
                 <input
