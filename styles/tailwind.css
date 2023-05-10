@@ -3,13 +3,22 @@
 @tailwind utilities;
 
 @layer components {
+  /* 메인 레이아웃 */
+  /* .container {
+    @apply w-full mx-auto;
+  } */
+
   /* 로그인 */
   .login_container {
     @apply bg-gray-100 flex flex-col items-center justify-center min-h-screen py-2;
   }
 
   .login_main_container {
-    @apply flex flex-col items-center justify-center w-full flex-1 px-20 text-center;
+    @apply flex flex-col items-center justify-center w-full flex-1 text-center md:px-20 lg:px-20;
+  }
+
+  .login_main_form {
+    @apply bg-white rounded-2xl shadow-2xl flex flex-col max-w-4xl w-80 md:w-5/6 md:flex-row lg:w-2/3 lg:flex-row;
   }
 
   .login_input {
@@ -60,6 +69,75 @@
   .register_input {
     @apply border-b-2 p-2 text-xs w-full rounded bg-white border-gray-300 outline-none;
   }
+
+  /* 네비게이션 */
+  .nav {
+    @apply py-6 px-8 md:px-14 lg:px-28;
+  }
+
+  .side_category {
+    @apply flex flex-row justify-end px-4;
+  }
+
+  .side_category_menu {
+    @apply text-xs pl-5 -mt-4 text-gray-600;
+  }
+
+  .main_category {
+    @apply w-full py-3 flex flex-col lg:flex-row lg:justify-between;
+  }
+
+  .main_category_right_one {
+    @apply flex flex-col items-center z-10 absolute bg-white w-full left-0 py-4 opacity-0 -top-40 transition-all ease-in duration-300 lg:flex-row lg:w-auto lg:py-0 lg:items-center lg:z-auto lg:static lg:pl-0 lg:opacity-100;
+  }
+
+  .category_right_menu {
+    @apply my-2 lg:px-4;
+  }
+
+  .category_right_menu:hover {
+    @apply text-gray-300;
+  }
+
+  .sub_category {
+    @apply flex flex-row pt-4 -mb-4;
+  }
+
+  .sub_category_menu {
+    @apply pr-3;
+  }
+
+  .sub_category_menu:hover {
+    @apply text-gray-400;
+  }
+
+  /* 네비게이션 모바일 */
+  .sidebar {
+    @apply flex text-black z-10 ease-in duration-150 lg:hidden;
+  }
+  .sidebar_btn {
+    @apply duration-150 ease-in overflow-hidden py-2
+    /* 
+  z-index: 99;
+  overflow: hidden;  */;
+  }
+
+  .sidebar_menu {
+    @apply list-none text-left pt-3 text-black;
+  }
+
+  .sidebar_item {
+    @apply block mb-4 py-2 pr-4 pl-3 text-black hover:bg-gray-200 md:hover:bg-transparent md:border-0 md:p-0;
+  }
+
+  /* 
+.content {
+  @apply
+  padding: 40px 40px 0 65px;
+  position: relative;
+  width: 100%;
+  list-style: none;
+} */
 
   /* .register_input:focus {
     @apply ;

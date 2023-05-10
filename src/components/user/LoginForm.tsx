@@ -59,7 +59,7 @@ const LoginForm = () => {
   return (
     <div className="login_container">
       <main className="login_main_container">
-        <div className="bg-white rounded-2xl shadow-2xl flex flex-col max-w-4xl w-80 md:w-5/6 md:flex-row lg:w-2/3 lg:flex-row">
+        <div className="login_main_form">
           <div className="p-5 md:w-3/5 lg:w-3/5">
             <div className="text-left font-bold">
               <span className="text-[#71223E] ml-2 italic">Cocktail</span>

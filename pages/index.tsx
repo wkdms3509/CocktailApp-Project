@@ -42,7 +42,7 @@ export default function Home({ allProductList }) {
           <section>
             <MainBanner />
           </section>
-          <section className=" p-5">
+          <section className="p-5">
             <Catecory allProductList={allProductList} />
           </section>
           <section className="p-32">

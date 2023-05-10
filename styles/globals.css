@@ -4,31 +4,30 @@
 
 /* ----- layout navbar ----- */
 
-.nav {
-  /* background-color: aqua; */
+/* .nav {
   padding: 1.5rem 7rem;
-}
+} */
 
-.main_category {
+/* .main_category {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 0.8rem 0;
-}
+} */
 
-.main_category_right {
+/* .main_category_right {
   display: flex;
   flex-direction: row;
   align-items: center;
   font-size: large;
-}
+} */
 
-.category_right_menu {
+/* .category_right_menu {
   padding: 0 1rem;
-}
+} */
 
-.sub_category {
+/* .sub_category {
   display: flex;
   flex-direction: row;
   padding-top: 1rem;
@@ -37,21 +36,21 @@
 
 .sub_category_menu {
   padding-right: 0.8rem;
-}
+} */
 
-.side_category {
+/* .side_category {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   padding: 0 1rem;
-}
+} */
 
-.side_category_menu {
+/* .side_category_menu {
   font-size: 0.75rem;
   padding-left: 1.2rem;
   margin-top: -1.2rem;
   color: #666;
-}
+} */
 
 /* -------------------- */
 /* ----- footer ----- */

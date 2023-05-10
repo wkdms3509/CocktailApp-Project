@@ -73,7 +73,7 @@ const RegisterForm = () => {
           <div className="py-10">
             <Link href="/">
               <BiArrowBack
-                className="text-white md:-ml-32 lg:-ml-52 mb-6"
+                className="text-white md:-ml-28 lg:-ml-52 mb-6"
                 size="20"
               />
             </Link>

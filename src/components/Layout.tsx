@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
         <title>Cocktail</title>
       </Head>
       <Navbar />
-      <div className="absolute left-0 right-0 bg-white dark:bg-[#71223E] bg-center bg-fixed bg-cover">
+      <div className="absolute left-0 right-0 bg-red-300 bg-center bg-fixed bg-cover">
         {children}
       </div>
       <Footer />
