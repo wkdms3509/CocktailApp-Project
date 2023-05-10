@@ -92,7 +92,7 @@
   }
 
   .category_right_menu {
-    @apply my-2 lg:px-4;
+    @apply my-2 lg:px-4 cursor-pointer;
   }
 
   .category_right_menu:hover {
@@ -129,6 +129,11 @@
 
   .sidebar_item {
     @apply block mb-4 py-2 pr-4 pl-3 text-black hover:bg-gray-200 md:hover:bg-transparent md:border-0 md:p-0;
+  }
+
+  /* 배너 카테고리 */
+  .banner_item {
+    @apply h-20 text-center border border-gray-300 items-center rounded-md flex-1 m-1 py-8 cursor-pointer bg-black text-white text-xs md:h-auto lg:h-auto md:text-xl lg:text-2xl hover:text-black hover:bg-gray-300;
   }
 
   /* 

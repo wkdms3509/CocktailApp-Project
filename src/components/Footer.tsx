@@ -6,7 +6,7 @@ import {
 
 const Footer = () => {
   return (
-    <div className="footer_container">
+    <div className="footer_container relative bottom-0">
       <h3 className="text-white text-lg py-12 pb-10">Cocktail</h3>
       <ul className="footer_menu">
         <li>Home</li>

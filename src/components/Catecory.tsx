@@ -16,36 +16,21 @@ const Catecory = ({ allProductList }) => {
   };
 
   return (
-    <div className="w-full mt-20">
-      <ul className="flex flex-row px-28 justify-between text-center">
-        <Link
-          href={`/category/${type.gin}`}
-          className="border border-black rounded-md flex-1 m-1 py-8 text-2xl cursor-pointer bg-black text-white hover:bg-black/80"
-        >
+    <div className="mt-20 lg:w-full">
+      <ul className="flex flex-row lg:mx-28 justify-between text-center items-center">
+        <Link href={`/category/${type.gin}`} className="banner_item">
           <li>GIN</li>
         </Link>
-        <Link
-          href={`category/${type.non_alc}`}
-          className="border border-black rounded-md flex-1 m-1 py-8 text-2xl cursor-pointer bg-black text-white hover:bg-black/80"
-        >
+        <Link href={`category/${type.non_alc}`} className="banner_item">
           <li>NON-ALCOL</li>
         </Link>
-        <Link
-          href={`category/${type.vodka}`}
-          className="border border-black rounded-md flex-1 m-1 py-8 text-2xl cursor-pointer bg-black text-white hover:bg-black/80"
-        >
+        <Link href={`category/${type.vodka}`} className="banner_item">
           <li>VODKA</li>
         </Link>
-        <Link
-          href={`category/${type.rum}`}
-          className="border border-black rounded-md flex-1 m-1 py-8 text-2xl cursor-pointer bg-black text-white hover:bg-black/80"
-        >
+        <Link href={`category/${type.rum}`} className="banner_item">
           <li>RUM</li>
         </Link>
-        <Link
-          href={`category/${type.whiskey}`}
-          className="border border-black rounded-md flex-1 m-1 py-8 text-2xl cursor-pointer bg-black text-white hover:bg-black/80"
-        >
+        <Link href={`category/${type.whiskey}`} className="banner_item">
           <li>WHISKY</li>
         </Link>
       </ul>

@@ -97,6 +97,17 @@ const Navbar = () => {
               <li className="category_right_menu hidden lg:list-item">
                 <BsSearch size="22" />
               </li>
+
+              {session ? (
+                <li
+                  className="category_right_menu lg:hidden"
+                  onClick={() => signOut({ callbackUrl: "/" })}
+                >
+                  LOGOUT
+                </li>
+              ) : (
+                ""
+              )}
             </ul>
           </div>
           <div>
