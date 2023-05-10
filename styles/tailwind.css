@@ -104,11 +104,15 @@
   }
 
   .sub_category_menu {
-    @apply pr-3;
+    @apply mr-3 relative w-max;
   }
 
-  .sub_category_menu:hover {
+  /* .sub_category_menu:hover {
     @apply text-gray-400;
+  } */
+
+  .one:hover span:last-child {
+    width: 100%;
   }
 
   /* 네비게이션 모바일 */
@@ -116,10 +120,7 @@
     @apply flex text-black z-10 ease-in duration-150 lg:hidden;
   }
   .sidebar_btn {
-    @apply duration-150 ease-in overflow-hidden py-2
-    /* 
-  z-index: 99;
-  overflow: hidden;  */;
+    @apply duration-150 ease-in overflow-hidden py-2;
   }
 
   .sidebar_menu {

@@ -45,7 +45,10 @@ const Navbar = () => {
               <div className="text-3xl pt-1 italic font-bold">
                 <Link href="/">COCKTAIL</Link>
               </div>
-              <div className="lg:hidden">
+              <div className="lg:hidden flex items-center">
+                {/* <li className="category_right_menu hidden lg:list-item"> */}
+                <BsSearch size={20} className="mr-3" />
+                {/* </li> */}
                 {toggle ? (
                   <AiOutlineClose
                     size={25}
@@ -99,21 +102,34 @@ const Navbar = () => {
           <div>
             <ul className="sub_category">
               <Link href="/products/today">
-                <li className="pr-3 text-blue-500 hover:underline">
-                  Today`s Cocktail
+                <li className="mr-3 text-blue-500 relative w-max one ">
+                  <span>Today`s Cocktail</span>
+                  <span className="absolute -bottom-1 left-0 w-0 transition-all h-1 bg-blue-500"></span>
                 </li>
               </Link>
               <Link href={`/category/${type.gin}`}>
-                <li className="sub_category_menu">GIN</li>
+                <li className="sub_category_menu one">
+                  <span>GIN</span>
+                  <span className="absolute -bottom-1 left-0 w-0 transition-all h-1 bg-blue-500"></span>
+                </li>
               </Link>
               <Link href={`/category/${type.non_alc}`}>
-                <li className="sub_category_menu">NON-ALCOL</li>
+                <li className="sub_category_menu one">
+                  <span>NON-ALCOL</span>
+                  <span className="absolute -bottom-1 left-0 w-0 transition-all h-1 bg-blue-500"></span>
+                </li>
               </Link>
               <Link href={`/category/${type.vodka}`}>
-                <li className="sub_category_menu">VODKA</li>
+                <li className="sub_category_menu one">
+                  <span>VODKA</span>
+                  <span className="absolute -bottom-1 left-0 w-0 transition-all h-1 bg-blue-500"></span>
+                </li>
               </Link>
               <Link href={`/category/${type.rum}`}>
-                <li className="sub_category_menu">RUM</li>
+                <li className="sub_category_menu one">
+                  <span>RUM</span>
+                  <span className="absolute -bottom-1 left-0 w-0 transition-all h-1 bg-blue-500"></span>
+                </li>
               </Link>
             </ul>
           </div>
