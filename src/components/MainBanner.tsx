@@ -18,13 +18,13 @@ const MainBanner = () => {
     <div className="w-full">
       <Slider {...settings} className="">
         <div>
-          <div className={styles.main_img}></div>
+          <div className="main_img1"></div>
         </div>
         <div>
-          <div className={styles.main_img2}></div>
+          <div className="main_img2"></div>
         </div>
         <div>
-          <div className={styles.main_img3}></div>
+          <div className="main_img3"></div>
         </div>
       </Slider>
     </div>

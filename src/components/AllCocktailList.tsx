@@ -6,6 +6,7 @@ import type { AllCocktailListProps, Product } from "../constants/productTypes";
 import wrapper from "../reducer";
 import Pagination from "./Pagination";
 import ProductCard from "./product/ProductCard";
+import ProductCard2 from "./product/ProductCard2";
 
 const AllCocktailList = (props: AllCocktailListProps) => {
   const { allProductList } = props;
@@ -25,16 +26,18 @@ const AllCocktailList = (props: AllCocktailListProps) => {
   return (
     <>
       <div className="w-full mx-auto my-3">
-        <div className="flex flex-row justify-between">
-          <span className="py-1 text-[#222] text-3xl">All</span>
+        <div className="flex flex-row justify-between mx-2 mb-1 lg:mb-0">
+          <span className="py-1 text-[#222] text-xl font-semibold lg:font-normal lg:text-3xl">
+            All
+          </span>
           <Link
             href="/"
-            className="px-10 py-3 border border-black text-black hover:text-white hover:bg-black"
+            className="hidden px-10 py-3 border border-black text-black hover:text-white hover:bg-black lg:inline-block"
           >
             Shop Now
           </Link>
         </div>
-        <div className="ml-2 mb-3">
+        <div className="ml-2 mb-3 hidden lg:block">
           <label className="text-sm w-1/5 text-gray-400">
             페이지 당 표시할 게시물 수:&nbsp;
             <select
@@ -51,7 +54,9 @@ const AllCocktailList = (props: AllCocktailListProps) => {
             </select>
           </label>
         </div>
-        <div className="flex flex-row flex-wrap w-full mx-auto justify-around">
+
+        {/* pc */}
+        <div className="hidden overflow-x-auto lg:flex lg:flex-wrap  mx-auto justify-around gap-x-2 lg:gap-x-0">
           {allProductList.length > 0
             ? allProductList
                 .slice(offset, offset + limit)
@@ -61,7 +66,16 @@ const AllCocktailList = (props: AllCocktailListProps) => {
             : "no exist data"}
         </div>
 
-        <div className="bg-green-300"></div>
+        {/* 모바일 반응형 */}
+        <div className="grid grid-flow-col grid-rows-1 auto-rows-auto mx-auto gap-x-2 overflow-x-auto lg:hidden xl:hidden">
+          {allProductList.length > 0
+            ? allProductList.map((product: Product) => (
+                <ProductCard2 key={product.id} product={product} />
+              ))
+            : "no exist data"}
+        </div>
+
+        {/* <div className="bg-green-300"></div> */}
         {/* <Pagination
           items={allProductList.length} // 상품 개수
           currentPage={currentPage} // 1
@@ -69,7 +83,8 @@ const AllCocktailList = (props: AllCocktailListProps) => {
           onPageChange={onPageChange}
           limitPageCount={5}
         /> */}
-        <div>
+
+        <div className="hidden lg:block xl:block">
           <Pagination
             total={allProductList.length}
             limit={limit}

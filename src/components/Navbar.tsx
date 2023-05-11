@@ -111,21 +111,22 @@ const Navbar = () => {
             </ul>
           </div>
           <div>
+            {/* focus:bg-gray-50 focus:ring-1 ring-black-700 */}
             <ul className="sub_category">
               <Link href="/products/today">
-                <li className="mr-3 text-blue-500 relative w-max one ">
+                <li className="mr-3 text-blue-500 relative w-max one active">
                   <span>Today`s Cocktail</span>
                   <span className="absolute -bottom-1 left-0 w-0 transition-all h-1 bg-blue-500"></span>
                 </li>
               </Link>
               <Link href={`/category/${type.gin}`}>
-                <li className="sub_category_menu one">
+                <li className="sub_category_menu one active">
                   <span>GIN</span>
                   <span className="absolute -bottom-1 left-0 w-0 transition-all h-1 bg-blue-500"></span>
                 </li>
               </Link>
               <Link href={`/category/${type.non_alc}`}>
-                <li className="sub_category_menu one">
+                <li className="sub_category_menu one active">
                   <span>NON-ALCOL</span>
                   <span className="absolute -bottom-1 left-0 w-0 transition-all h-1 bg-blue-500"></span>
                 </li>

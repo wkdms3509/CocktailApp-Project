@@ -45,7 +45,7 @@ export default function Home({ allProductList }) {
           <section className="p-5">
             <Catecory allProductList={allProductList} />
           </section>
-          <section className="p-32">
+          <section className="p-3 md:p-5 lg:p-32">
             <AllCocktailList allProductList={allProductList} />
           </section>
         </div>

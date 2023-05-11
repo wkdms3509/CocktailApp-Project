@@ -2,12 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Product, ProductCardType } from "../../constants/productTypes";
 
-const ProductCard = (props: ProductCardType) => {
+const ProductCard2 = (props: ProductCardType) => {
   const { product } = props;
 
   return (
     // w-1/3
-    <div className="lg:flex-auto px-2 pb-12 lg:w-1/3">
+    <div className="w-44">
       <div className="">
         <div key={product.id}>
           <Link href={`/products/${product.id}`} key={product.id}>
@@ -18,8 +18,7 @@ const ProductCard = (props: ProductCardType) => {
                 width="400"
                 height="300"
                 style=""
-                // className="ProductCardImg"
-                className="scale-100 hover:scale-105 duration-300 md:w-64 lg:w-96"
+                className="scale-100 hover:scale-105 duration-300 w-full"
                 priority
               />
               <h3 className="text-xs font-bold text-[#222] pt-3">
@@ -34,4 +33,4 @@ const ProductCard = (props: ProductCardType) => {
   );
 };
 
-export default ProductCard;
+export default ProductCard2;

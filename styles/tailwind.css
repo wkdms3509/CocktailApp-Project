@@ -101,18 +101,19 @@
 
   .sub_category {
     @apply flex flex-row pt-4 -mb-4;
+    /* sm:overflow-hidden sm:overflow-x-scroll */
   }
 
   .sub_category_menu {
     @apply mr-3 relative w-max;
   }
 
-  /* .sub_category_menu:hover {
-    @apply text-gray-400;
+  /* .sub_category_menu:focus span:last-child {
+    @apply w-8 relative;
   } */
 
   .one:hover span:last-child {
-    width: 100%;
+    @apply w-full;
   }
 
   /* 네비게이션 모바일 */
@@ -134,6 +135,18 @@
   /* 배너 카테고리 */
   .banner_item {
     @apply h-20 text-center border border-gray-300 items-center rounded-md flex-1 m-1 py-8 cursor-pointer bg-black text-white text-xs md:h-auto lg:h-auto md:text-xl lg:text-2xl hover:text-black hover:bg-gray-300;
+  }
+
+  .main_img1 {
+    @apply w-full min-h-1/5 bg-banner1 bg-cover bg-center bg-no-repeat md:min-h-1/2 lg:min-h-3/5;
+  }
+
+  .main_img2 {
+    @apply w-full min-h-1/5 bg-banner2 bg-cover bg-center bg-no-repeat md:min-h-1/2 lg:min-h-3/5;
+  }
+
+  .main_img3 {
+    @apply w-full min-h-1/5 bg-banner3 bg-cover bg-center bg-no-repeat md:min-h-1/2 lg:min-h-3/5;
   }
 
   /* 
