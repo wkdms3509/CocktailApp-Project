@@ -26,7 +26,7 @@ const CocktailOfToday = () => {
   let tomorrow = new Date(today.setDate(today.getDate() + 1));
 
   return (
-    <div className="h-4/5 font-light m-auto mb-10 mt-6 p-14 text-center dark:bg-black/40">
+    <div className="h-4/5 font-light m-auto mb-10 mt-6 p-14 text-center">
       <h2 className="text-2xl pb-8 subpixel-antialiased font-playfair">
         오늘의 칵테일
       </h2>
@@ -41,9 +41,9 @@ const CocktailOfToday = () => {
       <p className="pt-8 underline-offset-8 underline decoration-dotted">
         {`"네그로니 칵테일 한 잔으로 즐기는 여름의 낭만"`}
       </p>
-      <div className=" w-3/5 mx-auto py-10">
+      <div className="lg:w-3/5 mx-auto py-10">
         <h3 className="font-normal py-6">특징</h3>
-        <p className="text-start leading-loose">
+        <p className="text-left leading-loose text-sm md:text-base md:leading-loose lg:leading-loose lg:text-base">
           진, 캄파리, 베르무트가 완벽한 삼위일체를 이루는 ‘네그로니’는
           쌉쌀하면서도 달콤한 맛이 조화를 이루는 매력적인 칵테일이다. 1961년 IBA
           공식 레시피가 작성된 이래부터 현재까지 한 번도 빠짐 없이 공식 레시피에
@@ -53,7 +53,7 @@ const CocktailOfToday = () => {
           수준의, 그리고 어른의 입맛을 위한 술이죠. 무슨 뜻인지 아시죠?”
         </p>
         <h3 className="font-normal py-6">유래</h3>
-        <p className="text-start leading-loose">
+        <p className="text-left leading-loose text-sm md:text-base md:leading-loose lg:leading-loose lg:text-base">
           칵테일의 이름은 이탈리아의 네그로니 백작에서 유래한 것이다. 그 전설은
           100여 년 전으로 거슬러 올라간다. <br />
           세상 물정에 밝은 한 이탈리아인 백작은 어느 날 피렌체에 위치한 카페

@@ -8,7 +8,6 @@ export default function CategoryItemList({ categoryProducts }) {
 
   return (
     <div className="w-full px-2 py-12 text-center">
-      <h1>카테고리</h1>
       <h2 className="pb-16 pt-4 font-semibold">{category}</h2>
       <div className="w-4/5 grid grid-cols-3 gap-3 mx-auto text-center">
         {categoryProducts.map((product) => (
