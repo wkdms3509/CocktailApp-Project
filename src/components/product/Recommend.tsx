@@ -2,7 +2,7 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import styles from "../styles/Home.module.css";
+// import styles from "../styles/Home.module.css";
 
 export default function IndexPage() {
   const [effect, setEffect] = useState(false);
@@ -58,8 +58,10 @@ export default function IndexPage() {
   };
 
   return (
-    <div className="container w-full mx-auto text-center h-screen mt-24">
-      <h1 className="pb-20 font-light text-3xl">나에게 어울리는 칵테일은 ?</h1>
+    <div className="container w-full mx-auto text-center mb-24">
+      <h1 className="pb-20 font-light text-xl md:text-2xl lg:text-3xl">
+        나에게 어울리는 칵테일은 ?
+      </h1>
       <form
         onSubmit={handleSubmit}
         className="mx-auto w-5/6 flex flex-col text-center items-center"
@@ -133,7 +135,7 @@ export default function IndexPage() {
           <p className="absolute left-0">Bitter: {inputForm.bitter} %</p>
         </div>
 
-        <button className="mt-28 w-1/5 p-3 px-8 font-light rounded-full border-black border bg-white text-black hover:bg-black hover:text-white duration-200">
+        <button className="mt-28 p-3 px-8 text-sm lg:text-base rounded-full border-black border bg-white text-black md:3/5 lg:w-1/5 hover:bg-black hover:text-white duration-200">
           결과보기
         </button>
       </form>

@@ -8,6 +8,10 @@
     @apply w-full mx-auto;
   } */
 
+  .container {
+    @apply pt-20;
+  }
+
   /* 로그인 */
   .login_container {
     @apply bg-gray-100 flex flex-col items-center justify-center min-h-screen py-2;
