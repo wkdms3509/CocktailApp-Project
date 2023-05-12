@@ -77,9 +77,9 @@ export default function ProductForm() {
       </h1>
       <form
         onSubmit={handleSubmit}
-        className="mx-auto w-2/4 border rounded-xl bg-black  shadow flex flex-col items-center py-8 mt-10  dark:border-[#d1cbc1] dark:bg-[#d1cbc1]"
+        className="mx-auto w-3/4 lg:w-2/4 border rounded-xl bg-black  shadow flex flex-col items-center py-8 mt-10  dark:border-[#d1cbc1] dark:bg-[#d1cbc1]"
       >
-        <label htmlFor="name" className="text-white">
+        <label htmlFor="name" className="text-white text-sm lg:text-base">
           이름
         </label>
         <input
@@ -89,7 +89,7 @@ export default function ProductForm() {
           onChange={handleChange}
           value={productForm.name}
         ></input>
-        <label htmlFor="type" className="text-white">
+        <label htmlFor="type" className="text-white text-sm lg:text-base">
           종류
         </label>
         <input
@@ -99,7 +99,7 @@ export default function ProductForm() {
           onChange={handleChange}
           value={productForm.type}
         ></input>
-        <label htmlFor="img" className="text-white">
+        <label htmlFor="img" className="text-white text-sm lg:text-base">
           이미지
         </label>
         <input
@@ -109,7 +109,7 @@ export default function ProductForm() {
           onChange={handleChange}
           value={productForm.img}
         ></input>
-        <label htmlFor="type" className="text-white dark:text-black">
+        <label htmlFor="type" className="text-white text-sm lg:text-base">
           설명
         </label>
         <textarea
@@ -124,7 +124,7 @@ export default function ProductForm() {
         <div className="my-3">
           <label
             htmlFor="alcohol"
-            className="my-3 mr-3 text-white dark:text-black"
+            className="my-3 mr-3 text-white text-sm lg:text-base"
           >
             도수
           </label>
@@ -232,7 +232,7 @@ export default function ProductForm() {
             <option value="100">100</option>
           </select>
         </div>
-        <button className="px-6 py-1.5 mt-3 border rounded-full border-[#d1cbc1] hover:bg-[#d1cbc1]/80 hover:border-[#d1cbc1]/80 text-white bg-[#d1cbc1] dark:border-[#71223e] dark:bg-[#71223e] dark:text-white dark:hover:bg-[#71223e]/80 dark:hover:border-[#71223e]/80">
+        <button className="px-6 py-1.5 mt-12 border rounded-full hover:bg-white hover:text-black duration-200 hover:bg-[#d1cbc1] text-white">
           {router.query.id ? "수정" : "생성"}
         </button>
       </form>
