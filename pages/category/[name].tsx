@@ -5,6 +5,9 @@ import { useRouter } from "next/router";
 export default function CategoryItemList({ categoryProducts }) {
   const router = useRouter();
   const category = router.query.name.toUpperCase();
+  // const [limit, setLimit] = useState<number>(9);
+  // const [page, setPage] = useState(1);
+  // const offset = (page - 1) * limit;
 
   return (
     <div className="w-full px-2 py-12 text-center">

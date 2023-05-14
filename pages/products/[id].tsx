@@ -22,20 +22,20 @@ const ProductPage = ({ product }) => {
 
   return (
     <div className="container w-full mx-auto h-full pb-20">
-      <h3 className="mt-20 ml-24">
+      <h3 className="ml-5 mb-1 md:ml-12 md:mb-10 lg:mb-0 lg:ml-20 xl:mb-0 xl:ml-24">
         칵테일 정보 {">"} <span className="text-[#333]">{product.name}</span>
       </h3>
-      <div className="mx-auto flex flex-row items-center pb-16 pt-5 px-24 bg-white">
+      <div className="mx-auto gap-x-8 flex flex-col lg:flex-row items-center pb-16 pt-5 px-5 md:px-10 lg:px-20 xl:px-24">
         <Image
           alt={product.name}
           src={product.img}
           width="400"
           height="400"
           priority
-          className="w-auto h-auto"
+          className="md:w-80 xl:w-90 h-auto"
         />
-        <div className=" w-11/12 ml-16 p-2 border-l-2 pl-14">
-          <div className="">
+        <div className="p-2 mt-10 lg:mt-0 xl:mt-0 lg:pl-10 xl:pl-10 lg:border-l-2 xl:border-l-2">
+          <div>
             <h1 className="text-2xl dark:text-[#d1cbc1]">{product.name}</h1>
             <p className="text-base pt-3 text-[#71223E] dark:text-[#ff5203] ">
               {product.type}
@@ -44,11 +44,11 @@ const ProductPage = ({ product }) => {
               {product.description}
             </p>
           </div>
-          <div className="py-10 text-center my-8">
-            <ul className="w-full flex flex-row dark:text-[#d1cbc1] text-sm justify-between">
+          <div className="py-10 px-2 text-center my-8">
+            <ul className="w-full flex flex-row text-sm justify-between">
               <label
                 htmlFor="sugar"
-                className="mr-20 dark:text-[#d1cbc1] font-light"
+                className="font-light text-left w-40 text-xs mr-5 lg:text-sm xl:text-sm"
               >
                 ALCOHOL (도수)
               </label>
@@ -59,16 +59,17 @@ const ProductPage = ({ product }) => {
                 min="0"
                 max="100"
                 defaultValue={Number(product.alcohol.replace(regex, ""))}
-                className="smallRangeBar_light dark:bg-[#71223E] dark:border-[#d1cbc1]"
+                className="smallRangeBar_light"
               />
-              <span className="pl-5">
+              <span className="pl-5 w-16 text-right">
                 {Number(product.alcohol.replace(regex, ""))} %
               </span>
             </ul>
-            <ul className="w-full mt-8 flex flex-row dark:text-[#d1cbc1] text-sm justify-between">
+            <ul className="w-full mt-8 flex flex-row text-sm justify-between">
+              {/* xl:mr-12 pr-1 */}
               <label
                 htmlFor="sugar"
-                className="mr-12 pr-1 dark:text-[#d1cbc1] font-light"
+                className="font-light text-left w-40 text-xs mr-5 lg:text-sm xl:text-sm"
               >
                 SWEETNESS (당도)
               </label>
@@ -79,16 +80,16 @@ const ProductPage = ({ product }) => {
                 min="0"
                 max="100"
                 defaultValue={Number(product.sugar.replace(regex, ""))}
-                className="smallRangeBar_light dark:bg-[#71223E] dark:border-[#d1cbc1] ml-3"
+                className="smallRangeBar_light"
               />
-              <span className="pl-5">
+              <span className="pl-5 w-16 text-right">
                 {Number(product.sugar.replace(regex, ""))} %
               </span>
             </ul>
-            <ul className="w-full mt-8 flex flex-row dark:text-[#d1cbc1] text-sm justify-between">
+            <ul className="w-full mt-8 flex flex-row text-sm justify-between">
               <label
                 htmlFor="sourness"
-                className="mr-28 dark:text-[#d1cbc1] font-light"
+                className="font-light text-left w-40 text-xs mr-5 lg:text-sm xl:text-sm"
               >
                 ACID (산미)
               </label>
@@ -100,16 +101,16 @@ const ProductPage = ({ product }) => {
                 max="100"
                 defaultValue={Number(product.sourness.replace(regex, ""))}
                 step="10"
-                className="smallRangeBar_light dark:bg-[#71223E] dark:border-[#d1cbc1]"
+                className="smallRangeBar_light"
               />
-              <span className="pl-5">
+              <span className="pl-5 w-16 text-right">
                 {Number(product.sourness.replace(regex, ""))} %
               </span>
             </ul>
-            <ul className="w-full mt-8 flex flex-row dark:text-[#d1cbc1] text-sm justify-between">
+            <ul className="w-full mt-8 flex flex-row text-sm justify-between">
               <label
                 htmlFor="sourness"
-                className="mr-24 dark:text-[#d1cbc1] font-light"
+                className="font-light text-left w-40 text-xs mr-5 lg:text-sm xl:text-sm"
               >
                 TANNIN (쓴맛)
               </label>
@@ -123,7 +124,7 @@ const ProductPage = ({ product }) => {
                 step="10"
                 className="smallRangeBar_light dark:bg-[#71223E] dark:border-[#d1cbc1]"
               ></input>
-              <span className="pl-5">
+              <span className="pl-5 w-16 text-right">
                 {Number(product.bitter.replace(regex, ""))} %
               </span>
             </ul>
