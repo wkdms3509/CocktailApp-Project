@@ -19,7 +19,7 @@ const ProductCard = (props: ProductCardType) => {
                 height="300"
                 style=""
                 // className="ProductCardImg"
-                className="scale-100 hover:scale-105 duration-300 md:w-64 lg:w-96"
+                className="h-100 w-full scale-100 object-cover hover:scale-105 duration-300 md:w-64 lg:w-96"
                 priority
               />
               <h3 className="text-xs font-bold text-[#222] pt-3">

@@ -17,8 +17,7 @@ const ProductCard2 = (props: ProductCardType) => {
                 alt={product.name}
                 width="400"
                 height="300"
-                style=""
-                className="scale-100 hover:scale-105 duration-300 w-full"
+                className="h-60 scale-100 hover:scale-105 duration-300 w-full"
                 priority
               />
               <h3 className="text-xs font-bold text-[#222] pt-3">

@@ -153,6 +153,17 @@
     @apply w-full min-h-1/5 bg-banner3 bg-cover bg-center bg-no-repeat md:min-h-1/2 lg:min-h-3/5;
   }
 
+  /* 상품 목록 페이지네이션 */
+  /* .prev_btn,
+  .next_btn {
+    @apply border-none rounded-lg p-2 m-0 bg-black text-white;
+  }
+
+  .prev_btn:hover,
+  .next_btn:hover {
+    @apply cursor-pointer -translate-y-0.5;
+  } */
+
   /* 
 .content {
   @apply

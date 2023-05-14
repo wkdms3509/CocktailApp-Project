@@ -10,18 +10,9 @@ import ProductCard2 from "./product/ProductCard2";
 
 const AllCocktailList = (props: AllCocktailListProps) => {
   const { allProductList } = props;
-  // 첫 번째 pagination
   const [limit, setLimit] = useState<number>(9);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
-
-  // 두 번째 pagination
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const pageSize = 42;
-
-  // const onPageChange = (page) => {
-  //   setCurrentPage(page);
-  // };
 
   return (
     <>
