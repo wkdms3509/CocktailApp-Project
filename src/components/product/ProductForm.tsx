@@ -77,7 +77,7 @@ export default function ProductForm() {
       </h1>
       <form
         onSubmit={handleSubmit}
-        className="mx-auto w-3/4 lg:w-2/4 border rounded-xl bg-black  shadow flex flex-col items-center py-8 mt-10  dark:border-[#d1cbc1] dark:bg-[#d1cbc1]"
+        className="mx-auto w-3/4 lg:w-3/5 xl:w-2/4 border rounded-xl bg-black shadow flex flex-col items-center py-8 mt-10"
       >
         <label htmlFor="name" className="text-white text-sm lg:text-base">
           이름
@@ -85,7 +85,7 @@ export default function ProductForm() {
         <input
           name="name"
           type="text"
-          className="border rounded w-1/4 my-4 p-1.5 bg-white/60 border-none outline-none focus:bg-gray-50 focus:ring-1 ring-black-700"
+          className="border rounded w-2/4 md:w-1/4 lg:w-1/4 xl:w-1/4 my-4 p-1.5 bg-white/60 border-none outline-none focus:bg-gray-50 focus:ring-1 ring-black-700"
           onChange={handleChange}
           value={productForm.name}
         ></input>
@@ -95,7 +95,7 @@ export default function ProductForm() {
         <input
           name="type"
           type="text"
-          className="border rounded w-1/4 my-4 p-1.5 bg-white/60 border-none outline-none focus:bg-gray-50 focus:ring-1 ring-black-700"
+          className="border rounded w-2/4 md:w-1/4 lg:w-1/4 xl:w-1/4 my-4 p-1.5 bg-white/60 border-none outline-none focus:bg-gray-50 focus:ring-1 ring-black-700"
           onChange={handleChange}
           value={productForm.type}
         ></input>
@@ -105,7 +105,7 @@ export default function ProductForm() {
         <input
           name="img"
           type="text"
-          className="border rounded w-1/4 my-4 p-1.5 bg-white/60 border-none outline-none focus:bg-gray-50 focus:ring-1 ring-black-700"
+          className="border rounded w-2/4 md:w-1/4 lg:w-1/4 xl:w-1/4 my-4 p-1.5 bg-white/60 border-none outline-none focus:bg-gray-50 focus:ring-1 ring-black-700"
           onChange={handleChange}
           value={productForm.img}
         ></input>
@@ -121,7 +121,7 @@ export default function ProductForm() {
         ></textarea>
 
         {/* 도수 */}
-        <div className="my-3">
+        <div className="my-3 w-3/4">
           <label
             htmlFor="alcohol"
             className="my-3 mr-3 text-white text-sm lg:text-base"
@@ -132,7 +132,7 @@ export default function ProductForm() {
             name="alcohol"
             value={Number(productForm.alcohol.replace(regex, ""))}
             onChange={handleChange}
-            className="bg-white/60 rounded border-none outline-none focus:bg-gray-50 focus:ring-1 ring-black-700"
+            className="bg-white/60 w-2/4 md:w-1/4 lg:w-1/4 xl:w-1/4 text-center rounded border-none outline-none focus:bg-gray-50 focus:ring-1 ring-black-700"
           >
             <option value="0">0</option>
             <option value="10">10</option>
@@ -149,7 +149,7 @@ export default function ProductForm() {
         </div>
 
         {/* 당도 */}
-        <div className="my-3">
+        <div className="my-3 w-3/4">
           <label
             htmlFor="sugar"
             className="my-3 mr-3 text-white dark:text-black"
@@ -161,7 +161,7 @@ export default function ProductForm() {
             name="sugar"
             value={Number(productForm.sugar.replace(regex, ""))}
             onChange={handleChange}
-            className="bg-white/60 rounded border-none outline-none focus:bg-gray-50 focus:ring-1 ring-black-700"
+            className="bg-white/60 w-2/4 md:w-1/4 lg:w-1/4 xl:w-1/4 text-center rounded border-none outline-none focus:bg-gray-50 focus:ring-1 ring-black-700"
           >
             <option value="0">0</option>
             <option value="10">10</option>
@@ -178,7 +178,7 @@ export default function ProductForm() {
         </div>
 
         {/* 산미 */}
-        <div className="my-3">
+        <div className="my-3 w-3/4">
           <label
             htmlFor="sourness"
             className="my-3 mr-3 text-white dark:text-black"
@@ -189,7 +189,7 @@ export default function ProductForm() {
             name="sourness"
             value={Number(productForm.sourness.replace(regex, ""))}
             onChange={handleChange}
-            className="bg-white/60 rounded border-none outline-none focus:bg-gray-50 focus:ring-1 ring-black-700"
+            className="bg-white/60 w-2/4 md:w-1/4 lg:w-1/4 xl:w-1/4 text-center rounded border-none outline-none focus:bg-gray-50 focus:ring-1 ring-black-700"
           >
             <option value="0">0</option>
             <option value="10">10</option>
@@ -206,7 +206,7 @@ export default function ProductForm() {
         </div>
 
         {/* 쓴맛 */}
-        <div className="my-3">
+        <div className="my-3 w-3/4">
           <label
             htmlFor="bitter"
             className="my-3 mr-3 text-white dark:text-black"
@@ -217,7 +217,7 @@ export default function ProductForm() {
             name="bitter"
             value={Number(productForm.bitter.replace(regex, ""))}
             onChange={handleChange}
-            className="bg-white/60 rounded border-none outline-none focus:bg-gray-50 focus:ring-1 ring-black-700"
+            className="bg-white/60 w-2/4 md:w-1/4 lg:w-1/4 xl:w-1/4 text-center rounded border-none outline-none focus:bg-gray-50 focus:ring-1 ring-black-700"
           >
             <option value="0">0</option>
             <option value="10">10</option>
