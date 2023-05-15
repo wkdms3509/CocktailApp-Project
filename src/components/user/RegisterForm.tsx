@@ -2,7 +2,7 @@ import type { UserInput } from "@/src/constants/userType";
 import { register } from "@/src/reducer/user";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { EventHandler, useState } from "react";
+import React, { EventHandler, useState } from "react";
 import { useDispatch } from "react-redux";
 import { AiOutlineCheck } from "react-icons/ai";
 import { BiArrowBack } from "react-icons/bi";
@@ -22,7 +22,7 @@ const RegisterForm = () => {
 
   const [checkId, setCheckId] = useState(false);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput({ ...userInput, [e.target.name]: e.target.value });
   };
 
@@ -43,7 +43,7 @@ const RegisterForm = () => {
     }
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {

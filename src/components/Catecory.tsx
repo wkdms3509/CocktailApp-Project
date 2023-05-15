@@ -5,9 +5,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
 import axios from "axios";
+import { AllCocktailListProps, Category } from "../constants/productTypes";
 
-const Catecory = ({ allProductList }) => {
-  const type = {
+const Catecory = ({ allProductList }: AllCocktailListProps) => {
+  const type: Category = {
     gin: "gin",
     non_alc: "non-alc",
     vodka: "vodka",

@@ -8,7 +8,7 @@ import {
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { MdLockOutline } from "react-icons/md";
 import Image from "next/image";
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { getCsrfToken, signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -24,7 +24,7 @@ import {
 import wrapper, { persistor, store } from "@/src/reducer";
 import { getServerSideProps } from "@/pages";
 
-const LoginForm = () => {
+export default function LoginForm() {
   const router = useRouter();
   const { data: session, status } = useSession();
   const dispatch = useDispatch();
@@ -32,12 +32,12 @@ const LoginForm = () => {
     id: "",
     password: "",
   });
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  // ChangeEventHandler<HTMLInputElement>
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput({ ...userInput, [e.target.name]: e.target.value });
   };
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  // FormEventHandler<HTMLFormElement>
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const status = await signIn("credentials", {
       redirect: false,
@@ -48,10 +48,7 @@ const LoginForm = () => {
 
     if (status.ok) {
       // store.dispatch(login(userInput.id));
-
       // dispatch(login(userInput.id));
-      // console.log("로그인 디스패치 실행");
-
       router.push(status.url);
     }
   };
@@ -83,7 +80,7 @@ const LoginForm = () => {
               <p className="text-gray-400 my-3 text-xs lg:text-sm">
                 or use your account
               </p>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="flex flex-col items-center">
                   <div className="bg-gray-100 p-2 flex items-center mb-2 w-4/6 md:w-4/6 lg:w-64">
                     <FaRegEnvelope className="text-gray-400 mr-2" />
@@ -94,7 +91,7 @@ const LoginForm = () => {
                       className="login_input"
                       required
                       value={userInput.id}
-                      onChange={handleChange}
+                      onChange={(e) => handleChange(e)}
                       //   {...formik.getFieldProps("username")}
                     />
                   </div>
@@ -107,7 +104,7 @@ const LoginForm = () => {
                       className="login_input"
                       required
                       value={userInput.password}
-                      onChange={handleChange}
+                      onChange={(e) => handleChange(e)}
                       //   {...formik.getFieldProps("password")}
                     />
                   </div>
@@ -153,7 +150,7 @@ const LoginForm = () => {
       </main>
     </div>
   );
-};
+}
 
 // export async const getServerSiseProps = (context: GetServerSidePropsContext) => {
 //   return {
@@ -176,4 +173,4 @@ const LoginForm = () => {
 //   }
 // );
 
-export default LoginForm;
+// export default LoginForm;

@@ -20,10 +20,11 @@ import { addItem, initializeItems, upCount } from "@/src/reducer/products";
 import { END } from "@redux-saga/core";
 import { useDispatch } from "react-redux";
 import { login } from "@/src/reducer/user";
+import { GetProductListResult, Product } from "@/src/constants/apiTypes";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home({ allProductList }) {
+export default function Home({ allProductList }: AllCocktailListProps) {
   const { data: session, status } = useSession();
   const dispatch = useDispatch();
 
@@ -32,8 +33,6 @@ export default function Home({ allProductList }) {
       dispatch(login(session.user?.email));
     }
   }, [dispatch, session]);
-
-  // const productsList = useSelector((state) => state);
 
   return (
     <>
@@ -77,16 +76,17 @@ export const getServerSideProps: GetServerSideProps =
 
     store.dispatch(initializeItems(res.data.data));
 
-    if (!res.data) {
+    const result: GetProductListResult = res.data;
+
+    if (!result) {
       return {
         notFound: true,
       };
     }
-    const { data } = res.data;
 
     return {
       props: {
-        allProductList: data,
+        allProductList: result.data,
       },
     };
   });

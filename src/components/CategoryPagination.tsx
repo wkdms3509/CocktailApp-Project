@@ -1,7 +1,9 @@
 import classNames from "classnames";
+import { PaginationInfo } from "../constants/productTypes";
 import { Button, PageNum } from "./PgBtn";
 
-const Pagination = ({ total, limit, page, setPage }) => {
+const Pagination = (props: PaginationInfo) => {
+  const { total, limit, page, setPage } = props;
   // 필요한 페이지의 개수
   const numPages = Math.ceil(total / limit); // 90 / 9 = 10
 

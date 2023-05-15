@@ -1,5 +1,5 @@
 import { pool } from "@/src/config/db";
-import { Data } from "@/src/constants/apiTypes";
+import { Data, RequestUserData, User } from "@/src/constants/apiTypes";
 import crypto from "crypto";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getToken } from "next-auth/jwt";
@@ -20,7 +20,7 @@ export default async function handler(
 
 const postLogin = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   try {
-    const { username, password } = req.body;
+    const { username, password }: RequestUserData = req.body;
 
     const [result] = await pool.query(
       "SELECT * FROM user WHERE user_id = ?",
@@ -54,7 +54,7 @@ const postLogin = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       });
     }
 
-    const user = {
+    const user: User = {
       name: result[0].name,
       email: result[0].email,
       id: result[0].id,

@@ -1,6 +1,7 @@
 import { pool } from "../../../src/config/db";
 import crypto from "crypto";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { RequestNewUser } from "@/src/constants/apiTypes";
 
 export default async function handler(
   req: NextApiRequest,
@@ -44,7 +45,7 @@ const checkId = async (req: NextApiRequest, res: NextApiResponse) => {
 
 const postNewUser = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { name, email, id, password } = req.body;
+    const { name, email, id, password }: RequestNewUser = req.body;
 
     if (!name || !email || !id || !password) {
       res.status(400).json({

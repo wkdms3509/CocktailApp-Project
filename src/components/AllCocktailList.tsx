@@ -8,10 +8,9 @@ import Pagination from "./Pagination";
 import ProductCard from "./product/ProductCard";
 import ProductCard2 from "./product/ProductCard2";
 
-const AllCocktailList = (props: AllCocktailListProps) => {
-  const { allProductList } = props;
+const AllCocktailList = ({ allProductList }: AllCocktailListProps) => {
   const [limit, setLimit] = useState<number>(9);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState<number>(1);
   const offset = (page - 1) * limit;
 
   return (

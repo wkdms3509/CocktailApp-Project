@@ -1,11 +1,13 @@
+import { GetProductListResult } from "@/src/constants/apiTypes";
+import { NewProductInputType, Product } from "@/src/constants/productTypes";
 import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function ProductForm() {
   const router = useRouter();
-  const [productForm, setProductForm] = useState({
+  const [productForm, setProductForm] = useState<NewProductInputType>({
     name: "",
     type: "",
     description: "",
@@ -19,20 +21,21 @@ export default function ProductForm() {
   const regex = /[^0-9]/g;
 
   useEffect(() => {
-    const getPeoduct = async (id) => {
-      const { data } = await axios.get(`/api/products/${id}`);
+    const getPeoduct = async (id: string) => {
+      // const { data } = await axios.get(`/api/products/${id}`);
+      const result: GetProductListResult = await axios.get(
+        `/api/products/${id}`
+      );
+      const productInfo: NewProductInputType = result.data.data[0];
 
-      setProductForm(data.data[0]);
-      // console.log(data.data[0])
-      // console.log(cocktailForm)
-      //   setCocktailForm({ name: data[0].name, description: data[0].description })
+      setProductForm(productInfo);
     };
     if (router.query.id) {
       getPeoduct(router.query.id);
     }
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       if (router.query.id) {
@@ -47,28 +50,9 @@ export default function ProductForm() {
     }
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProductForm({ ...productForm, [e.target.name]: e.target.value });
   };
-
-  // 이미지 업로드
-  const [image, setImage] = useState("");
-  const [imageInput, setImageInput] = useState("");
-
-  const handleImage = (e) => {
-    const file = e.target.files[0];
-    setImageInput(file);
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      setImage(e.target.result);
-    };
-    fileReader.readAsDataURL(file);
-  };
-
-  // const handleImage = (e) => {
-  //   setSelectedFile(e.target.files[0])
-  //   console.log(selectedFile)
-  // }
 
   return (
     <div className="container w-full mx-auto text-center py-20 mb-14 font-light">
@@ -239,3 +223,22 @@ export default function ProductForm() {
     </div>
   );
 }
+
+// 이미지 업로드
+// const [image, setImage] = useState("");
+// const [imageInput, setImageInput] = useState("");
+
+// const handleImage = (e) => {
+//   const file = e.target.files[0];
+//   setImageInput(file);
+//   const reader = new FileReader();
+//   reader.onload = function (e) {
+//     setImage(e.target.result);
+//   };
+//   fileReader.readAsDataURL(file);
+// };
+
+// const handleImage = (e) => {
+//   setSelectedFile(e.target.files[0])
+//   console.log(selectedFile)
+// }

@@ -10,7 +10,7 @@ import classNames from "classnames";
 
 const Navbar = () => {
   const { data: session, status } = useSession();
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState<boolean>(false);
   const side = useRef();
 
   const type = {

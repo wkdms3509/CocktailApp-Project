@@ -1,3 +1,4 @@
+import { Data } from "@/src/constants/apiTypes";
 import axios from "axios";
 import { NextApiRequest } from "next";
 import NextAuth, { CookiesOptions, NextAuthOptions, User } from "next-auth";
@@ -69,7 +70,7 @@ const authOptions: NextAuthOptions = {
           headers: { "Content-Type": "application/json" },
         });
 
-        const user = await res.json();
+        const user: Data = await res.json();
 
         if (res.ok && user) {
           return user.data;

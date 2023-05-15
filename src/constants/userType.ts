@@ -8,4 +8,11 @@ interface UserInput extends User {
   email: string;
 }
 
-export type { User, UserInput };
+interface loginRequestType {
+  redirect: boolean;
+  username: string;
+  password: string;
+  callbackUrl: string;
+}
+
+export type { User, UserInput, loginRequestType };

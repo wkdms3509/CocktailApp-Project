@@ -5,8 +5,8 @@ import React, { useState } from "react";
 // import styles from "../styles/Home.module.css";
 
 export default function IndexPage() {
-  const [effect, setEffect] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
+  const [effect, setEffect] = useState<boolean>(false);
+  const [isClicked, setIsClicked] = useState<boolean>(false);
   const router = useRouter();
 
   const [inputForm, setInputForm] = useState({
@@ -16,7 +16,7 @@ export default function IndexPage() {
     bitter: 50,
   });
 
-  const handleBtn = (e) => {
+  const handleBtn = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputForm({ ...inputForm, [e.target.name]: e.target.value });
   };
 
@@ -25,7 +25,7 @@ export default function IndexPage() {
     return num;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
@@ -63,7 +63,7 @@ export default function IndexPage() {
         나에게 어울리는 칵테일은 ?
       </h1>
       <form
-        onSubmit={handleSubmit}
+        onSubmit={(e) => handleSubmit(e)}
         className="mx-auto w-5/6 flex flex-col text-center items-center"
       >
         <div className="relative h-4 w-4/5 rounded bg-black">

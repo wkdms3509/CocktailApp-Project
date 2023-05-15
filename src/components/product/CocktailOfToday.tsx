@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const CocktailOfToday = () => {
-  const [todayCocktail, setTodayCocktail] = useState("");
+  const [todayCocktail, setTodayCocktail] = useState<string>("");
 
   //   useEffect(() => {
   //     try {

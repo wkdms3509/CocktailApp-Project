@@ -5,14 +5,16 @@ import styles from "../../styles/Home.module.css";
 import { TfiTrash } from "react-icons/tfi";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { GetProductListResult } from "@/src/constants/apiTypes";
+import { ProductCardType } from "@/src/constants/productTypes";
 
-const ProductPage = ({ product }) => {
+const ProductPage = ({ product }: ProductCardType) => {
   const regex = /[^0-9]/g;
 
   const router = useRouter();
 
   const handleDelete = async () => {
-    const deleteItem = await axios.delete(`/api/product/${product.id}`);
+    await axios.delete(`/api/product/${product.id}`);
     router.push("/");
   };
 
@@ -66,7 +68,6 @@ const ProductPage = ({ product }) => {
               </span>
             </ul>
             <ul className="w-full mt-8 flex flex-row text-sm justify-between">
-              {/* xl:mr-12 pr-1 */}
               <label
                 htmlFor="sugar"
                 className="font-light text-left w-40 text-xs mr-5 lg:text-sm xl:text-sm"
@@ -154,13 +155,14 @@ export default ProductPage;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const productPath = context.query.id;
   const res = await fetch(`http://localhost:3000/api/products/${productPath}`);
-  const result = await res.json();
+  const result: GetProductListResult = await res.json();
 
   if (!result.is_success) {
     return {
       notFound: true,
     };
   }
+
   const product = result.data[0];
 
   return {

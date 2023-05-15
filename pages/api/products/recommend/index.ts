@@ -14,7 +14,7 @@ export default async function handler(
   }
 }
 
-const getProduct = async (req, res) => {
+const getProduct = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const [result] = await pool.query("SELECT * FROM cocktail2");
 

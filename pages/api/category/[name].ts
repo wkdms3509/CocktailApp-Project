@@ -21,10 +21,12 @@ const getProductFromType = async (
 ) => {
   try {
     const type = req.query.name;
+    // CategoryProductList
     const [result] = await pool.query(
       "SELECT * FROM cocktail2 WHERE type = ?",
       type
     );
+
     if (!result) {
       res.status(404).json({ code: 404, message: "not found data" });
     }

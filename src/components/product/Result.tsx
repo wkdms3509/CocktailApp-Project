@@ -1,14 +1,19 @@
+import {
+  AllCocktailListProps,
+  RecommendProductDescriptionType,
+  RecommendProductReturnType,
+} from "@/src/constants/productTypes";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default function Result({ productList }) {
+export default function Result({ allProductList }: AllCocktailListProps) {
   const router = useRouter();
   const userInput = router.query;
   const regex = /[^0-9]/g;
 
-  const checkedProductListNull = productList.map((item) => {
+  const checkedProductListNull = allProductList.map((item) => {
     if (
       item.alcohol === null ||
       item.sugar === null ||
@@ -28,7 +33,7 @@ export default function Result({ productList }) {
     return newItem;
   });
 
-  const getRandomProduct = (productList) => {
+  const getRandomProduct = (productList: RecommendProductReturnType[]) => {
     return productList[Math.floor(Math.random() * productList.length)];
   };
 
@@ -43,11 +48,12 @@ export default function Result({ productList }) {
     }
   });
 
-  const result = getRandomProduct(filterdProductList);
+  const result: RecommendProductReturnType =
+    getRandomProduct(filterdProductList);
 
-  const checkType = (sweetness) => {
-    const TYPE = {
-      light: ["당도가 거의 없는 술의 맛을 느끼고 싶은 날", ""],
+  const checkType = (sweetness: number) => {
+    const TYPE: RecommendProductDescriptionType = {
+      light: ["당도가 거의 없는 술의 맛을 느끼고 싶은 날"],
       middle: [
         "적당한 달달함으로 기분 내고 싶은 날",
         "힘든 하루를 끝내고 한 잔으로 마무리하고 싶은 날",
@@ -55,12 +61,16 @@ export default function Result({ productList }) {
       high: ["술이지만 음료수 같은 달달함이 맛보고 싶은 날"],
     };
 
+    const getRandomType = (list: string[]) => {
+      return list[Math.floor(Math.random() * list.length)];
+    };
+
     if (sweetness <= 30) {
-      return getRandomProduct(TYPE.light);
+      return getRandomType(TYPE.light);
     } else if (sweetness <= 60) {
-      return getRandomProduct(TYPE.middle);
+      return getRandomType(TYPE.middle);
     } else if (sweetness <= 100) {
-      return getRandomProduct(TYPE.high);
+      return getRandomType(TYPE.high);
     }
   };
 
@@ -123,32 +133,6 @@ export default function Result({ productList }) {
               </li>
             </ul>
           </div>
-          {/* <div className="flex flex-1 justify-center mx-auto w-full bg-red-600">
-            <ul className="flex flex-col flex-1 items-center">
-              <li className="text-sm lg:text-base mb-3">도수</li>
-              <li className="border rounded font-light text-sm lg:text-base lg:w-32 px-10 py-6 mx-5 border-black">
-                <p className="bg-yellow-500 w-24">{result.alcohol} %</p>
-              </li>
-            </ul>
-            <ul className="flex flex-col flex-1 items-center">
-              <li className="text-sm lg:text-base mb-3">당도</li>
-              <li className="border rounded font-light text-sm lg:text-base lg:w-32 px-10 py-6 mx-5 border-black">
-                <p className="bg-yellow-500 w-20">{result.sugar} %</p>
-              </li>
-            </ul>
-            <ul className="flex flex-col flex-1 items-center">
-              <li className="text-sm lg:text-base mb-3">산미</li>
-              <li className="border rounded font-light text-sm lg:text-base lg:w-32 px-10 py-6 mx-5 border-black">
-                <p className="bg-yellow-500 w-24">{result.sourness} %</p>
-              </li>
-            </ul>
-            <ul className="flex flex-col flex-1 items-center">
-              <li className="text-sm lg:text-base mb-3">쓴맛</li>
-              <li className="border rounded font-light text-sm lg:text-base lg:w-32 px-10 py-6 mx-5 border-black">
-                <p className="bg-yellow-500 w-24">{result.bitter} %</p>
-              </li>
-            </ul>
-          </div> */}
           <div className="mt-20">
             <p className="w-60  lg:w-2/5  mx-auto p-3 px-14 font-light rounded-full border-black border bg-black text-white hover:bg-black/80 duration-200">
               <Link href="/">메인페이지로 이동</Link>

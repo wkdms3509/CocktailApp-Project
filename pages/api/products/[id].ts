@@ -43,7 +43,6 @@ const updateProduct = async (req: NextApiRequest, res: NextApiResponse) => {
     const { name, description, alcohol, sugar, sourness, bitter } = req.body;
 
     const [result] = await pool.query(
-      // 'UPDATE cocktail2 SET name = ?, description = ?, alcohol = ?, sugar = ?, sourness = ? WHERE id = ?',
       "UPDATE cocktail2 SET name = ?, description = ?, alcohol = ?, sugar = ?, sourness = ?, bitter = ? WHERE id = ?",
       [name, description, alcohol, sugar, sourness, bitter, id]
     );
