@@ -6,7 +6,7 @@ const Pagination = ({ total, limit, page, setPage }) => {
   const numPages = Math.ceil(total / limit); // 90 / 9 = 10
 
   return (
-    <div className="flex justify-center items-center gap-x-4 mt-14 mb-8">
+    <div className="flex justify-center items-center gap-x-4 mt-14 mb-8 text-sm mx-10 md:mx-0 lg:mx-0 xl:mx-0">
       <Button
         onClick={() => setPage(page - 1)}
         disabled={page === 1}
