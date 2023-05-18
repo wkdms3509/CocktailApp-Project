@@ -12,7 +12,7 @@ const Pagination = (props: PaginationInfo) => {
       <Button
         onClick={() => setPage(page - 1)}
         disabled={page === 1}
-        selected={page === page - 1}
+        // selected={page === page - 1}
       >
         &lt;
       </Button>

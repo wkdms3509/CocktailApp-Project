@@ -23,7 +23,7 @@ const Pagination = (props: PaginationInfo) => {
             setCurrPage(page - 5);
           }}
           disabled={page === 1}
-          selected={page === page - 1}
+          // selected={page === page - 1}
         >
           &lt;
         </Button>
@@ -32,6 +32,7 @@ const Pagination = (props: PaginationInfo) => {
             setPage(firstNum);
           }}
           aria-current={page === firstNum}
+          selected={page === 1}
         >
           {firstNum}
         </PgBtn>

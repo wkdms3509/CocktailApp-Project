@@ -17,17 +17,20 @@ module.exports = {
         banner3:
           "url('https://shakit.co.kr/data/apms/background/Main_%EC%A4%80%EB%B2%85_PC.jpg')",
       },
-
       minHeight: {
         '3/5': '67vh',
         '1/2': '45vh',
         '1/5': '40vh',
+        '4/6': '70vh',
       },
       width: {
         '90': '22rem',
       },
       height: {
         '100': '30rem',
+      },
+      screen: {
+        xs: { min: '390px' },
       },
     },
   },

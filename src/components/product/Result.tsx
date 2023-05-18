@@ -126,7 +126,7 @@ export default function Result({ allProductList }: AllCocktailListProps) {
             </ul>
           </div>
           <div className="mt-20">
-            <p className="w-60  lg:w-2/5  mx-auto p-3 px-14 font-light rounded-full border-black border bg-black text-white hover:bg-black/80 duration-200">
+            <p className="w-60 lg:w-2/5 mx-auto p-3 px-14 font-light rounded-full border-black border bg-black text-white hover:bg-black/80 duration-200 hover:bg-white hover:text-black">
               <Link href="/">메인페이지로 이동</Link>
             </p>
           </div>

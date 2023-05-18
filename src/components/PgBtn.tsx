@@ -45,7 +45,6 @@ export const Button = styled.button`
   &:hover {
     background: rgb(115 115 115);
     cursor: pointer;
-    // transform: translateY(-2px);
   }
 
   &[disabled] {
@@ -61,21 +60,3 @@ export const Button = styled.button`
     transform: revert;
   }
 `;
-
-//   padding: 4px 6px;
-//   font-size: 20px;
-//   background-color: ${({ selected }: { selected: boolean }) =>
-//     selected ? "#000" : "transparent"};
-//   color: ${({ selected }: { selected: boolean }) =>
-//     selected ? "grey" : "#000"};
-//   border-bottom: ${({ selected }: { selected: boolean }) =>
-//     selected ? "1px solid #fff" : ""};
-//   transition: ${({ selected }: { selected: boolean }) =>
-//     selected ? "200ms ease-in" : ""};
-//    & + & {
-//      margin-left: 4px;
-//    }
-//    &:disabled {
-//      cursor: default;
-//    }
-//  }
