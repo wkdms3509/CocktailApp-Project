@@ -6,6 +6,6 @@ module.exports = {
     styledComponents: true,
   },
   images: {
-    domains: ['images.unsplash.com', 'cocktailclub.com'],
+    domains: ['images.unsplash.com', 'cocktailclub.com', 'kitchenswagger.com'],
   },
 }

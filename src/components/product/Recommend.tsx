@@ -20,10 +20,10 @@ export default function IndexPage() {
     setInputForm({ ...inputForm, [e.target.name]: e.target.value });
   };
 
-  const changeNum = (text) => {
-    const num = Number(text);
-    return num;
-  };
+  // const changeNum = (text) => {
+  //   const num = Number(text);
+  //   return num;
+  // };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

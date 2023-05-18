@@ -12,20 +12,22 @@ const Pagination = (props: PaginationInfo) => {
       <Button
         onClick={() => setPage(page - 1)}
         disabled={page === 1}
-        className="prev_btn"
-        selected={page === page - 1}
+        // className="prev_btn"
+        className={classNames("prev_btn", { selected: page === page - 1 })}
+        // selected={page === page - 1}
       >
         &lt;
       </Button>
       <div>
         {Array(numPages)
-          .fill()
+          .fill(undefined)
           .map((_, i) => (
             <PageNum
               key={i + 1}
               onClick={() => setPage(i + 1)}
-              aria-current={page === i + 1 ? "page" : null}
-              selected={page === i + 1}
+              aria-current={page === i + 1 ? "page" : undefined}
+              // selected={page === i + 1}
+              className={classNames("page_btn", { selected: page === i + 1 })}
             >
               {i + 1}
             </PageNum>

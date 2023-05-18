@@ -1,7 +1,10 @@
+import classNames from "classnames";
 import { useState } from "react";
+import { PaginationInfo } from "../constants/productTypes";
 import { PgBtn } from "./PgBtn";
 
-const Pagination = ({ total, limit, page, setPage }) => {
+const Pagination = (props: PaginationInfo) => {
+  const { total, limit, page, setPage } = props;
   const numPages = Math.ceil(total / limit);
   const [currPage, setCurrPage] = useState(page);
   let firstNum = currPage - (currPage % 5) + 1;
@@ -23,12 +26,12 @@ const Pagination = ({ total, limit, page, setPage }) => {
           onClick={() => {
             setPage(firstNum);
           }}
-          aria-current={page === firstNum ? "page" : null}
+          aria-current={page === firstNum}
         >
           {firstNum}
         </PgBtn>
         {Array(4)
-          .fill()
+          .fill(undefined)
           .map((_, i) => {
             if (i <= 2) {
               return (
@@ -39,8 +42,11 @@ const Pagination = ({ total, limit, page, setPage }) => {
                     setPage(firstNum + 1 + i);
                     // console.log('i', i)
                   }}
-                  selected={page === firstNum + 1 + i}
-                  aria-current={page === firstNum + 1 + i ? "page" : null}
+                  // selected={page === firstNum + 1 + i}
+                  className={classNames("page_btn", {
+                    seleted: page === firstNum + 1 + i,
+                  })}
+                  aria-current={page === firstNum + 1 + i}
                 >
                   {firstNum + 1 + i}
                 </PgBtn>
@@ -51,8 +57,11 @@ const Pagination = ({ total, limit, page, setPage }) => {
                   // border="true"
                   key={i + 1}
                   onClick={() => setPage(lastNum)}
-                  selected={page === firstNum + 1 + i}
-                  aria-current={page === lastNum ? "page" : null}
+                  // selected={page === firstNum + 1 + i}
+                  className={classNames("next_btn", {
+                    selected: page === firstNum + 1 + i,
+                  })}
+                  aria-current={page === lastNum}
                 >
                   {lastNum}
                 </PgBtn>

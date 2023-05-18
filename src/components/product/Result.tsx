@@ -20,7 +20,7 @@ export default function Result({ allProductList }: AllCocktailListProps) {
       item.sourness === null ||
       item.bitter === null
     ) {
-      return "";
+      return;
     }
 
     const newItem = {
@@ -33,23 +33,15 @@ export default function Result({ allProductList }: AllCocktailListProps) {
     return newItem;
   });
 
+  const filterdProductList = checkedProductListNull.filter(
+    (item): item is RecommendProductReturnType => item !== undefined
+  );
+
   const getRandomProduct = (productList: RecommendProductReturnType[]) => {
     return productList[Math.floor(Math.random() * productList.length)];
   };
 
-  const filterdProductList = checkedProductListNull.filter((item) => {
-    if (
-      item.alcohol <= Number(userInput.alcohol) &&
-      item.sugar <= Number(userInput.sugar) &&
-      item.sourness <= Number(userInput.sourness) &&
-      item.bitter <= Number(userInput.bitter)
-    ) {
-      return item;
-    }
-  });
-
-  const result: RecommendProductReturnType =
-    getRandomProduct(filterdProductList);
+  const result = getRandomProduct(filterdProductList);
 
   const checkType = (sweetness: number) => {
     const TYPE: RecommendProductDescriptionType = {

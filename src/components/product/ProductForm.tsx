@@ -21,17 +21,21 @@ export default function ProductForm() {
   const regex = /[^0-9]/g;
 
   useEffect(() => {
-    const getPeoduct = async (id: string) => {
-      // const { data } = await axios.get(`/api/products/${id}`);
-      const result: GetProductListResult = await axios.get(
-        `/api/products/${id}`
-      );
-      const productInfo: NewProductInputType = result.data.data[0];
+    const getProduct = async (id: string) => {
+      try {
+        const result = await axios.get(`/api/products/${id}`);
+        const resData: GetProductListResult = result.data;
 
-      setProductForm(productInfo);
+        const productInfo: NewProductInputType = resData.data[0];
+
+        setProductForm(productInfo);
+      } catch (error) {
+        console.error("Error fetching product:", error);
+      }
     };
-    if (router.query.id) {
-      getPeoduct(router.query.id);
+
+    if (router.query.id && typeof router.query.id === "string") {
+      getProduct(router.query.id);
     }
   }, []);
 
@@ -51,6 +55,17 @@ export default function ProductForm() {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+    setProductForm({ ...productForm, [e.target.name]: e.target.value });
+  };
+
+  const handleChangeTextarea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    console.log(e.target.value);
+    setProductForm({ ...productForm, [e.target.name]: e.target.value });
+  };
+
+  const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log(e.target.value);
     setProductForm({ ...productForm, [e.target.name]: e.target.value });
   };
 
@@ -97,10 +112,10 @@ export default function ProductForm() {
           설명
         </label>
         <textarea
-          rows="2"
+          rows={2}
           name="description"
           className="border rounded w-2/4 h-32 my-4 p-2 bg-white/60 outline-none border-none focus:bg-gray-50 focus:ring-1 ring-black-700"
-          onChange={handleChange}
+          onChange={handleChangeTextarea}
           value={productForm.description}
         ></textarea>
 
@@ -115,7 +130,7 @@ export default function ProductForm() {
           <select
             name="alcohol"
             value={Number(productForm.alcohol.replace(regex, ""))}
-            onChange={handleChange}
+            onChange={handleChangeSelect}
             className="bg-white/60 w-2/4 md:w-1/4 lg:w-1/4 xl:w-1/4 text-center rounded border-none outline-none focus:bg-gray-50 focus:ring-1 ring-black-700"
           >
             <option value="0">0</option>
@@ -144,7 +159,7 @@ export default function ProductForm() {
           <select
             name="sugar"
             value={Number(productForm.sugar.replace(regex, ""))}
-            onChange={handleChange}
+            onChange={handleChangeSelect}
             className="bg-white/60 w-2/4 md:w-1/4 lg:w-1/4 xl:w-1/4 text-center rounded border-none outline-none focus:bg-gray-50 focus:ring-1 ring-black-700"
           >
             <option value="0">0</option>
@@ -172,7 +187,7 @@ export default function ProductForm() {
           <select
             name="sourness"
             value={Number(productForm.sourness.replace(regex, ""))}
-            onChange={handleChange}
+            onChange={handleChangeSelect}
             className="bg-white/60 w-2/4 md:w-1/4 lg:w-1/4 xl:w-1/4 text-center rounded border-none outline-none focus:bg-gray-50 focus:ring-1 ring-black-700"
           >
             <option value="0">0</option>
@@ -200,7 +215,7 @@ export default function ProductForm() {
           <select
             name="bitter"
             value={Number(productForm.bitter.replace(regex, ""))}
-            onChange={handleChange}
+            onChange={handleChangeSelect}
             className="bg-white/60 w-2/4 md:w-1/4 lg:w-1/4 xl:w-1/4 text-center rounded border-none outline-none focus:bg-gray-50 focus:ring-1 ring-black-700"
           >
             <option value="0">0</option>

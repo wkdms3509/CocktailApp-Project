@@ -14,7 +14,11 @@ const ProductPage = ({ product }: ProductCardType) => {
   const router = useRouter();
 
   const handleDelete = async () => {
-    await axios.delete(`/api/product/${product.id}`);
+    console.log("product.id", product.id);
+
+    await axios.delete(`/api/products/${product.id}`);
+    console.log("삭제 성공");
+
     router.push("/");
   };
 
@@ -34,7 +38,8 @@ const ProductPage = ({ product }: ProductCardType) => {
           width="400"
           height="400"
           priority
-          className="md:w-80 xl:w-90 h-auto"
+          className="md:w-80 xl:w-90"
+          style={{ width: "auto", height: "auto" }}
         />
         <div className="p-2 mt-10 lg:mt-0 xl:mt-0 lg:pl-10 xl:pl-10 lg:border-l-2 xl:border-l-2">
           <div>
@@ -138,7 +143,7 @@ const ProductPage = ({ product }: ProductCardType) => {
               수정
             </button>
             <button
-              //   onClick={handleDelete}
+              onClick={handleDelete}
               className="font-light p-2 ml-2 w-1/4 rounded-full text-black border border-black hover:text-orange-800"
             >
               삭제

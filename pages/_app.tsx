@@ -4,7 +4,7 @@ import "../styles/tailwind.css";
 import type { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
 import { createStore } from "redux";
-import rootReducer, { persistor, ReducerType } from "@/src/reducer";
+import rootReducer, { persistor } from "@/src/reducer";
 import { Provider } from "react-redux";
 import wrapper from "@/src/reducer";
 import { PersistGate } from "redux-persist/integration/react";

@@ -2,6 +2,8 @@ import { pool } from "../../../src/config/db";
 import crypto from "crypto";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { RequestNewUser } from "@/src/constants/apiTypes";
+import { FieldPacket } from "mysql2";
+import { UserQueryType } from "@/src/constants/apiQueryTypes";
 
 export default async function handler(
   req: NextApiRequest,
@@ -20,7 +22,7 @@ export default async function handler(
 const checkId = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const userInputId = req.query.id;
-    const [result] = await pool.query(
+    const [result, field]: [UserQueryType[], FieldPacket[]] = await pool.query(
       "SELECT * FROM user WHERE user_id = ?",
       userInputId
     );

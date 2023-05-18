@@ -17,7 +17,6 @@ const ProductCard = (props: ProductCardType) => {
                 alt={product.name}
                 width="400"
                 height="300"
-                style=""
                 // className="ProductCardImg"
                 className="h-100 w-full scale-100 object-cover hover:scale-105 duration-300 md:w-64 lg:w-96"
                 priority

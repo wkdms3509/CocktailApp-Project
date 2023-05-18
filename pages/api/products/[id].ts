@@ -1,4 +1,6 @@
 import { pool } from "@/src/config/db";
+import { Product } from "@/src/constants/apiQueryTypes";
+import { FieldPacket, OkPacket } from "mysql2";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
@@ -20,10 +22,11 @@ export default async function handler(
 const getProductInfo = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const productId = req.query.id;
-    const [product] = await pool.query(
+    const [product, fields]: [Product[], FieldPacket[]] = await pool.query(
       "SELECT * FROM cocktail2 WHERE id = ?",
       productId
     );
+
     if (!product[0]) {
       res.status(404).json({
         code: 404,
@@ -42,12 +45,18 @@ const updateProduct = async (req: NextApiRequest, res: NextApiResponse) => {
     const { id } = req.query;
     const { name, description, alcohol, sugar, sourness, bitter } = req.body;
 
-    const [result] = await pool.query(
+    const result = await pool.query(
       "UPDATE cocktail2 SET name = ?, description = ?, alcohol = ?, sugar = ?, sourness = ?, bitter = ? WHERE id = ?",
       [name, description, alcohol, sugar, sourness, bitter, id]
     );
 
-    if (result.affectedRows === 0) {
+    const affectedRows = (
+      "affectedRows" in result[0]
+        ? (result[0] as OkPacket).affectedRows
+        : undefined
+    ) as number;
+
+    if (affectedRows === 0) {
       return res
         .status(400)
         .json({ code: 400, is_success: false, message: "failed update" });
@@ -64,12 +73,20 @@ const deleteProduct = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { id } = req.query;
 
-    const [result] = await pool.query("DELETE FROM cocktail2 WHERE id = ?", id);
-    console.log(result);
-    if (result.affectedRows === 0) {
+    const result = await pool.query("DELETE FROM cocktail2 WHERE id = ?", id);
+
+    console.log("delete result", result);
+
+    const affectedRows = (
+      "affectedRows" in result[0]
+        ? (result[0] as OkPacket).affectedRows
+        : undefined
+    ) as number;
+
+    if (affectedRows === 0) {
       return res
         .status(400)
-        .json({ code: 400, is_success: false, message: "no found data" });
+        .json({ code: 400, is_success: false, message: "failed delete item" });
     }
 
     res

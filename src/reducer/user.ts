@@ -27,7 +27,7 @@ export const logout = () => {
   };
 };
 
-export const auth = (user) => {
+export const auth = (user: string) => {
   return {
     type: AUTH_USER,
     payload: {
@@ -36,9 +36,11 @@ export const auth = (user) => {
   };
 };
 
-export type UserActionsType = ReturnType<
-  typeof register | typeof login | typeof auth
->;
+export type UserActionsType =
+  | ReturnType<typeof register>
+  | ReturnType<typeof login>
+  | ReturnType<typeof logout>
+  | ReturnType<typeof auth>;
 
 interface User {
   id?: string;
@@ -47,7 +49,7 @@ interface User {
 
 interface InitialType {
   isLogin: boolean;
-  user: User;
+  user?: User | null;
   message?: string;
 }
 

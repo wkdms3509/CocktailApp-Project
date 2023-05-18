@@ -11,7 +11,12 @@ export default function CategoryItemList({
   categoryProducts,
 }: CategoryProductList) {
   const router = useRouter();
-  const category: string = router.query.name.toUpperCase();
+
+  const queryName = router.query.name;
+  let category: string = "";
+  if (typeof queryName === "string") {
+    category = queryName.toUpperCase();
+  }
 
   // 페이지 당 표시할 게시물 수
   const [limit, setLimit] = useState(9);

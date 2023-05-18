@@ -31,8 +31,8 @@ const AllCocktailList = ({ allProductList }: AllCocktailListProps) => {
           <label className="text-sm w-1/5 text-gray-400">
             페이지 당 표시할 게시물 수:&nbsp;
             <select
-              type="number"
-              value={limit}
+              // type="number"
+              value={limit.toString()}
               onChange={({ target: { value } }) => setLimit(Number(value))}
               className="bg-transparent"
             >

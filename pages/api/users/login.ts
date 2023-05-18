@@ -1,6 +1,8 @@
 import { pool } from "@/src/config/db";
 import { Data, RequestUserData, User } from "@/src/constants/apiTypes";
+import { UserQueryType } from "@/src/constants/apiQueryTypes";
 import crypto from "crypto";
+import { FieldPacket, RowDataPacket } from "mysql2";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getToken } from "next-auth/jwt";
 
@@ -22,7 +24,7 @@ const postLogin = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   try {
     const { username, password }: RequestUserData = req.body;
 
-    const [result] = await pool.query(
+    const [result, field]: [UserQueryType[], FieldPacket[]] = await pool.query(
       "SELECT * FROM user WHERE user_id = ?",
       username
     );
@@ -45,7 +47,7 @@ const postLogin = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       .update(password + dbSalt)
       .digest("hex");
 
-    if (!hashPassword === dbPassword) {
+    if (hashPassword !== dbPassword) {
       console.log("비밀번호 불일치");
       return res.setHeader("Set-Cookie", "login=false").status(400).json({
         code: 400,
@@ -62,11 +64,21 @@ const postLogin = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       auth: result[0].auth,
     };
 
+    const setCookieHeader = res.getHeader("Set-Cookie");
+
+    let cookie: string | undefined;
+
+    if (typeof setCookieHeader === "string") {
+      cookie = setCookieHeader;
+    } else if (Array.isArray(setCookieHeader) && setCookieHeader.length > 0) {
+      cookie = setCookieHeader[0];
+    }
+
     return res.status(200).json({
       code: 200,
       is_success: true,
       message: "로그인 성공",
-      cookie: res.getHeader("Set-Cookie"),
+      cookie: cookie,
       data: user,
     });
   } catch (error) {

@@ -1,4 +1,6 @@
 import { pool } from "@/src/config/db";
+import { Product } from "@/src/constants/apiQueryTypes";
+import { FieldPacket, OkPacket, ResultSetHeader, RowDataPacket } from "mysql2";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
@@ -19,7 +21,10 @@ export default async function handler(
 
 const getAllProductList = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const [result] = await pool.query("SELECT * FROM cocktail2");
+    const [result, fields]: [Product[], FieldPacket[]] = await pool.query(
+      "SELECT * FROM cocktail2"
+    );
+
     if (result.length === 0) {
       res.status(400).json({
         code: 400,
@@ -35,11 +40,10 @@ const getAllProductList = async (req: NextApiRequest, res: NextApiResponse) => {
 
 const postNewCocktail = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    console.log("postNewCocktail", req);
-
     const { name, description, alcohol, sugar, sourness, bitter, type, img } =
       req.body;
-    const [result] = await pool.query("INSERT INTO cocktail2 SET ?", {
+
+    const result = await pool.query("INSERT INTO cocktail2 SET ?", {
       name,
       description,
       alcohol,
@@ -48,15 +52,18 @@ const postNewCocktail = async (req: NextApiRequest, res: NextApiResponse) => {
       bitter,
       type,
       img,
-      // file,
     });
-    if (!result) {
+
+    const insertId = (
+      "insertId" in result[0] ? (result[0] as OkPacket).insertId : undefined
+    ) as number;
+
+    if (!insertId) {
       res.status(400).json({
         code: 400,
         is_success: false,
       });
     }
-    console.log("result", result);
 
     res.status(201).json({
       code: 201,
@@ -67,7 +74,7 @@ const postNewCocktail = async (req: NextApiRequest, res: NextApiResponse) => {
         alcohol,
         sugar,
         sourness,
-        id: result.insertId,
+        id: insertId,
       },
     });
   } catch (error) {

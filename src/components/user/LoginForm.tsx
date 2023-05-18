@@ -32,11 +32,11 @@ export default function LoginForm() {
     id: "",
     password: "",
   });
-  // ChangeEventHandler<HTMLInputElement>
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput({ ...userInput, [e.target.name]: e.target.value });
   };
-  // FormEventHandler<HTMLFormElement>
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const status = await signIn("credentials", {
@@ -45,10 +45,8 @@ export default function LoginForm() {
       password: userInput.password,
       callbackUrl: "/",
     });
-
-    if (status.ok) {
-      // store.dispatch(login(userInput.id));
-      // dispatch(login(userInput.id));
+    // status && status.ok
+    if (status?.ok && status.url) {
       router.push(status.url);
     }
   };

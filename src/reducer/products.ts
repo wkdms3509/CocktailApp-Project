@@ -33,12 +33,18 @@ export const initializeItems = (items: Product[]) => {
   };
 };
 
-export type ProductActionsType = ReturnType<
-  | typeof addItem
-  | typeof deleteItem
-  | typeof updateItem
-  | typeof initializeItems
->;
+// export type ProductActionsType = ReturnType<
+//   | typeof addItem
+//   | typeof deleteItem
+//   | typeof updateItem
+//   | typeof initializeItems
+// >;
+
+export type ProductActionsType =
+  | ReturnType<typeof addItem>
+  | ReturnType<typeof deleteItem>
+  | ReturnType<typeof updateItem>
+  | ReturnType<typeof initializeItems>;
 
 interface InitialiItems {}
 
@@ -51,15 +57,13 @@ interface Product {
   sugar?: string;
   sourness?: string;
   bitter?: string;
-  recipe?: null;
-  img?: string;
-  recipe?: string;
+  recipe?: string | null;
   img?: string;
   create_at?: string;
 }
 
 interface InitialType {
-  product: Product[];
+  products: Product[];
 }
 
 const initialState: InitialType = {
@@ -73,12 +77,12 @@ export default function productReducer(
   switch (action.type) {
     case ADD_ITEM:
       return {
-        products: [...state.products, action.payload.item],
+        products: [...state.products, action.payload],
       };
     case INITIALIZE_ITEMS:
       console.log("INITIALIZE_ITEMS");
       return {
-        products: action.payload.items,
+        products: action.payload,
       };
 
     default:
