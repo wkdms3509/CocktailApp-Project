@@ -112,33 +112,45 @@ const Navbar = () => {
           </div>
           <div>
             {/* focus:bg-gray-50 focus:ring-1 ring-black-700 */}
-            <ul className="sub_category">
-              <Link href="/products/today">
-                <li className="mr-3 text-blue-500 relative w-max one active">
+            <ul className="sub_category gap-x-3">
+              <Link href="/products/today" className="nav_category_menu_link">
+                <li className="nav_category_menu">
                   <span>Today`s Cocktail</span>
                   <span className="absolute -bottom-1 left-0 w-0 transition-all h-1 bg-blue-500"></span>
                 </li>
               </Link>
-              <Link href={`/category/${type.gin}`}>
-                <li className="sub_category_menu one active">
+              <Link
+                href={`/category/${type.gin}`}
+                className="nav_category_menu_link"
+              >
+                <li className="sub_category_menu one active text-sm md:text-base lg:text-base xl:text-base">
                   <span>GIN</span>
                   <span className="absolute -bottom-1 left-0 w-0 transition-all h-1 bg-blue-500"></span>
                 </li>
               </Link>
-              <Link href={`/category/${type.non_alc}`}>
-                <li className="sub_category_menu one active">
+              <Link
+                href={`/category/${type.non_alc}`}
+                className="nav_category_menu_link"
+              >
+                <li className="sub_category_menu one active text-sm md:text-base lg:text-base xl:text-base">
                   <span>NON-ALCOL</span>
                   <span className="absolute -bottom-1 left-0 w-0 transition-all h-1 bg-blue-500"></span>
                 </li>
               </Link>
-              <Link href={`/category/${type.vodka}`}>
-                <li className="sub_category_menu one">
+              <Link
+                href={`/category/${type.vodka}`}
+                className="nav_category_menu_link"
+              >
+                <li className="sub_category_menu one text-sm md:text-base lg:text-base xl:text-base">
                   <span>VODKA</span>
                   <span className="absolute -bottom-1 left-0 w-0 transition-all h-1 bg-blue-500"></span>
                 </li>
               </Link>
-              <Link href={`/category/${type.rum}`}>
-                <li className="sub_category_menu one">
+              <Link
+                href={`/category/${type.rum}`}
+                className="nav_category_menu_link"
+              >
+                <li className="sub_category_menu one text-sm md:text-base lg:text-base xl:text-base">
                   <span>RUM</span>
                   <span className="absolute -bottom-1 left-0 w-0 transition-all h-1 bg-blue-500"></span>
                 </li>

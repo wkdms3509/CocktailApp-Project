@@ -18,10 +18,10 @@ const Footer = () => {
           Subscribe to our newsletter
         </div>
         <input
-          className="w-1/4 mb-8 mt-5 outline-none text-sm p-2.5 md:p-3 lg:p-3 md:text-base lg:text-base"
+          className="w-1/4 mb-8 mt-5 outline-none p-2 md:p-3 lg:p-3 text-sm md:text-base lg:text-base xl:text-base"
           placeholder="Your email address .."
         />
-        <button className="text-white ml-3 border border-white p-2 md:p-3 lg:p-3">
+        <button className="text-white ml-3 border border-white p-2 md:p-3 lg:p-3 text-sm md:text-base lg:text-base xl:text-base">
           Subscribe
         </button>
       </div>

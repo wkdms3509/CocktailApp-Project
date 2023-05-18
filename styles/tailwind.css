@@ -101,7 +101,7 @@ html {
   }
 
   .category_right_menu {
-    @apply my-2 lg:px-4 cursor-pointer;
+    @apply my-2 lg:px-4 cursor-pointer text-sm md:text-base lg:text-base xl:text-base font-medium;
   }
 
   .category_right_menu:hover {
@@ -114,7 +114,20 @@ html {
   }
 
   .sub_category_menu {
-    @apply mr-3 relative w-max;
+    @apply relative w-max;
+  }
+
+  /* .nav_category_menu_link {
+    @apply 
+  } */
+
+  .nav_category_menu_link:focus {
+    @apply border-b-4 border-blue-500;
+    /* @apply relative bg-blue-500; */
+  }
+
+  .nav_category_menu {
+    @apply text-blue-500 relative w-max one text-sm md:text-base lg:text-base xl:text-base;
   }
 
   /* .sub_category_menu:focus span:last-child {

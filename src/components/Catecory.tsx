@@ -17,7 +17,7 @@ const Catecory = ({ allProductList }: AllCocktailListProps) => {
   };
 
   return (
-    <div className="mt-20 lg:w-full">
+    <div className="mt-10 md:mt-20 lg:mt-20 xl:mt-20 lg:w-full">
       <ul className="flex flex-row lg:mx-28 justify-between text-center items-center">
         <Link href={`/category/${type.gin}`} className="banner_item">
           <li>GIN</li>

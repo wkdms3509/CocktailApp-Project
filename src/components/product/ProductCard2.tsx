@@ -23,7 +23,9 @@ const ProductCard2 = (props: ProductCardType) => {
               <h3 className="text-xs font-bold text-[#222] pt-3">
                 {product.type}
               </h3>
-              <h2 className="text-base text-[#222]">{product.name}</h2>
+              <h2 className="text-[#222] text-sm md:text-base lg:text-base xl:text-base">
+                {product.name}
+              </h2>
             </div>
           </Link>
         </div>

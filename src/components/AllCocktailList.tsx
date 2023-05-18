@@ -16,7 +16,7 @@ const AllCocktailList = ({ allProductList }: AllCocktailListProps) => {
   return (
     <>
       <div className="w-full mx-auto my-3">
-        <div className="flex flex-row justify-between mx-2 mb-1 lg:mb-0">
+        <div className="flex flex-row justify-between lg:mx-2 xl:mx-2 mb-1 lg:mb-0">
           <span className="py-1 text-[#222] text-xl font-semibold lg:font-normal lg:text-3xl">
             All
           </span>
