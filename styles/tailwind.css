@@ -81,7 +81,19 @@ html {
 
   /* 네비게이션 */
   .nav {
-    @apply py-6 px-8 md:px-14 lg:px-28;
+    @apply bg-white pb-6 pt-1 md:py-6 px-5 md:px-6 lg:px-10 xl:px-28;
+  }
+
+  .site_name {
+    @apply pt-1 italic font-extrabold text-2xl md:text-2xl lg:text-3xl;
+  }
+
+  .app_banner_top {
+    @apply md:hidden bg-light-gray m-0 w-full h-16 px-4 py-3.5;
+  }
+
+  .app_banner_top_close {
+    @apply hidden;
   }
 
   .side_category {
@@ -97,7 +109,7 @@ html {
   }
 
   .main_category_right_one {
-    @apply flex flex-col items-center z-10 absolute bg-white w-full left-0 py-4 opacity-0 -top-40 transition-all ease-in duration-300 lg:flex-row lg:w-auto lg:py-0 lg:items-center lg:z-auto lg:static lg:pl-0 lg:opacity-100;
+    @apply flex flex-col items-center z-10 absolute bg-white w-full left-0 py-4 opacity-0 -top-52 transition-all ease-in duration-300 lg:flex-row lg:w-auto lg:py-0 lg:items-center lg:z-auto lg:static lg:pl-0 lg:opacity-100;
   }
 
   .category_right_menu {

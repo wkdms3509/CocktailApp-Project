@@ -29,8 +29,19 @@ module.exports = {
       height: {
         '100': '30rem',
       },
-      screen: {
+      screens: {
         xs: { min: '390px' },
+        md: '769px',
+      },
+      fontSize: {
+        xxs: '0.2rem',
+      },
+      colors: {
+        'light-gray': '#f4f4f4',
+        'black/80': '#777777',
+      },
+      spacing: {
+        '26': '6.5rem',
       },
     },
   },
