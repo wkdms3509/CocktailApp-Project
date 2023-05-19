@@ -168,7 +168,7 @@ html {
 
   /* 배너 카테고리 */
   .banner_item {
-    @apply h-20 text-center border border-gray-300 items-center rounded-md flex-1 m-1 py-8 cursor-pointer bg-black text-white text-xs md:h-auto lg:h-auto md:text-xl lg:text-2xl hover:text-black hover:bg-gray-300;
+    @apply h-20 text-center border border-gray-300 items-center rounded-md flex-1 py-8 cursor-pointer bg-black text-white text-xs md:h-auto lg:h-auto md:text-xl lg:text-2xl hover:text-black hover:bg-gray-300;
   }
 
   .main_img1 {

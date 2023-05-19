@@ -18,6 +18,7 @@ import { END } from "@redux-saga/core";
 import { useDispatch } from "react-redux";
 import { login } from "@/src/reducer/user";
 import { GetProductListResult } from "@/src/constants/apiTypes";
+import NonAlcCocktailList from "@/src/components/product/NonAlcCocktailList";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -40,11 +41,14 @@ export default function Home({ allProductList }: AllCocktailListProps) {
           <section>
             <MainBanner />
           </section>
-          <section className="p-5">
+          <section className="px-3 py-5">
             <Catecory allProductList={allProductList} />
           </section>
           <section className="p-3 md:p-5 lg:p-32">
             <AllCocktailList allProductList={allProductList} />
+          </section>
+          <section className="p-3 md:p-5 lg:p-32 md:hidden">
+            <NonAlcCocktailList allProductList={allProductList} />
           </section>
         </div>
       ) : (

@@ -18,12 +18,12 @@ const Catecory = ({ allProductList }: AllCocktailListProps) => {
 
   return (
     <div className="mt-10 md:mt-20 lg:mt-20 xl:mt-20 lg:w-full">
-      <ul className="flex flex-row lg:mx-28 justify-between text-center items-center">
+      <ul className="flex flex-row gap-x-2 md:mx-6 justify-between">
         <Link href={`/category/${type.gin}`} className="banner_item">
           <li>GIN</li>
         </Link>
         <Link href={`category/${type.non_alc}`} className="banner_item">
-          <li>NON-ALCOL</li>
+          <li>NON ALCOL</li>
         </Link>
         <Link href={`category/${type.vodka}`} className="banner_item">
           <li>VODKA</li>

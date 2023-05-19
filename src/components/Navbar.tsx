@@ -53,7 +53,7 @@ const Navbar = () => {
                   <FaCocktail size={17} className="items-center" />
                 </span>
                 <p className="text-xs font-normal text-black/80 pl-2">
-                  나의 칵테일 취향을 알아볼 수 있는 <br />앱 설치 후
+                  나의 칵테일 취향을 알아볼 수 있는 플랫폼 <br />앱 설치 후
                   사용해보세요
                 </p>
               </li>
