@@ -26,7 +26,7 @@ import { getServerSideProps } from "@/pages";
 
 export default function LoginForm() {
   const router = useRouter();
-  const { data: session, status } = useSession();
+  // const { data: session, status } = useSession();
   const dispatch = useDispatch();
   const [userInput, setUserInput] = useState<User>({
     id: "",
@@ -39,14 +39,16 @@ export default function LoginForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const status = await signIn("credentials", {
       redirect: false,
       username: userInput.id,
       password: userInput.password,
       callbackUrl: "/",
     });
-    // status && status.ok
+
     if (status?.ok && status.url) {
+      dispatch(login(userInput.id));
       router.push(status.url);
     }
   };

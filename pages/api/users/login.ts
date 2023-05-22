@@ -59,8 +59,8 @@ const postLogin = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     const user: User = {
       name: result[0].name,
       email: result[0].email,
-      id: result[0].id,
-      user_id: result[0].user_id,
+      idx: result[0].id,
+      id: result[0].user_id,
       auth: result[0].auth,
     };
 

@@ -5,13 +5,14 @@ import NextAuth, { CookiesOptions, NextAuthOptions, User } from "next-auth";
 import { getToken, JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { signIn } from "next-auth/react";
+import session from "redux-persist/lib/storage/session";
 
 const cookies: Partial<CookiesOptions> = {
   sessionToken: {
     name: `next-auth.session-token`,
     options: {
       httpOnly: true,
-      sameSite: "none",
+      sameSite: "lax",
       path: "/",
       domain: process.env.NEXT_PUBLIC_DOMAIN,
       secure: true,
@@ -58,7 +59,7 @@ const authOptions: NextAuthOptions = {
         },
       },
       // 로그인 유효성 검사 (로그인 인증)
-      async authorize(credentials, _) {
+      async authorize(credentials, req) {
         const { username, password } = credentials as {
           username: string;
           password: string;
@@ -74,11 +75,12 @@ const authOptions: NextAuthOptions = {
           headers: { "Content-Type": "application/json" },
         });
 
-        const user = await res.json();
+        const user: Data = await res.json();
 
-        if (res.ok && user) {
+        if (res.ok && user.data) {
           return user.data;
         }
+
         throw new Error("아이디 혹은 패스워드가 틀립니다.");
       },
     }),
@@ -87,24 +89,19 @@ const authOptions: NextAuthOptions = {
     async jwt({ token, user, account }) {
       if (user) {
         token.id = user.id;
-        // token.accessToken = account.access_token;
+        token.accessToken = user.access_token;
+        console.log("user", user);
+
         return {
-          // accessToken: account.access_token,
-          // accessTokenExpires: account.expires_at,
-          // refreshToken: account.refresh_token,
           user,
+          ...token,
         };
       }
 
       return token;
     },
     // 세션에 로그인한 유저 데이터 입력
-    async session({ session, token }) {
-      // if (token) {
-      //   session.id = token.id;
-      //   session.accessToken = token.accessToken;
-      // }
-      // return session;
+    async session({ session, token, user }) {
       return {
         ...session,
         user: {
@@ -122,23 +119,3 @@ const authOptions: NextAuthOptions = {
 };
 
 export default NextAuth(authOptions);
-
-// async authorize(credentials, req) {
-//   if (!credentials)
-//     throw new Error("잘못된 입력값으로 인한 오류가 발생했습니다.");
-
-//   const { username, password } = credentials;
-
-//   const res = await fetch("http://localhost:3000/api/users/login", {
-//     method: "POST",
-//     body: JSON.stringify(credentials),
-//     headers: { "Content-Type": "application/json" },
-//   });
-
-//   const user: Data = await res.json();
-
-//   if (res.ok && user) {
-//     return user.data;
-//   }
-//   throw new Error("아이디 혹은 패스워드가 틀립니다.");
-// },

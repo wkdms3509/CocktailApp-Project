@@ -7,11 +7,14 @@ import Catecory from "@/src/components/Catecory";
 import AllCocktailList from "@/src/components/AllCocktailList";
 import axios from "axios";
 import { GetServerSideProps, GetStaticProps } from "next";
-import type { AllCocktailListProps } from "@/src/constants/productTypes";
+import type {
+  AllCocktailListProps,
+  Product,
+} from "@/src/constants/productTypes";
 import { getSession, useSession } from "next-auth/react";
 import LoginForm from "@/src/components/user/LoginForm";
 import { useSelector } from "react-redux";
-import wrapper, { persistor, store } from "@/src/reducer";
+import wrapper, { persistor, RootState, store } from "@/src/reducer";
 import { useEffect } from "react";
 import { addItem, initializeItems } from "@/src/reducer/products";
 import { END } from "@redux-saga/core";
@@ -25,12 +28,15 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home({ allProductList }: AllCocktailListProps) {
   const { data: session, status } = useSession();
   const dispatch = useDispatch();
+  // const allProducts: Product[] = useSelector<RootState>(
+  //   (state) => state.products.products
+  // );
+  const store = useSelector<RootState>((state) => state);
 
   useEffect(() => {
     if (session) {
-      console.log("session", session);
-
-      dispatch(login(session.user?.email ?? ""));
+      // 로그인 후 session이 생성되면 session의 정보로 login 액션 디스패치
+      dispatch(login(session.user?.id ?? ""));
     }
   }, [dispatch, session]);
 
@@ -42,7 +48,7 @@ export default function Home({ allProductList }: AllCocktailListProps) {
             <MainBanner />
           </section>
           <section className="px-3 py-5">
-            <Catecory allProductList={allProductList} />
+            <Catecory />
           </section>
           <section className="p-3 md:p-5 lg:p-32">
             <AllCocktailList allProductList={allProductList} />
@@ -62,9 +68,9 @@ export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps((store) => async (context) => {
     const res = await axios.get("http://localhost:3000/api/products");
 
-    store.dispatch(initializeItems(res.data.data));
-
     const result: GetProductListResult = res.data;
+
+    store.dispatch(initializeItems(result.data));
 
     if (!result) {
       return {

@@ -33,13 +33,6 @@ export const initializeItems = (items: Product[]) => {
   };
 };
 
-// export type ProductActionsType = ReturnType<
-//   | typeof addItem
-//   | typeof deleteItem
-//   | typeof updateItem
-//   | typeof initializeItems
-// >;
-
 export type ProductActionsType =
   | ReturnType<typeof addItem>
   | ReturnType<typeof deleteItem>
@@ -77,12 +70,25 @@ export default function productReducer(
   switch (action.type) {
     case ADD_ITEM:
       return {
+        ...state,
         products: [...state.products, action.payload],
       };
     case INITIALIZE_ITEMS:
-      console.log("INITIALIZE_ITEMS");
+      console.log("INITIALIZE_ITEMS", state);
+
       return {
-        products: action.payload,
+        ...state,
+        products: [
+          ...state.products,
+          action.payload.hasOwnProperty("items")
+            ? (action.payload as { items: Product[] }).items
+            : [],
+        ],
+        // products: state.products.concat(
+        //   action.payload.hasOwnProperty("items")
+        //     ? (action.payload as { items: Product[] }).items
+        //     : []
+        // ),
       };
 
     default:

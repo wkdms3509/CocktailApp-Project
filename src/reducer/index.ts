@@ -38,7 +38,16 @@ const rootReducer = combineReducers({
 export const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: persistedReducer,
+  // reducer: persistedReducer,
+  reducer: (state, action) => {
+    switch (action.type) {
+      case HYDRATE:
+        console.log("HYDRATE", action);
+        return { ...state, ...action.payload };
+      default:
+        return persistedReducer(state, action);
+    }
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
@@ -48,6 +57,8 @@ export const store = configureStore({
   devTools: process.env.NEXT_PUBLIC_NODE_ENV !== "production",
 });
 
+// console.log("store.getState", store.getState());
+
 const setupStore = (context: any): EnhancedStore => store;
 const makeStore: MakeStore<any> = (context: any) => setupStore(context);
 
@@ -56,7 +67,8 @@ export const persistor = persistStore(store);
 const wrapper = createWrapper<Store>(makeStore);
 
 export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.dispatch>;
+export type RootState = ReturnType<typeof store.getState>;
+// export type RootState = ReturnType<typeof store.dispatch>;
 
 export default wrapper;
 

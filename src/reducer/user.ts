@@ -13,6 +13,7 @@ export const register = (message: string) => {
 };
 
 export const login = (user: string) => {
+  console.log("로그인 액션 발생", user);
   return {
     type: LOGIN_USER,
     payload: {
@@ -43,19 +44,21 @@ export type UserActionsType =
   | ReturnType<typeof auth>;
 
 interface User {
-  id?: string;
+  id: string;
   email?: string;
 }
 
 interface InitialType {
   isLogin: boolean;
-  user?: User | null;
+  user?: User;
   message?: string;
 }
 
 const initialState: InitialType = {
   isLogin: false,
-  user: null,
+  user: {
+    id: "",
+  },
 };
 
 export default function userReducer(
@@ -64,15 +67,17 @@ export default function userReducer(
 ) {
   switch (action.type) {
     case LOGIN_USER:
+      console.log("action.payload", action.payload);
+
       return {
         ...state,
-        user: { email: action.payload.user },
+        user: { id: action.payload.user },
         isLogin: true,
       };
     case LOGOUT_USER:
       return {
         ...state,
-        user: null,
+        user: undefined,
         isLogin: false,
       };
     case REGISTER_USER:

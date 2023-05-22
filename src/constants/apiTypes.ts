@@ -21,8 +21,8 @@ interface Product {
 interface User {
   name: string;
   email: string;
-  id: number;
-  user_id?: string;
+  idx: number;
+  id?: string;
   auth?: string;
 }
 
