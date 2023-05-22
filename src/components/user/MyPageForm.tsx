@@ -12,16 +12,19 @@ export default function MyPageForm() {
       {session ? (
         <div className="text-center text-gray-400 text-sm">
           <div className="border border-gray-200 mb-8 w-4/5 rounded-lg mx-auto ">
-            <ul className="flex justify-between py-5 px-10 align-middle items-center">
-              <ul className="flex">
-                <FaUserCircle size="100" color="#ebebeb" />
-                <ul className="flex flex-col pl-8 justify-center align-middle items-center">
-                  <li className="pb-2 text-black w-full text-left">
+            <ul className="py-5 px-10 sm:flex sm:justify-between sm:py-5 sm:px-10 sm:align-middle sm:items-center">
+              <ul className="flex flex-col items-center sm:flex-row">
+                <li className="items-center mb-4 sm:mb-0">
+                  <FaUserCircle size="100" color="#ebebeb" />
+                </li>
+                <ul className="flex flex-col justify-center align-middle items-center mb-4 sm:mb-0 sm:pl-8">
+                  <li className="pb-2 text-black w-full sm:text-left">
                     {session.user?.name}
                   </li>
                   <li>{session.user?.email}</li>
                 </ul>
               </ul>
+              <li className="border-b mb-4 border-gray-200 sm:hidden"></li>
               <li className="flex flex-col justify-center align-middle items-center">
                 <li className="pb-2">북마크</li>
                 <li>0</li>
