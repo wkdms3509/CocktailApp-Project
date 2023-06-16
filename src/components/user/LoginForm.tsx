@@ -14,7 +14,7 @@ import { getCsrfToken, signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { unstable_getServerSession } from "next-auth";
 import type { User } from "@/src/constants/userType";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "@/src/reducer/user";
 import {
   GetServerSideProps,
@@ -26,7 +26,7 @@ import { getServerSideProps } from "@/pages";
 
 export default function LoginForm() {
   const router = useRouter();
-  // const { data: session, status } = useSession();
+  const { data: session, status } = useSession();
   const dispatch = useDispatch();
   const [userInput, setUserInput] = useState<User>({
     id: "",
@@ -48,7 +48,7 @@ export default function LoginForm() {
     });
 
     if (status?.ok && status.url) {
-      dispatch(login(userInput.id));
+      await dispatch(login(userInput.id));
       router.push(status.url);
     }
   };

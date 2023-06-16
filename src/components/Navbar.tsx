@@ -69,6 +69,15 @@ const Navbar = () => {
           <nav className="nav z-20">
             <div className="hidden lg:block">
               <ul className="side_category">
+                {session?.user && session.user.auth === "admin" ? (
+                  <li className="side_category_menu text-blue-700">
+                    {session.user.auth}
+                  </li>
+                ) : (
+                  <li className="side_category_menu font-semibold">
+                    {session.user?.name} 님
+                  </li>
+                )}
                 <li className="side_category_menu">관심상품</li>
                 <li className="side_category_menu">
                   <IsLogin />
@@ -121,14 +130,18 @@ const Navbar = () => {
                     RECOMMAND
                   </li>
                 </Link>
-                <Link href="/products/new">
-                  <li
-                    className="category_right_menu font-normal"
-                    onClick={handleClickMenu}
-                  >
-                    NEW
-                  </li>
-                </Link>
+                {session?.user?.auth === "admin" ? (
+                  <Link href="/products/new">
+                    <li
+                      className="category_right_menu font-normal"
+                      onClick={handleClickMenu}
+                    >
+                      NEW
+                    </li>
+                  </Link>
+                ) : (
+                  ""
+                )}
                 {status === "authenticated" ? (
                   <Link href="/auth/mypage">
                     <li
@@ -142,7 +155,10 @@ const Navbar = () => {
                   ""
                 )}
                 <li className="category_right_menu hidden lg:list-item">
-                  <BsSearch size="22" />
+                  <Link href="/products/search">
+                    <BsSearch size="22" />
+                    {/* <HeaderSearch /> */}
+                  </Link>
                 </li>
 
                 {session ? (

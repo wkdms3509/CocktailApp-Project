@@ -25,4 +25,13 @@ interface UserQueryType extends RowDataPacket {
   auth: string;
 }
 
-export type { Product, UserQueryType };
+interface CredentialsType {
+  redirect: string;
+  username: string;
+  password: string;
+  callbackUrl: string;
+  csrfToken: string;
+  json: string;
+}
+
+export type { Product, UserQueryType, CredentialsType };

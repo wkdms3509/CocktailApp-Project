@@ -3,8 +3,8 @@ import axios from "axios";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useState } from "react";
-import ProductCard from "./ProductCard";
-import ProductCard2 from "./ProductCard2";
+import ProductCard from "./ProductCard_pc";
+import ProductCard2 from "./ProductCard_mobile";
 
 const NonAlcCocktailList = ({ allProductList }: AllCocktailListProps) => {
   const [limit, setLimit] = useState<number>(9);

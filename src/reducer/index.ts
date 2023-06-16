@@ -22,10 +22,10 @@ import {
   REHYDRATE,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage/session";
+import bookmarkReducer from "./bookmark";
 
 const persistConfig = {
   key: "root",
-  // storage: storage,
   storage,
   whitelist: ["userReducer"],
 };
@@ -33,12 +33,14 @@ const persistConfig = {
 const rootReducer = combineReducers({
   user: userReducer,
   products: productReducer,
+  bookmark: bookmarkReducer,
 });
 
 export const persistedReducer = persistReducer(persistConfig, rootReducer);
 
+// export type RootState = ReturnType<typeof persistedReducer>;
+
 export const store = configureStore({
-  // reducer: persistedReducer,
   reducer: (state, action) => {
     switch (action.type) {
       case HYDRATE:
@@ -57,22 +59,17 @@ export const store = configureStore({
   devTools: process.env.NEXT_PUBLIC_NODE_ENV !== "production",
 });
 
-// console.log("store.getState", store.getState());
-
 const setupStore = (context: any): EnhancedStore => store;
 const makeStore: MakeStore<any> = (context: any) => setupStore(context);
 
 export const persistor = persistStore(store);
 
-const wrapper = createWrapper<Store>(makeStore);
+const wrapper = createWrapper<Store<RootState>>(makeStore);
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
-// export type RootState = ReturnType<typeof store.dispatch>;
 
 export default wrapper;
-
-// export type RootState = ReturnType<typeof rootReducer>; //기존
 
 // 1
 // export const makeStore = () => {

@@ -26,6 +26,14 @@ interface User {
   auth?: string;
 }
 
+interface UserResponseData {
+  name: string;
+  email: string;
+  idx: number;
+  id?: string;
+  auth?: string;
+}
+
 interface Data {
   code: number;
   is_success: boolean;
@@ -46,6 +54,18 @@ interface RequestNewUser {
   password: string;
 }
 
+interface GetBookmarkData {
+  user_id: string;
+  id: number;
+  update_at: Date;
+}
+
+interface ResponseBookmark {
+  code: number;
+  message: string;
+  bookmark?: GetBookmarkData[];
+}
+
 export type {
   User,
   Data,
@@ -53,4 +73,7 @@ export type {
   Product,
   RequestUserData,
   RequestNewUser,
+  UserResponseData,
+  ResponseBookmark,
+  GetBookmarkData,
 };

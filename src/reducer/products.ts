@@ -3,44 +3,6 @@ const DELETE_ITEM = "DELETE_ITEM";
 const UPDATE_ITEM = "UPDATE_ITEM";
 const INITIALIZE_ITEMS = "INITIALIZE_ITEMS";
 
-export const addItem = (item: Product) => {
-  return {
-    type: ADD_ITEM,
-    payload: {
-      item,
-    },
-  };
-};
-
-export const deleteItem = (id: number) => {
-  return {
-    type: DELETE_ITEM,
-    payload: { id },
-  };
-};
-
-export const updateItem = (item: Product) => {
-  return {
-    type: UPDATE_ITEM,
-    payload: { item },
-  };
-};
-
-export const initializeItems = (items: Product[]) => {
-  return {
-    type: INITIALIZE_ITEMS,
-    payload: { items },
-  };
-};
-
-export type ProductActionsType =
-  | ReturnType<typeof addItem>
-  | ReturnType<typeof deleteItem>
-  | ReturnType<typeof updateItem>
-  | ReturnType<typeof initializeItems>;
-
-interface InitialiItems {}
-
 interface Product {
   id: number;
   type?: string;
@@ -55,40 +17,73 @@ interface Product {
   create_at?: string;
 }
 
-interface InitialType {
+export const addItem = (item: Product) => {
+  return {
+    type: ADD_ITEM,
+    payload: {
+      item,
+    },
+  };
+};
+
+export const deleteItem = (id: number) => {
+  return {
+    type: DELETE_ITEM,
+    payload: id,
+  };
+};
+
+export const updateItem = (item: Product) => {
+  return {
+    type: UPDATE_ITEM,
+    payload: { item },
+  };
+};
+
+export const initializeItems = (items: Product[]) => {
+  return {
+    type: INITIALIZE_ITEMS,
+    payload: { items: items },
+  };
+};
+
+export type ProductActionsType =
+  | ReturnType<typeof addItem>
+  | ReturnType<typeof deleteItem>
+  | ReturnType<typeof updateItem>
+  | ReturnType<typeof initializeItems>
+  | ReturnType<typeof toggleBookmark>;
+
+// interface InitialiItems {}
+
+export interface InitialProductType {
   products: Product[];
 }
 
-const initialState: InitialType = {
+const initialState: InitialProductType = {
   products: [],
 };
 
 export default function productReducer(
   state = initialState,
   action: ProductActionsType
-) {
+): InitialProductType {
   switch (action.type) {
     case ADD_ITEM:
       return {
         ...state,
-        products: [...state.products, action.payload],
-      };
-    case INITIALIZE_ITEMS:
-      console.log("INITIALIZE_ITEMS", state);
-
-      return {
-        ...state,
+        // products: [...state.products, action.payload.item],
         products: [
           ...state.products,
-          action.payload.hasOwnProperty("items")
-            ? (action.payload as { items: Product[] }).items
-            : [],
+          (action.payload as { item: Product }).item,
         ],
-        // products: state.products.concat(
-        //   action.payload.hasOwnProperty("items")
-        //     ? (action.payload as { items: Product[] }).items
-        //     : []
-        // ),
+      };
+    case INITIALIZE_ITEMS:
+      return {
+        ...state,
+        products: action.payload.hasOwnProperty("items")
+          ? (action.payload as { items: Product[] }).items
+          : state.products,
       };
 
     default:

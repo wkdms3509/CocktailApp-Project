@@ -15,4 +15,10 @@ interface loginRequestType {
   callbackUrl: string;
 }
 
-export type { User, UserInput, loginRequestType };
+interface sessionUserType {
+  email: string;
+  id: string;
+  name: string;
+}
+
+export type { User, UserInput, loginRequestType, sessionUserType };

@@ -5,8 +5,8 @@ import { useState } from "react";
 import type { AllCocktailListProps, Product } from "../constants/productTypes";
 import wrapper from "../reducer";
 import Pagination from "./Pagination";
-import ProductCard from "./product/ProductCard";
-import ProductCard2 from "./product/ProductCard2";
+import ProductCard from "./product/ProductCard_pc";
+import ProductCard2 from "./product/ProductCard_mobile";
 
 const AllCocktailList = ({ allProductList }: AllCocktailListProps) => {
   const [limit, setLimit] = useState<number>(9);
@@ -64,15 +64,6 @@ const AllCocktailList = ({ allProductList }: AllCocktailListProps) => {
               ))
             : "no exist data"}
         </div>
-
-        {/* <div className="bg-green-300"></div> */}
-        {/* <Pagination
-          items={allProductList.length} // 상품 개수
-          currentPage={currentPage} // 1
-          pageSize={pageSize} // 10
-          onPageChange={onPageChange}
-          limitPageCount={5}
-        /> */}
 
         <div className="hidden lg:block xl:block">
           <Pagination

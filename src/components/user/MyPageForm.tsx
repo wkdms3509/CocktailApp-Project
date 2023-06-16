@@ -19,7 +19,9 @@ export default function MyPageForm() {
                 </li>
                 <ul className="flex flex-col justify-center align-middle items-center mb-4 sm:mb-0 sm:pl-8">
                   <li className="pb-2 text-black w-full sm:text-left">
-                    {session.user?.name}
+                    {session?.user && session.user.auth === "admin"
+                      ? `${session.user?.name} (${session.user?.auth})`
+                      : session.user?.name}
                   </li>
                   <li>{session.user?.email}</li>
                 </ul>
