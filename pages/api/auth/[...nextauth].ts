@@ -1,11 +1,26 @@
-import { Data } from "@/src/constants/apiTypes";
-import axios from "axios";
+import { CredentialsType } from "@/src/constants/apiQueryTypes";
+import {
+  Data,
+  RequestUserData,
+  UserResponseData,
+} from "@/src/constants/apiTypes";
+import axios, { AxiosResponse } from "axios";
 import { NextApiRequest } from "next";
-import NextAuth, { CookiesOptions, NextAuthOptions, User } from "next-auth";
+import NextAuth, { CookiesOptions, NextAuthOptions, Session } from "next-auth";
 import { getToken, JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { signIn } from "next-auth/react";
 import session from "redux-persist/lib/storage/session";
+
+interface CustomSession extends Session {
+  user: {
+    id: string;
+    auth?: string | null;
+    name?: string | null | undefined;
+    email?: string | null | undefined;
+    image?: string | null | undefined;
+  };
+}
 
 const cookies: Partial<CookiesOptions> = {
   sessionToken: {
@@ -35,7 +50,7 @@ const cookies: Partial<CookiesOptions> = {
   },
 };
 
-const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   cookies: cookies,
   session: {
     strategy: "jwt",
@@ -58,30 +73,52 @@ const authOptions: NextAuthOptions = {
           placeholder: "password",
         },
       },
+
       // 로그인 유효성 검사 (로그인 인증)
       async authorize(credentials, req) {
-        const { username, password } = credentials as {
-          username: string;
-          password: string;
-        };
+        try {
+          const { username, password } = credentials as {
+            username: string;
+            password: string;
+          };
 
-        if (!username || !password) {
-          throw new Error("Missing username or password");
-        }
+          if (!username || !password) {
+            throw new Error("Missing username or password");
+          }
 
-        const res = await fetch("http://localhost:3000/api/users/login", {
-          method: "POST",
-          body: JSON.stringify(credentials),
-          headers: { "Content-Type": "application/json" },
-        });
+          const fetchUserInfo = async <T extends UserResponseData>(
+            path: string,
+            params: RequestUserData
+          ): Promise<any> => {
+            try {
+              const { status, data }: AxiosResponse<T> = await axios.post(
+                path,
+                params
+              );
+              return status === 200 ? data : null;
+            } catch (error) {
+              console.log(error);
+              return null;
+            }
+          };
 
-        const user: Data = await res.json();
+          const user = await fetchUserInfo<UserResponseData>(
+            "http://localhost:3000/api/users/login",
+            { username, password }
+          );
 
-        if (res.ok && user.data) {
+          // const res: AxiosResponse<User | null> = await fetchUserInfo();
+
+          // const user = res.data.data;
+
+          if (!user) {
+            return null;
+          }
+
           return user.data;
+        } catch (error) {
+          return null;
         }
-
-        throw new Error("아이디 혹은 패스워드가 틀립니다.");
       },
     }),
   ],
@@ -89,11 +126,11 @@ const authOptions: NextAuthOptions = {
     async jwt({ token, user, account }) {
       if (user) {
         token.id = user.id;
-        token.accessToken = user.access_token;
-        console.log("user", user);
+        token.auth = user.auth;
+        // token.accessToken = user.access_token;
 
         return {
-          user,
+          ...user,
           ...token,
         };
       }
@@ -101,12 +138,13 @@ const authOptions: NextAuthOptions = {
       return token;
     },
     // 세션에 로그인한 유저 데이터 입력
-    async session({ session, token, user }) {
+    async session({ session, token, user }): Promise<Session> {
       return {
         ...session,
         user: {
           ...session.user,
-          id: token.id,
+          id: token.id as string | null,
+          auth: token.auth as string | null,
         },
       };
     },
@@ -119,3 +157,50 @@ const authOptions: NextAuthOptions = {
 };
 
 export default NextAuth(authOptions);
+
+// const fetchUserInfo = (): Promise<AxiosResponse<User | null>> => {
+//   return axios
+//     .post<User | null>(
+//       "http://localhost:3000/api/users/login",
+//       credentials
+//     )
+//     .then((res) => res)
+//     .catch((error) => {
+//       console.log("error:", error);
+//       return null;
+//     });
+// };
+
+// const fetchUserInfo = (): Promise<AxiosResponse<User | null>> => {
+//   return fetch("http://localhost:3000/api/users/login", {
+//     method: "POST",
+//     body: JSON.stringify(credentials),
+//     headers: { "Content-Type": "application/json" },
+//   }).then((res) => res);
+//   // .then((res) => res.data)
+//   // .catch((error) => {
+//   //   console.log("error:", error);
+//   //   null;
+//   // });
+// };
+
+// const res = (): Promise<AxiosResponse<User | null>> => {
+//   return fetch("http://localhost:3000/api/users/login", {
+//     method: "POST",
+//     body: JSON.stringify(credentials),
+//     headers: { "Content-Type": "application/json" },
+//   });
+// };
+
+// async authorize(
+//   credentials: Record<"username" | "password", string> | undefined,
+//   req: NextApiRequest
+// ): Promise<User | null> {
+// async authorize(credentials, req) {
+//   if (
+//     !credentials ||
+//     !credentials.hasOwnProperty("username") ||
+//     !credentials.hasOwnProperty("password")
+//   ) {
+//     throw new Error("Missing username or password");
+//   }

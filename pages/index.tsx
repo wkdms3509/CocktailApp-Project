@@ -13,32 +13,44 @@ import type {
 } from "@/src/constants/productTypes";
 import { getSession, useSession } from "next-auth/react";
 import LoginForm from "@/src/components/user/LoginForm";
-import { useSelector } from "react-redux";
-import wrapper, { persistor, RootState, store } from "@/src/reducer";
+import { TypedUseSelectorHook, useSelector } from "react-redux";
+import wrapper, { persistor, store } from "@/src/reducer";
 import { useEffect } from "react";
-import { addItem, initializeItems } from "@/src/reducer/products";
+import {
+  addItem,
+  initializeItems,
+  InitialProductType,
+} from "@/src/reducer/products";
 import { END } from "@redux-saga/core";
 import { useDispatch } from "react-redux";
 import { login } from "@/src/reducer/user";
 import { GetProductListResult } from "@/src/constants/apiTypes";
 import NonAlcCocktailList from "@/src/components/product/NonAlcCocktailList";
-
+import { sessionUserType } from "@/src/constants/userType";
+// import { RootState } from "@/src/reducer/test";
+import { RootState } from "@/src/reducer";
 const inter = Inter({ subsets: ["latin"] });
+// const allProducts: Product[] = useSelector<RootState>(
+//   (state) => state.products.products
+// );
 
 export default function Home({ allProductList }: AllCocktailListProps) {
   const { data: session, status } = useSession();
   const dispatch = useDispatch();
-  // const allProducts: Product[] = useSelector<RootState>(
-  //   (state) => state.products.products
-  // );
-  const store = useSelector<RootState>((state) => state);
 
-  useEffect(() => {
-    if (session) {
-      // 로그인 후 session이 생성되면 session의 정보로 login 액션 디스패치
-      dispatch(login(session.user?.id ?? ""));
-    }
-  }, [dispatch, session]);
+  const store = useSelector<RootState | Product[]>(
+    (state) => state.products.products
+  );
+
+  // console.log("home session", session);
+
+  // useEffect(() => {
+  //   if (session) {
+  //     const userId = (session.user as sessionUserType)?.id;
+  // session이 생성되면 session의 정보로 login 액션 디스패치
+  // dispatch(login(userId ?? ""));
+  // }
+  // }, [dispatch, session]);
 
   return (
     <>

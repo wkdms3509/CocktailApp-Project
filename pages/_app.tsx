@@ -6,7 +6,8 @@ import { SessionProvider } from "next-auth/react";
 import { createStore } from "redux";
 import rootReducer, { persistor } from "@/src/reducer";
 import { Provider } from "react-redux";
-import wrapper from "@/src/reducer";
+// import wrapper from "@/src/reducer";
+import { wrapper } from "@/src/reducer/test";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
 
@@ -19,13 +20,14 @@ export default function App({
 
   return (
     <Provider store={store}>
-      <SessionProvider session={pageProps.session}>
-        <PersistGate persistor={persistor} loading={<div>loading...</div>}>
+      {/* <PersistGate persistor={persistor} loading={null}> */}
+      <PersistGate persistor={persistor} loading={<div>loading ...</div>}>
+        <SessionProvider session={pageProps.session}>
           <Layout>
             <Component {...pageProps} />
           </Layout>
-        </PersistGate>
-      </SessionProvider>
+        </SessionProvider>
+      </PersistGate>
     </Provider>
   );
 }
