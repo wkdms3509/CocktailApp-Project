@@ -35,7 +35,6 @@ const SearchPage2 = () => {
             .filter((item) => item.name.includes(search))
         );
       }
-      //   console.log(filteredItem);
     } catch (error) {
       console.log(error);
     }
@@ -54,9 +53,8 @@ const SearchPage2 = () => {
 
   return (
     <div className="w-full mx-auto text-center my-10 p-5 lg:px-32">
-      <div className="w-4/6 mx-auto flex justify-center pt-5 pb-3 mb-5 gap-x-3 items-center border-b-2 border-black">
+      <div className="w-11/12 md:w-4/6 mx-auto flex justify-center pt-2 px-4 pb-2 mb-5 gap-x-3 items-center rounded bg-gray-100 md:bg-white md:border-b-2 md:border-black">
         <BsSearch size={22} />
-
         <input
           type="text"
           placeholder="ex. martini"
@@ -64,12 +62,12 @@ const SearchPage2 = () => {
           autoComplete="off"
           value={search}
           onChange={handleSearchValue}
-          className="flex-1 outline-none border-none p-2"
+          className="flex-1 outline-none border-none p-2 bg-gray-100 md:bg-white"
         />
         {search && (
           <AiOutlineClose
             onClick={backPage}
-            size={30}
+            size={27}
             className="hover:text-gray-300 cursor-pointer"
           />
         )}
@@ -100,12 +98,12 @@ const SearchPage2 = () => {
                       className="w-20 rounded items-center"
                       priority
                     />
-                    <p className="flex flex-col pl-4">
-                      <h3 className="text-xs text-dark-gray">{item.type}</h3>
-                      <h2 className="text-base font-light text-[#222]">
+                    <ul className="flex flex-col pl-4">
+                      <li className="text-xs text-dark-gray">{item.type}</li>
+                      <li className="text-base font-light text-[#222]">
                         {item.name}
-                      </h2>
-                    </p>
+                      </li>
+                    </ul>
                   </div>
                 </Link>
               </div>
@@ -119,7 +117,7 @@ const SearchPage2 = () => {
           /> */}
         </>
       ) : (
-        <div className="my-24">데이터 없음</div>
+        <div className="my-24 text-sm text-gray-300">조회 결과 없음</div>
       )}
     </div>
   );
