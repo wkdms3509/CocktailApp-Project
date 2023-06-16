@@ -14,7 +14,6 @@ import {
 import { configureStore } from "@reduxjs/toolkit";
 import { Context, createWrapper, HYDRATE } from "next-redux-wrapper";
 import logger from "redux-logger";
-import bookmarkReducer from "./bookmark";
 
 const persistConfig = {
   key: "root",
@@ -25,7 +24,6 @@ const persistConfig = {
 const rootReducer = combineReducers({
   user: userReducer,
   products: productReducer,
-  bookmark: bookmarkReducer,
 });
 
 export const persistedReducer = persistReducer(persistConfig, rootReducer);

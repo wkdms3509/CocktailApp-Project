@@ -91,7 +91,10 @@ const Navbar = () => {
                 </div>
                 <div className="lg:hidden flex items-center">
                   {/* <li className="category_right_menu hidden lg:list-item"> */}
-                  <BsSearch size={20} className="mr-3" />
+                  <Link href="/products/search">
+                    <BsSearch size={20} className="mr-3" />
+                    {/* <HeaderSearch /> */}
+                  </Link>
                   {/* </li> */}
                   {toggle ? (
                     <AiOutlineClose

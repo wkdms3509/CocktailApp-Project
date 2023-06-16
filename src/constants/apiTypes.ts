@@ -63,7 +63,7 @@ interface GetBookmarkData {
 interface ResponseBookmark {
   code: number;
   message: string;
-  bookmark?: GetBookmarkData[];
+  // bookmark?: GetBookmarkData[];
 }
 
 export type {

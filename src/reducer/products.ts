@@ -51,8 +51,7 @@ export type ProductActionsType =
   | ReturnType<typeof addItem>
   | ReturnType<typeof deleteItem>
   | ReturnType<typeof updateItem>
-  | ReturnType<typeof initializeItems>
-  | ReturnType<typeof toggleBookmark>;
+  | ReturnType<typeof initializeItems>;
 
 // interface InitialiItems {}
 

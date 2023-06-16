@@ -22,7 +22,6 @@ import {
   REHYDRATE,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage/session";
-import bookmarkReducer from "./bookmark";
 
 const persistConfig = {
   key: "root",
@@ -33,7 +32,6 @@ const persistConfig = {
 const rootReducer = combineReducers({
   user: userReducer,
   products: productReducer,
-  bookmark: bookmarkReducer,
 });
 
 export const persistedReducer = persistReducer(persistConfig, rootReducer);

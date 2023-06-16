@@ -86,6 +86,7 @@ export const authOptions: NextAuthOptions = {
             throw new Error("Missing username or password");
           }
 
+          // Promise<AxiosResponse<User | null>>
           const fetchUserInfo = async <T extends UserResponseData>(
             path: string,
             params: RequestUserData
@@ -109,8 +110,6 @@ export const authOptions: NextAuthOptions = {
 
           // const res: AxiosResponse<User | null> = await fetchUserInfo();
 
-          // const user = res.data.data;
-
           if (!user) {
             return null;
           }
@@ -127,7 +126,6 @@ export const authOptions: NextAuthOptions = {
       if (user) {
         token.id = user.id;
         token.auth = user.auth;
-        // token.accessToken = user.access_token;
 
         return {
           ...user,
@@ -157,6 +155,53 @@ export const authOptions: NextAuthOptions = {
 };
 
 export default NextAuth(authOptions);
+
+// const fetchdata = async () => {
+//             try {
+//               const response = await fetch(
+//                 "http://localhost:3000/api/users/login",
+//                 {
+//                   method: "POST",
+//                   headers: {
+//                     "Content-Type": "application/json",
+//                   },
+//                   body: JSON.stringify(credentials),
+//                 }
+//               )
+//                 .then((res) => res.json())
+//                 .then((data) => data);
+//               return response;
+//             } catch (error) {
+//               console.log(error);
+//             }
+//           };
+//           const test = await fetchdata();
+//           console.log(`test : ${JSON.stringify(test)}`);
+
+// const test = () => {
+//   return new Promise((resolve, reject) => {
+//     fetch("http://localhost:3000/api/users/login", {
+//       method: "POST",
+//       body: JSON.stringify(credentials),
+//       headers: { "Content-Type": "application/json" },
+//     })
+//       .then((res) => res.json())
+//       .then((data) => resolve(data))
+//       .catch((error) => {
+//         console.error(error);
+//         reject(error); // 에러를 거부(reject)하여 반환
+//       });
+//   });
+// };
+// const main = async () => {
+//   let result = await test();
+//   result = JSON.stringify(result);
+//   if (result) {
+//     console.log(result);
+//   }
+// };
+
+// ----------------------------------------------------------------------
 
 // const fetchUserInfo = (): Promise<AxiosResponse<User | null>> => {
 //   return axios

@@ -12,7 +12,6 @@ import { BsBookmark, BsBookmarkCheckFill } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { toggleBookmark } from "@/src/reducer/bookmark";
 import { Product } from "@/src/constants/apiQueryTypes";
 
 const ProductPage = ({ product }: ProductCardType) => {
