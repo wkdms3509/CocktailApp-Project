@@ -20,12 +20,12 @@ const getProductFromType = async (
   res: NextApiResponse
 ) => {
   try {
-    const type = req.query.name;
+    const type = req.query.name; // 이름 변경하기
     // CategoryProductList
     const [result] = await pool.query(
       "SELECT * FROM cocktail2 WHERE type = ?",
       type
-    );
+    ); // 타입 주기
 
     if (!result) {
       res.status(404).json({ code: 404, message: "not found data" });

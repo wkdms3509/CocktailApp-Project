@@ -6,7 +6,12 @@ import {
 } from "@/src/constants/apiTypes";
 import axios, { AxiosResponse } from "axios";
 import { NextApiRequest } from "next";
-import NextAuth, { CookiesOptions, NextAuthOptions, Session } from "next-auth";
+import NextAuth, {
+  CookiesOptions,
+  NextAuthOptions,
+  Session,
+  User,
+} from "next-auth";
 import { getToken, JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { signIn } from "next-auth/react";
@@ -50,6 +55,22 @@ const cookies: Partial<CookiesOptions> = {
   },
 };
 
+// const fetchUserInfo = async (
+//   path: string,
+//   params: RequestUserData
+// ): Promise<UserResponseData | null> => {
+//   try {
+//     const { status, data }: AxiosResponse<UserResponseData> = await axios.post(
+//       path,
+//       params
+//     );
+//     return status === 200 ? data : null;
+//   } catch (error) {
+//     console.log(error);
+//     return null;
+//   }
+// };
+
 export const authOptions: NextAuthOptions = {
   cookies: cookies,
   session: {
@@ -86,35 +107,65 @@ export const authOptions: NextAuthOptions = {
             throw new Error("Missing username or password");
           }
 
-          // Promise<AxiosResponse<User | null>>
-          const fetchUserInfo = async <T extends UserResponseData>(
+          // const fetchUserInfo = async (
+          //   path: string,
+          //   params: RequestUserData
+          // ): Promise<UserResponseData | null> => {
+          //   try {
+          //     const { status, data }: AxiosResponse<UserResponseData> =
+          //       await axios.post(path, params);
+          //     return status === 200 ? data : null;
+          //   } catch (error) {
+          //     console.log(error);
+          //     return null;
+          //   }
+          // };
+
+          async function fetchUserInfo<T>(
             path: string,
-            params: RequestUserData
-          ): Promise<any> => {
+            params: T
+          ): Promise<Data | null> {
             try {
-              const { status, data }: AxiosResponse<T> = await axios.post(
-                path,
-                params
-              );
-              return status === 200 ? data : null;
+              if (
+                params !== null &&
+                typeof params === "object" &&
+                "username" in params &&
+                "password" in params
+              ) {
+                const { status, data }: AxiosResponse<Data> = await axios.post(
+                  path,
+                  params
+                );
+
+                return status === 200 && data ? data : null;
+              }
+              return null;
             } catch (error) {
-              console.log(error);
+              console.log("에러", error);
               return null;
             }
-          };
+          }
 
-          const user = await fetchUserInfo<UserResponseData>(
+          const userResult = await fetchUserInfo<RequestUserData>(
             "http://localhost:3000/api/users/login",
             { username, password }
           );
 
           // const res: AxiosResponse<User | null> = await fetchUserInfo();
 
-          if (!user) {
+          if (!userResult || !userResult.data) {
             return null;
           }
 
-          return user.data;
+          const { data: user } = userResult;
+          // return user;
+          return {
+            id: user.id,
+            auth: user.auth ?? null,
+            name: user.name ?? null,
+            email: user.email ?? null,
+            idx: user.idx ?? null,
+          } as User;
         } catch (error) {
           return null;
         }
