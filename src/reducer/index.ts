@@ -36,8 +36,6 @@ const rootReducer = combineReducers({
 
 export const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-// export type RootState = ReturnType<typeof persistedReducer>;
-
 export const store = configureStore({
   reducer: (state, action) => {
     switch (action.type) {
@@ -65,6 +63,8 @@ export const persistor = persistStore(store);
 const wrapper = createWrapper<Store<RootState>>(makeStore);
 
 export type AppDispatch = typeof store.dispatch;
+
+export type RootState2 = ReturnType<typeof persistedReducer>;
 export type RootState = ReturnType<typeof store.getState>;
 
 export default wrapper;

@@ -34,7 +34,7 @@ export default async function handler(
 
 const getBookmark = async (user_Id: string) => {
   try {
-    const [response] = await pool.query(
+    const [response] = await pool.query<RowDataPacket[]>(
       "SELECT * FROM new_bookmark WHERE user_id = ?",
       user_Id
     );

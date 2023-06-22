@@ -1,14 +1,19 @@
+import { Product } from "@/src/constants/apiQueryTypes";
+import { RootState } from "@/src/reducer/test";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
+// import { useSelector } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 
 export default function MyPageForm() {
   const { data: session, status } = useSession();
-  const productList = useSelector((state) => state.products.products);
+  const productList = useSelector(
+    (state: RootState) => state.products.products
+  );
 
   const [itemList, setItemList] = useState<string[]>([]);
 
@@ -68,8 +73,8 @@ export default function MyPageForm() {
                 >
                   <div className="w-60 pb-10 text-left">
                     <Image
-                      src={item.img}
-                      alt={item.name}
+                      src={String(item.img)}
+                      alt={item?.name || ""}
                       width="400"
                       height="300"
                       className="w-60 mx-auto object-cover scale-100 hover:scale-105 duration-300"

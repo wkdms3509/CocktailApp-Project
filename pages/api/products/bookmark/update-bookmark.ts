@@ -44,15 +44,17 @@ export default async function handler(
 
 const updateBookmark = async (user_Id: string, item_Id: string) => {
   try {
-    const [bookmarkList] = await pool.query(
+    const [bookmarkList] = await pool.query<RowDataPacket[]>(
       "SELECT * FROM new_bookmark WHERE user_id = ?",
       user_Id
     );
 
-    const originBookmarkList =
+    const originBookmarkList: string[] =
       bookmarkList[0]?.item_ids != null && bookmarkList[0].item_ids !== ""
         ? bookmarkList[0].item_ids.split(",")
         : [];
+
+    // console.log("originBookmarkList", originBookmarkList);
 
     const isBookmarked = originBookmarkList.includes(item_Id);
 

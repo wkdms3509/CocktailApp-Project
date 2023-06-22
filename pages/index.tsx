@@ -14,7 +14,7 @@ import type {
 import { getSession, useSession } from "next-auth/react";
 import LoginForm from "@/src/components/user/LoginForm";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
-import wrapper, { persistor, store } from "@/src/reducer";
+import wrapper, { persistor, RootState2, store } from "@/src/reducer";
 import { useEffect } from "react";
 import {
   addItem,
@@ -38,9 +38,8 @@ export default function Home({ allProductList }: AllCocktailListProps) {
   const { data: session, status } = useSession();
   const dispatch = useDispatch();
 
-  const store = useSelector<RootState | Product[]>(
-    (state) => state.products.products
-  );
+  // const store = useSelector<RootState2>((state) => state.products.products);
+  const store = useSelector((state: RootState2) => state.products.products);
 
   // console.log("home session", session);
 

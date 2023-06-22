@@ -1,5 +1,5 @@
 import wrapper from "@/src/reducer";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { GetServerSideProps } from "next";
 import styles from "../../styles/Home.module.css";
 import { TfiTrash } from "react-icons/tfi";
@@ -13,6 +13,11 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { Product } from "@/src/constants/apiQueryTypes";
+
+interface ResponseUserData {
+  items: string[];
+  message: string;
+}
 
 const ProductPage = ({ product }: ProductCardType) => {
   const regex = /[^0-9]/g;
@@ -33,7 +38,11 @@ const ProductPage = ({ product }: ProductCardType) => {
     if (session?.user === null) {
       return;
     }
-    const response = await axios("/api/products/bookmark/get-bookmark");
+    const response: AxiosResponse<ResponseUserData> = await axios(
+      "/api/products/bookmark/get-bookmark"
+    );
+    console.log(response);
+
     setItemList(response.data.items);
   };
 
@@ -53,15 +62,18 @@ const ProductPage = ({ product }: ProductCardType) => {
       item_Id: product.id,
     });
 
-    // result.data.item.action === 'UPDATE' | 'INSERT'
-
     if (result.status === 200) {
       setItemList((prevItemList) => {
-        if (prevItemList && prevItemList.includes(String(product.id))) {
-          return prevItemList.filter((itemId) => itemId !== String(product.id));
-        } else {
-          return [...prevItemList, String(product.id)];
+        if (Array.isArray(prevItemList)) {
+          if (prevItemList && prevItemList.includes(String(product.id))) {
+            return prevItemList.filter(
+              (itemId) => itemId !== String(product.id)
+            );
+          } else {
+            return [...prevItemList, String(product.id)];
+          }
         }
+        return prevItemList;
       });
     }
   };
@@ -71,15 +83,6 @@ const ProductPage = ({ product }: ProductCardType) => {
       getBookmarkList();
     }
   }, [itemList]);
-
-  // useEffect(() => {
-  //   // itemList가 변경되면 isBookmarked도 갱신되어야 함
-  //   const isBookmarked =
-  //     itemList != null && product.id != null
-  //       ? itemList.includes(String(product.id))
-  //       : false;
-  //   setIsBookmarked(isBookmarked);
-  // }, [itemList, product.id]);
 
   return (
     <>
