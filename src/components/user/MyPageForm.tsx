@@ -18,12 +18,21 @@ export default function MyPageForm() {
   const [itemList, setItemList] = useState<string[]>([]);
 
   const getBookmarkList = async () => {
-    const response = await axios("/api/products/bookmark/get-bookmark");
-    setItemList(response.data.items);
+    try {
+      const response = await axios("/api/products/bookmark/get-bookmark");
+      setItemList(response.data.items);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
   const filteredList = productList.filter((item) =>
     itemList.includes(item.id.toString())
   );
+
+  useEffect(() => {
+    getBookmarkList();
+  }, []);
 
   useEffect(() => {
     getBookmarkList();
@@ -63,29 +72,31 @@ export default function MyPageForm() {
               {`북마크 내역 (${itemList.length})`}
             </h2>
           </div>
-          <div className="flex flex-row flex-wrap w-4/5 mx-auto gap-x-3 items-center px-3.5">
+          <div className="flex flex-row w-4/5 flex-wrap gap-x-3 mx-auto pl-1.5 sm:pl-0.5 lg:pl-5 xl:pl-3.5">
             {filteredList.length > 0 ? (
               filteredList.map((item) => (
-                <Link
-                  key={item.id}
-                  href={`/products/${item.id}`}
-                  className="scale-100"
-                >
-                  <div className="w-60 pb-10 text-left">
+                <div key={item.id} className="">
+                  <Link
+                    key={item.id}
+                    href={`/products/${item.id}`}
+                    className="scale-100"
+                  >
                     <Image
                       src={String(item.img)}
                       alt={item?.name || ""}
                       width="400"
                       height="300"
-                      className="w-60 mx-auto object-cover scale-100 hover:scale-105 duration-300"
+                      className="w-36 h-48 sm:w-62 sm:h-72 lg:h-80 lg:w-63 xl:w-60 mx-auto object-cover scale-100 hover:scale-105 duration-300"
                       priority
                     />
-                    <h3 className="text-xs font-bold text-black pt-3">
-                      {item.type}
-                    </h3>
-                    <h2 className="text-base text-black">{item.name}</h2>
-                  </div>
-                </Link>
+                    <ul className="text-left py-2 mb-4">
+                      <li className="text-xs font-bold text-black">
+                        {item.type}
+                      </li>
+                      <li className="text-base text-black">{item.name}</li>
+                    </ul>
+                  </Link>
+                </div>
               ))
             ) : (
               <div className="border-t w-4/5 mx-auto pt-10">

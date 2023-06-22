@@ -41,7 +41,7 @@ const ProductPage = ({ product }: ProductCardType) => {
     const response: AxiosResponse<ResponseUserData> = await axios(
       "/api/products/bookmark/get-bookmark"
     );
-    console.log(response);
+    // console.log(response);
 
     setItemList(response.data.items);
   };
@@ -87,12 +87,13 @@ const ProductPage = ({ product }: ProductCardType) => {
   return (
     <>
       {product != null ? (
-        <div className="container w-full mx-auto h-full sm:pb-20 ">
-          <h3 className="ml-5 mb-1 md:ml-12 md:mb-10 lg:mb-0 lg:ml-20 xl:mb-0 xl:ml-24">
+        <div className="container w-full mx-auto h-full sm:pb-20">
+          <h3 className="mb-1 md:mb-10 lg:mb-0 xl:mb-0 w-11/12 mx-auto text-gray-400">
+            {/* <h3 className="ml-5 mb-1 md:ml-12 md:mb-10 lg:mb-0 lg:ml-20 xl:mb-0 xl:ml-24 bg-yellow-100 w-11/12 items-center"> */}
             칵테일 정보 {">"}{" "}
             <span className="text-[#333]">{product.name}</span>
           </h3>
-          <div className="mx-auto gap-x-8 flex flex-col lg:flex-row items-center pb-16 pt-5 px-5 md:px-10 lg:px-20 xl:px-24">
+          <div className="mx-auto w-full gap-x-8 flex flex-col lg:flex-row items-center pb-16 pt-5 px-5 md:px-10 lg:px-20 xl:px-24">
             <Image
               alt={product.name}
               src={product.img}
@@ -102,25 +103,21 @@ const ProductPage = ({ product }: ProductCardType) => {
               className="md:w-80 xl:w-90"
               style={{ width: "auto", height: "auto" }}
             />
-            <div className="p-2 mt-10 lg:mt-0 xl:mt-0 lg:pl-10 xl:pl-10 lg:border-l-2 xl:border-l-2">
-              <div>
-                <div className="flex justify-between items-center">
-                  <h1 className="text-2xl dark:text-[#d1cbc1]">
+            <div className="p-2 mt-10 lg:mt-0 xl:mt-0 lg:pl-10 xl:pl-10 lg:border-l-2 xl:border-l-2 w-full">
+              <div className="flex flex-col">
+                <ul className="flex justify-between items-center ">
+                  <li className="text-2xl dark:text-[#d1cbc1]">
                     {product.name}
-                  </h1>
-                  {/* <div>
-                    <p>{itemList}</p>
-                    <p>isBookmark {isBookmarked ? "true" : "false"}</p>
-                  </div> */}
-                  <button onClick={handleBookmarkBtn}>
+                  </li>
+                  <li onClick={handleBookmarkBtn} className="pt-6">
                     {isBookmarked ? (
                       <BsBookmarkCheckFill size={25} />
                     ) : (
                       <BsBookmark size={25} />
                     )}
                     <br />
-                  </button>
-                </div>
+                  </li>
+                </ul>
                 <p className="text-base pt-3 text-[#71223E] dark:text-[#ff5203] ">
                   {product.type}
                 </p>

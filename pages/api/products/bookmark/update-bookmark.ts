@@ -54,8 +54,6 @@ const updateBookmark = async (user_Id: string, item_Id: string) => {
         ? bookmarkList[0].item_ids.split(",")
         : [];
 
-    // console.log("originBookmarkList", originBookmarkList);
-
     const isBookmarked = originBookmarkList.includes(item_Id);
 
     const newBookmarkList = isBookmarked
