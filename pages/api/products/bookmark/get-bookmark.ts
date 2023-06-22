@@ -40,23 +40,23 @@ const getBookmark = async (user_Id: string) => {
     );
     const items = response[0]?.item_ids.split(",");
     return items;
-    // item_id : '1, 2, 3'
   } catch (error) {
     console.log("에러", error);
   }
-  //   try {
-  //     const session = await getServerSession(req, res, authOptions);
-  //     const [result, fields]: [RowDataPacket[], FieldPacket[]] = await pool.query(
-  //       "SELECT * FROM new_bookmark WHERE user_id = ? AND id = ?",
-  //       [session?.user?.id, id]
-  //     );
-  //     if (result.length === 0) {
-  //       res
-  //         .status(200)
-  //         .json({ code: 200, message: "조회 내역 없음", result: false });
-  //     }
-  // res.status(200).json({ code: 200, message: "조회 성공", result: true });
-  //   } catch (error) {
-  //     res.status(400).json({ code: 400, message: "잠시 후 다시 실행해주세요." });
-  //   }
 };
+
+//   try {
+//     const session = await getServerSession(req, res, authOptions);
+//     const [result, fields]: [RowDataPacket[], FieldPacket[]] = await pool.query(
+//       "SELECT * FROM new_bookmark WHERE user_id = ? AND id = ?",
+//       [session?.user?.id, id]
+//     );
+//     if (result.length === 0) {
+//       res
+//         .status(200)
+//         .json({ code: 200, message: "조회 내역 없음", result: false });
+//     }
+// res.status(200).json({ code: 200, message: "조회 성공", result: true });
+//   } catch (error) {
+//     res.status(400).json({ code: 400, message: "잠시 후 다시 실행해주세요." });
+//   }

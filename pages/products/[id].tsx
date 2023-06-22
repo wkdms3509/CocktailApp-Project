@@ -14,57 +14,11 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { Product } from "@/src/constants/apiQueryTypes";
 
-// 북마크
-
-// const bookmark = useSelector<RootState | Product[] | boolean>(
-//   (state) => state.bookmark
-// );
-// const [item, setItem] = useState<Product | undefined>(
-//   product ? product : undefined
-// );
-// const { id: productId } = router.query;
-// const dispatch = useDispatch();
-
-// useEffect(() => {
-//   console.log("변경된 isBookmark", bookmark);
-// }, [bookmark]);
-
-// const bookmarkList = () => {
-//   fetch(`/api/products/bookmark/${product.id}`)
-//     .then((res) => res.json())
-//     .then((data) => data.bookmark);
-//   // console.log("bookmarkList", bookmarkList);
-// };
-
-// const handleBookbark = async () => {
-//   if (!session?.user) {
-//     alert("로그인 후 이용해주세요.");
-//     router.push("/auth/login");
-//     return;
-//   }
-
-//   try {
-//     const result = await axios.get(`/api/products/bookmark/${product.id}`, {
-//       params: { user_id: session.user.id },
-//     });
-
-//     if (result.status === 200) {
-//       // setIsBookmark(!isBookmark);
-//       dispatch(toggleBookmark());
-//     }
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
 const ProductPage = ({ product }: ProductCardType) => {
   const regex = /[^0-9]/g;
   const router = useRouter();
   const { data: session, status } = useSession();
-  const [itemList, setItemList] = useState<string[]>([]);
-  // const [isBookmarked, setIsBookmarked] = useState(
-  //   itemList ? itemList.includes(String(product.id)) : false
-  // );
+  const [itemList, setItemList] = useState<string[] | null>(null);
 
   const handleDelete = async () => {
     await axios.delete(`/api/products/${product.id}`);
@@ -76,11 +30,17 @@ const ProductPage = ({ product }: ProductCardType) => {
   };
 
   const getBookmarkList = async () => {
+    if (session?.user === null) {
+      return;
+    }
     const response = await axios("/api/products/bookmark/get-bookmark");
     setItemList(response.data.items);
   };
 
-  const isBookmarked = itemList ? itemList.includes(String(product.id)) : false;
+  const isBookmarked =
+    itemList != null && product.id != null
+      ? itemList.includes(String(product.id))
+      : false;
 
   const handleBookmarkBtn = async () => {
     if (session?.user === null) {
@@ -89,14 +49,37 @@ const ProductPage = ({ product }: ProductCardType) => {
       return;
     }
 
-    const test = await axios.post("/api/products/bookmark/update-bookmark", {
+    const result = await axios.post("/api/products/bookmark/update-bookmark", {
       item_Id: product.id,
     });
+
+    // result.data.item.action === 'UPDATE' | 'INSERT'
+
+    if (result.status === 200) {
+      setItemList((prevItemList) => {
+        if (prevItemList && prevItemList.includes(String(product.id))) {
+          return prevItemList.filter((itemId) => itemId !== String(product.id));
+        } else {
+          return [...prevItemList, String(product.id)];
+        }
+      });
+    }
   };
 
   useEffect(() => {
-    getBookmarkList();
+    if (itemList === null) {
+      getBookmarkList();
+    }
   }, [itemList]);
+
+  // useEffect(() => {
+  //   // itemList가 변경되면 isBookmarked도 갱신되어야 함
+  //   const isBookmarked =
+  //     itemList != null && product.id != null
+  //       ? itemList.includes(String(product.id))
+  //       : false;
+  //   setIsBookmarked(isBookmarked);
+  // }, [itemList, product.id]);
 
   return (
     <>
@@ -303,37 +286,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 //         post,
 //     },
 //   };
-// };
-
-// -------------------
-// const [bookmark, setBookmark] = useState(0);
-// const [isBookmark, setIsBookmark] = useState(false);
-
-// useEffect(() => {
-//   myBookmarkList();
-//   // findItemFromBookmark();
-// }, []);
-
-// // 북마크 클릭
-// const handleBookmarkBtn = async () => {
-//   // const res = await axios.get(`/api/products/bookmark/${product.id}`);
-//   // console.log("res", res);
-//   if (!isBookmark) {
-//     const res = await axios.post(`/api/products/bookmark/${product.id}`);
-//   }
-//   setBookmark(bookmark + (isBookmark ? -1 : 1));
-//   setIsBookmark(!isBookmark);
-// };
-
-// const findItemFromBookmark = async () => {
-//   const res = await axios.get(`/api/products/bookmark/${product.id}`);
-//   const { result: isBookmarked } = res.data;
-//   setIsBookmark(isBookmarked ? true : false);
-// };
-
-// // 내 북마크 조회
-// const myBookmarkList = async () => {
-//   const res = await axios.get("/api/products/bookmark");
-//   const { data: myList } = res.data;
-//   setBookmark(myList.length);
 // };

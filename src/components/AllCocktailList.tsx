@@ -46,7 +46,7 @@ const AllCocktailList = ({ allProductList }: AllCocktailListProps) => {
         </div>
 
         {/* pc */}
-        <div className="hidden overflow-x-auto lg:flex lg:flex-wrap  mx-auto justify-around gap-x-2 lg:gap-x-0">
+        <div className="hidden overflow-x-auto lg:flex lg:flex-wrap mx-auto justify-around gap-x-2 lg:gap-x-0">
           {allProductList.length > 0
             ? allProductList
                 .slice(offset, offset + limit)

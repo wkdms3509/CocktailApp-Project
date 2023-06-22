@@ -15,7 +15,7 @@ const ProductCard = (props: ProductCardType) => {
   return (
     // w-1/3
     <div
-      className="lg:flex-auto px-2 pb-12 lg:w-1/3"
+      className="lg:flex-auto px-2 pb-12 lg:w-1/3 "
       onClick={() => router.push(`/products/${product.id}`)}
     >
       <div className="">
