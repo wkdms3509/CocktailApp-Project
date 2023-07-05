@@ -6,6 +6,12 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]";
 
+interface Data {
+  code: number;
+  message: string;
+  result: boolean;
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -22,7 +28,7 @@ export default async function handler(
   }
 }
 
-const getBookmark = async (req: NextApiRequest, res: NextApiResponse) => {
+const getBookmark = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   const { id } = req.query;
 
   try {
@@ -40,7 +46,11 @@ const getBookmark = async (req: NextApiRequest, res: NextApiResponse) => {
     }
     res.status(200).json({ code: 200, message: "조회 성공", result: true });
   } catch (error) {
-    res.status(400).json({ code: 400, message: "잠시 후 다시 실행해주세요." });
+    res.status(400).json({
+      code: 400,
+      message: "잠시 후 다시 실행해주세요.",
+      result: false,
+    });
   }
 };
 
@@ -55,61 +65,13 @@ const postBookmark = async (req: NextApiRequest, res: NextApiResponse) => {
       { user_id: session?.user?.id, id }
     );
     console.log("result", result);
-
-    // res.status(200).json({code: 200, bookmark: result})
-
-    // const isBookmarked: GetBookmarkData[] = result as GetBookmarkData[];
-
-    // if (isBookmarked.length > 0) {
-    //   const deleteBookmark = await pool.query(
-    //     "DELETE from new_bookmark WHERE user_id = ? AND id = ?",
-    //     [user_id, id]
-    //   );
-    //   console.log(`deleteBookmark : ${JSON.stringify(await deleteBookmark)}`);
-    //   res.status(200).json({ code: 200, message: "북마크가 삭제되었습니다." });
-    // }
-
-    // if (isBookmarked.length === 0) {
-    //   const postBookmark = await pool.query("INSERT INTO new_bookmark SET ?", {
-    //     user_id,
-    //     id,
-    //   });
-    //   // console.log(`postBookmark : ${JSON.stringify(await postBookmark)}`);
-    //   res.status(200).json({ code: 200, message: "북마크가 추가되었습니다." });
-    // }
   } catch (error) {
-    res.status(400).json({ code: 400, message: "잠시 후 다시 실행해주세요." });
+    res
+      .status(400)
+      .json({
+        code: 400,
+        message: "잠시 후 다시 실행해주세요.",
+        result: false,
+      });
   }
 };
-
-// const getBookmark = async (
-//   req: NextApiRequest,
-//   res: NextApiResponse<ResponseBookmark>
-// ) => {
-//   const { id, user_id } = req.query;
-
-//   const [result, fields]: [RowDataPacket[], FieldPacket[]] = await pool.query(
-//     "SELECT * FROM new_bookmark WHERE user_id = ? AND id = ? ",
-//     [user_id, id]
-//   );
-
-//   const isBookmarked: GetBookmarkData[] = result as GetBookmarkData[];
-
-//   if (isBookmarked.length > 0) {
-//     const deleteBookmark = await pool.query(
-//       "DELETE from new_bookmark WHERE user_id = ? AND id = ?",
-//       [user_id, id]
-//     );
-//     console.log(`deleteBookmark : ${JSON.stringify(await deleteBookmark)}`);
-//     res.status(200).json({ code: 200, message: "북마크가 삭제되었습니다." });
-//   }
-
-//   if (isBookmarked.length === 0) {
-//     const postBookmark = await pool.query("INSERT INTO new_bookmark SET ?", {
-//       user_id,
-//       id,
-//     });
-//     // console.log(`postBookmark : ${JSON.stringify(await postBookmark)}`);
-//     res.status(200).json({ code: 200, message: "북마크가 추가되었습니다." });
-//   }
-// };

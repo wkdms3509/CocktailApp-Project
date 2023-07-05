@@ -5,17 +5,31 @@ const INITIALIZE_ITEMS = "INITIALIZE_ITEMS";
 
 interface Product {
   id: number;
-  type?: string;
-  name?: string;
-  description?: string;
-  alcohol?: string;
-  sugar?: string;
-  sourness?: string;
-  bitter?: string;
-  recipe?: string | null;
-  img?: string;
-  create_at?: string;
+  name: string;
+  type: string;
+  img: string;
+  create_at: string;
+  alcohol: string;
+  sugar: string;
+  sourness: string;
+  bitter: string;
+  recipe: string | null;
+  description: string;
 }
+
+// interface Product {
+//   id: number;
+//   type?: string;
+//   name?: string;
+//   description?: string;
+//   alcohol?: string;
+//   sugar?: string;
+//   sourness?: string;
+//   bitter?: string;
+//   recipe?: string | null;
+//   img?: string;
+//   create_at?: string;
+// }
 
 export const addItem = (item: Product) => {
   return {

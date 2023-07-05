@@ -22,10 +22,13 @@ import {
   REHYDRATE,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage/session";
+import storageSession from "redux-persist/lib/storage/session";
+
+console.log("storage", storage);
 
 const persistConfig = {
   key: "root",
-  storage,
+  storage: storageSession,
   whitelist: ["userReducer"],
 };
 
@@ -60,52 +63,11 @@ const makeStore: MakeStore<any> = (context: any) => setupStore(context);
 
 export const persistor = persistStore(store);
 
-const wrapper = createWrapper<Store<RootState>>(makeStore);
-
 export type AppDispatch = typeof store.dispatch;
 
 export type RootState2 = ReturnType<typeof persistedReducer>;
 export type RootState = ReturnType<typeof store.getState>;
 
+const wrapper = createWrapper<Store<RootState2>>(makeStore);
+
 export default wrapper;
-
-// 1
-// export const makeStore = () => {
-//   const sagaMiddleware = createSagaMiddleware();
-//   const middlewares = [sagaMiddleware];
-//   const enhancer =
-//     process.env.NODE_ENV === "production"
-//       ? compose(applyMiddleware(...middlewares))
-//       : composeWithDevTools(applyMiddleware(...middlewares));
-
-//   const store = configureStore({
-//     reducer: (state, action) => {
-//       switch (action.type) {
-//         case HYDRATE:
-//           console.log("HYDRATE", action);
-//           return { ...state, ...action.payload };
-//         default:
-//           return persistedReducer(state, action);
-//       }
-//     },
-//     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
-//     devTools: process.env.NODE_ENV !== "production",
-//   });
-//   return store;
-// };
-
-// 2
-// export const makeConfiguredStore = (mainReducer) =>
-//   configureStore({
-//     reducer: (state, action) => {
-//       switch (action.type) {
-//         case HYDRATE:
-//           console.log("HYDRATE", action);
-//           return { ...state, ...action.payload };
-//         default:
-//           return mainReducer(state, action);
-//       }
-//     },
-//     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
-//     devTools: process.env.NODE_ENV !== "production",
-//   });
