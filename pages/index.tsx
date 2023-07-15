@@ -35,8 +35,7 @@ import NonAlcCocktailList from "@/src/components/product/NonAlcCocktailList";
 import { sessionUserType } from "@/src/constants/userType";
 const inter = Inter({ subsets: ["latin"] });
 
-// { allProductList }: AllCocktailListProps
-export default function Home() {
+export default function Home({ allProductList }: AllCocktailListProps) {
   const { data: session, status } = useSession();
   const dispatch = useDispatch();
 

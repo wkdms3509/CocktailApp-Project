@@ -1,5 +1,6 @@
 import { Product } from "@/src/constants/apiQueryTypes";
-import { RootState } from "@/src/reducer/test";
+import { RootState2 } from "@/src/reducer";
+// import { RootState } from "@/src/reducer/test";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
@@ -12,7 +13,7 @@ import { useSelector } from "react-redux";
 export default function MyPageForm() {
   const { data: session, status } = useSession();
   const productList = useSelector(
-    (state: RootState) => state.products.products
+    (state: RootState2) => state.products.products
   );
 
   const [itemList, setItemList] = useState<string[]>([]);
@@ -51,7 +52,7 @@ export default function MyPageForm() {
                 <li className="items-center mb-4 sm:mb-0">
                   <FaUserCircle size="100" color="#ebebeb" />
                 </li>
-                <ul className="flex flex-col justify-center align-middle items-center mb-4 sm:mb-0 sm:pl-8">
+                <ul className="flex flex-col justify-center align-middle items-center sm:mb-0 sm:pl-8">
                   <li className="pb-2 text-black w-full sm:text-left">
                     {session?.user && session.user.auth === "admin"
                       ? `${session.user?.name} (${session.user?.auth})`
@@ -60,8 +61,8 @@ export default function MyPageForm() {
                   <li>{session.user?.email}</li>
                 </ul>
               </ul>
-              <li className="border-b mb-4 border-gray-200 sm:hidden"></li>
-              <ul className="flex flex-col justify-center align-middle items-center">
+              <li className="border-b mb-4 border-gray-200 hidden sm:block"></li>
+              <ul className="flex-col justify-center align-middle items-center hidden sm:flex">
                 <li className="pb-2">북마크</li>
                 <li>{itemList.length}</li>
               </ul>
@@ -93,7 +94,9 @@ export default function MyPageForm() {
                       <li className="text-xs font-bold text-black">
                         {item.type}
                       </li>
-                      <li className="text-base text-black">{item.name}</li>
+                      <li className=" text-sm sm:text-base text-black">
+                        {item.name}
+                      </li>
                     </ul>
                   </Link>
                 </div>
@@ -110,7 +113,6 @@ export default function MyPageForm() {
           북마크 내역이 없습니다.
         </div>
       )}
-      {/* <div className="mx-auto border border-gray-200 shadow flex flex-col text-center items-center pt-8"></div> */}
     </div>
   );
 }

@@ -24,7 +24,7 @@ import {
 import storage from "redux-persist/lib/storage/session";
 import storageSession from "redux-persist/lib/storage/session";
 
-console.log("storage", storage);
+// console.log("storage", storage);
 
 const persistConfig = {
   key: "root",

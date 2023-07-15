@@ -20,14 +20,13 @@ export default function App({
 
   return (
     <Provider store={store}>
-      {/* <PersistGate persistor={persistor} loading={null}> */}
-      <PersistGate persistor={persistor} loading={<div>loading ...</div>}>
-        <SessionProvider session={pageProps.session}>
+      <SessionProvider session={pageProps.session}>
+        <PersistGate persistor={persistor} loading={<div>loading ...</div>}>
           <Layout>
             <Component {...pageProps} />
           </Layout>
-        </SessionProvider>
-      </PersistGate>
+        </PersistGate>
+      </SessionProvider>
     </Provider>
   );
 }
