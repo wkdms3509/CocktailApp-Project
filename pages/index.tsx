@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Image from "next/image";
-import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import MainBanner from "@/src/components/MainBanner";
 import Catecory from "@/src/components/Catecory";
@@ -33,7 +32,6 @@ import { login } from "@/src/reducer/user";
 import { GetProductListResult } from "@/src/constants/apiTypes";
 import NonAlcCocktailList from "@/src/components/product/NonAlcCocktailList";
 import { sessionUserType } from "@/src/constants/userType";
-const inter = Inter({ subsets: ["latin"] });
 
 export default function Home({ allProductList }: AllCocktailListProps) {
   const { data: session, status } = useSession();

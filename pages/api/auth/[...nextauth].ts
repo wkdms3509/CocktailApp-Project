@@ -27,6 +27,18 @@ interface CustomSession extends Session {
   };
 }
 
+interface CustomToken {
+  id: string;
+  auth: string;
+  name: string;
+  email: string;
+  idx: null;
+  picture: undefined;
+  sub: string;
+}
+
+// type ExtendedUserType = User & { username?: string; uid?: string };
+
 const cookies: Partial<CookiesOptions> = {
   sessionToken: {
     name: `next-auth.session-token`,
@@ -93,6 +105,10 @@ async function fetchUserInfo<T>(path: string, params: T): Promise<Data | null> {
   }
 }
 
+function isUser(user: any): user is User {
+  return user && "id" in user && "auth" in user;
+}
+
 export const authOptions: NextAuthOptions = {
   cookies: cookies,
   session: {
@@ -156,10 +172,19 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user, account }) {
-      if (user) {
-        token.id = user.id;
-        token.auth = user.auth;
+      // if (user && "id" in user && "auth" in user) {
+      //   token.id = user.id;
+      //   token.auth = user.auth;
 
+      //   return {
+      //     ...user,
+      //     ...token,
+      //   };
+      // }
+
+      if (user) {
+        // token.id = user.id;
+        // token.auth = user.auth;
         return {
           ...user,
           ...token,
@@ -168,15 +193,17 @@ export const authOptions: NextAuthOptions = {
 
       return token;
     },
+
     // 세션에 로그인한 유저 데이터 입력
     async session({ session, token, user }): Promise<Session> {
+      const newUser = {
+        ...session.user,
+        id: typeof token.id === "string" ? token.id : null,
+        auth: typeof token.auth === "string" ? token.auth : null,
+      };
       return {
         ...session,
-        user: {
-          ...session.user,
-          id: token.id as string | null,
-          auth: token.auth as string | null,
-        },
+        user: newUser,
       };
     },
   },

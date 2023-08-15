@@ -1,4 +1,4 @@
-import { pool } from "../../../src/config/db";
+import { pool } from "../../../src/mysql/config/db";
 import crypto from "crypto";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { RequestNewUser } from "@/src/constants/apiTypes";

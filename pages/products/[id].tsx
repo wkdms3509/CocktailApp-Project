@@ -19,11 +19,18 @@ interface ResponseUserData {
   message: string;
 }
 
+function hasUserAuth(obj: any): obj is { user: { auth: string } } {
+  return obj?.user?.auth !== undefined && typeof obj.user.auth === "string";
+}
+
 const ProductPage = ({ product }: ProductCardType) => {
   const regex = /[^0-9]/g;
   const router = useRouter();
   const { data: session, status } = useSession();
   const [itemList, setItemList] = useState<string[] | null>(null);
+
+  const isUserAuthenticated =
+    hasUserAuth(session) && session.user.auth === "admin";
 
   const handleDelete = async () => {
     await axios.delete(`/api/products/${product.id}`);
@@ -209,7 +216,7 @@ const ProductPage = ({ product }: ProductCardType) => {
                   </span>
                 </ul>
               </div>
-              {session?.user && session.user.auth === "admin" ? (
+              {session?.user && isUserAuthenticated ? (
                 <div className="w-full mx-auto text-right">
                   <button
                     onClick={moveUpdatePage}

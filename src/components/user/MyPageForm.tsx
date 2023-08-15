@@ -10,6 +10,10 @@ import { FaUserCircle } from "react-icons/fa";
 // import { useSelector } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 
+function hasUserAuth(obj: any): obj is { user: { auth: string } } {
+  return obj?.user?.auth !== undefined && typeof obj.user.auth === "string";
+}
+
 export default function MyPageForm() {
   const { data: session, status } = useSession();
   const productList = useSelector(
@@ -17,6 +21,9 @@ export default function MyPageForm() {
   );
 
   const [itemList, setItemList] = useState<string[]>([]);
+
+  const isUserAuthenticated =
+    hasUserAuth(session) && session.user.auth === "admin";
 
   const getBookmarkList = async () => {
     try {
@@ -54,7 +61,7 @@ export default function MyPageForm() {
                 </li>
                 <ul className="flex flex-col justify-center align-middle items-center sm:mb-0 sm:pl-8">
                   <li className="pb-2 text-black w-full sm:text-left">
-                    {session?.user && session.user.auth === "admin"
+                    {session?.user && isUserAuthenticated
                       ? `${session.user?.name} (${session.user?.auth})`
                       : session.user?.name}
                   </li>

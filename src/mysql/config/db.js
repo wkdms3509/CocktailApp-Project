@@ -1,6 +1,7 @@
-const { createPool } = require('mysql2/promise')
+import { createPool } from 'mysql2/promise'
+// const { createPool } = require('mysql2/promise')
 
-const pool = createPool({
+export const pool = createPool({
   host: process.env.MYSQL_HOST,
   user: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASSWORD,
@@ -8,4 +9,4 @@ const pool = createPool({
   database: process.env.MYSQL_DATABASE,
 })
 
-export { pool }
+// export { pool }

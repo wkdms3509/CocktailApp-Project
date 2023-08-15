@@ -10,6 +10,10 @@ import { useState, useRef, useEffect } from "react";
 import classNames from "classnames";
 import Image from "next/image";
 
+function hasUserAuth(obj: any): obj is { user: { auth: string } } {
+  return obj?.user?.auth !== undefined && typeof obj.user.auth === "string";
+}
+
 const Navbar = () => {
   const { data: session, status } = useSession();
   const [toggle, setToggle] = useState<boolean>(false);
@@ -22,6 +26,9 @@ const Navbar = () => {
     vodka: "vodka",
     rum: "RUM",
   };
+
+  const isUserAuthenticated =
+    hasUserAuth(session) && session.user.auth === "admin";
 
   const handleSideBtnClick = () => {
     setToggle(!toggle);
@@ -69,7 +76,7 @@ const Navbar = () => {
           <nav className="nav z-20">
             <div className="hidden lg:block">
               <ul className="side_category">
-                {session?.user && session.user.auth === "admin" ? (
+                {session?.user && isUserAuthenticated ? (
                   <li className="side_category_menu text-blue-700">
                     {session.user.auth}
                   </li>
@@ -133,7 +140,7 @@ const Navbar = () => {
                     RECOMMAND
                   </li>
                 </Link>
-                {session?.user?.auth === "admin" ? (
+                {isUserAuthenticated ? (
                   <Link href="/products/new">
                     <li
                       className="category_right_menu font-normal"

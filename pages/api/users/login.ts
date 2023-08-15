@@ -1,4 +1,4 @@
-import { pool } from "@/src/config/db";
+import { pool } from "../../../src/mysql/config/db";
 import { Data, RequestUserData, User } from "@/src/constants/apiTypes";
 import { UserQueryType } from "@/src/constants/apiQueryTypes";
 import crypto from "crypto";

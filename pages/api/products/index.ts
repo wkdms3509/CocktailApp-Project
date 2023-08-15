@@ -1,4 +1,4 @@
-import { pool } from "@/src/config/db";
+import { pool } from "../../../src/mysql/config/db";
 import { Product } from "@/src/constants/apiQueryTypes";
 import { FieldPacket, OkPacket, ResultSetHeader, RowDataPacket } from "mysql2";
 import { NextApiRequest, NextApiResponse } from "next";

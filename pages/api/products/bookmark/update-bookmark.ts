@@ -1,4 +1,4 @@
-import { pool } from "@/src/config/db";
+import { pool } from "../../../../src/mysql/config/db";
 import { GetBookmarkData, ResponseBookmark } from "@/src/constants/apiTypes";
 import axios from "axios";
 import { FieldPacket, RowDataPacket } from "mysql2";
@@ -11,6 +11,10 @@ interface Data {
   message: string;
 }
 
+function hasUserId(obj: any): obj is { id: string } {
+  return obj?.id !== undefined && typeof obj.id === "string";
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
@@ -19,7 +23,7 @@ export default async function handler(
   const session = await getServerSession(req, res, authOptions);
   const { item_Id } = req.body;
 
-  if (session?.user == null) {
+  if (session?.user == null || !hasUserId(session.user)) {
     res.status(200).json({ items: [], message: "No Session" });
     return;
   }
@@ -27,7 +31,7 @@ export default async function handler(
   switch (req.method) {
     case "POST":
       const result = await updateBookmark(
-        String(session?.user?.id),
+        String(session.user.id),
         String(item_Id)
       );
       if (result?.action === "INSERT") {
