@@ -129,22 +129,13 @@ html {
     @apply relative w-max;
   }
 
-  /* .nav_category_menu_link {
-    @apply 
-  } */
-
   .nav_category_menu_link:focus {
     @apply border-b-4 border-blue-500;
-    /* @apply relative bg-blue-500; */
   }
 
   .nav_category_menu {
     @apply text-blue-500 relative w-max one text-sm md:text-base lg:text-base xl:text-base;
   }
-
-  /* .sub_category_menu:focus span:last-child {
-    @apply w-8 relative;
-  } */
 
   .one:hover span:last-child {
     @apply w-full;
@@ -217,39 +208,6 @@ html {
     @apply h-4 w-4 sm:h-5 sm:w-5 border rounded-full appearance-none bg-black;
   }
   /* 상품 목록 페이지네이션 */
-  /* 
-.content {
-  @apply
-  padding: 40px 40px 0 65px;
-  position: relative;
-  width: 100%;
-  list-style: none;
-} */
-
-  /* .register_input:focus {
-    @apply ;
-  } */
-
-  /* 
-  .card_hover {
-    @apply hover:bg-stone-200 hover:bg-right-bottom text-white to-white/40 from-[#71223E] bg-[#71223E] bg-gradient-to-t transition-all bg-size-200 duration-500 rounded p-2 ease-in-out hover:scale-90;
-  }
-
-  .card_hover_dark {
-    @apply hover:bg-stone-200 hover:bg-right-bottom text-white to-white/40 from-[#ff5203]/80 bg-gradient-to-t transition-all bg-size-200 duration-500 rounded p-2 ease-in-out hover:scale-90;
-  }
-
-  .dark-card {
-    @apply text-white/80 to-white/40 via-black from-white/40 hover:text-white/50 transition-all duration-500 bg-gradient-to-t bg-size-200 hover:bg-right-bottom;
-  }
-
-  .light-card {
-    @apply text-white to-black/80 via-[#71223E]/90 from-black/80 hover:text-white/50 transition-all duration-500 bg-gradient-to-t bg-size-200 hover:bg-right-bottom;
-  } */
-
-  /* .RangeBar {
-    @apply absolute left-0 h-4 w-full rounded bg-red-700 appearance-none;
-  } */
 }
 
 /* ------recommand-------- */
@@ -278,7 +236,6 @@ html {
 
 .smallRangeBar {
   -webkit-appearance: none;
-  /* margin: 0 5px; */
   width: 50%;
   background-color: #71223e;
   border: 1px solid #ff5203;
@@ -296,27 +253,7 @@ html {
   -webkit-appearance: none;
 }
 
-/* .smallRangeBar_light {
-  -webkit-appearance: none;
-
-  width: 50%;
-  border: 1px solid #72695c;
-  height: 30px;
-  border-radius: 5px;
-  pointer-events: none;
-  padding: 0 8px;
-} */
-
-/* .smallRangeBar_light::-webkit-slider-thumb {
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  background-color: black;
-  -webkit-appearance: none;
-} */
-
 .ProductCardImg:hover {
   transform: scale(1.05);
   transition: all 200ms;
-  /* hover:scale-105 duration-300 w-auto h-auto border-8 border-red-600 */
 }

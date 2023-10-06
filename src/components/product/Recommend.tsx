@@ -1,8 +1,6 @@
-// import styles from "../../../styles/Home.module.css";
 import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-// import styles from "../styles/Home.module.css";
 
 export default function IndexPage() {
   const [effect, setEffect] = useState<boolean>(false);
@@ -20,11 +18,6 @@ export default function IndexPage() {
     setInputForm({ ...inputForm, [e.target.name]: e.target.value });
   };
 
-  // const changeNum = (text) => {
-  //   const num = Number(text);
-  //   return num;
-  // };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -39,18 +32,14 @@ export default function IndexPage() {
         return;
       }
 
-      await axios.get("/api/products", { params: inputForm }).then((res) => {
-        if (res.status === 200) {
-          router.push({
-            pathname: "/products/result",
-            query: {
-              alcohol: inputForm.alcohol,
-              sugar: inputForm.sugar,
-              sourness: inputForm.sourness,
-              bitter: inputForm.bitter,
-            },
-          });
-        }
+      router.push({
+        pathname: "/products/result",
+        query: {
+          alcohol: inputForm.alcohol,
+          sugar: inputForm.sugar,
+          sourness: inputForm.sourness,
+          bitter: inputForm.bitter,
+        },
       });
     } catch (error) {
       console.log(error);

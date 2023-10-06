@@ -1,13 +1,11 @@
 import { Product } from "@/src/constants/apiQueryTypes";
 import { RootState2 } from "@/src/reducer";
-// import { RootState } from "@/src/reducer/test";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
-// import { useSelector } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 
 function hasUserAuth(obj: any): obj is { user: { auth: string } } {
@@ -21,6 +19,7 @@ export default function MyPageForm() {
   );
 
   const [itemList, setItemList] = useState<string[]>([]);
+  const [prevItemList, setPrevItemList] = useState<string[]>([]);
 
   const isUserAuthenticated =
     hasUserAuth(session) && session.user.auth === "admin";
@@ -43,8 +42,12 @@ export default function MyPageForm() {
   }, []);
 
   useEffect(() => {
-    getBookmarkList();
-  }, [itemList]);
+    if (itemList.join(",") !== prevItemList.join(",")) {
+      getBookmarkList();
+      setPrevItemList(itemList);
+      console.log("2");
+    }
+  }, [itemList, prevItemList]);
 
   return (
     <div className="container py-20 mx-auto w-full">
@@ -71,13 +74,13 @@ export default function MyPageForm() {
               <li className="border-b mb-4 border-gray-200 hidden sm:block"></li>
               <ul className="flex-col justify-center align-middle items-center hidden sm:flex">
                 <li className="pb-2">북마크</li>
-                <li>{itemList.length}</li>
+                <li>{filteredList.length}</li>
               </ul>
             </ul>
           </div>
           <div className="text-left text-base mb-2 w-4/5 mx-auto p-3.5">
             <h2 className="text-left text-base w-full mx-auto text-gray-500">
-              {`북마크 내역 (${itemList.length})`}
+              {`북마크 내역 (${filteredList.length})`}
             </h2>
           </div>
           <div className="flex flex-row w-4/5 flex-wrap gap-x-3 mx-auto pl-1.5 sm:pl-0.5 lg:pl-5 xl:pl-3.5">
@@ -109,7 +112,7 @@ export default function MyPageForm() {
                 </div>
               ))
             ) : (
-              <div className="border-t w-4/5 mx-auto pt-10">
+              <div className="border-t w-full mx-auto pt-10">
                 <p>북마크 내역이 없습니다.</p>
               </div>
             )}

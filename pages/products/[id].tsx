@@ -95,8 +95,7 @@ const ProductPage = ({ product }: ProductCardType) => {
     <>
       {product != null ? (
         <div className="container w-full mx-auto h-full sm:pb-20">
-          <h3 className="mb-1 md:mb-10 lg:mb-0 xl:mb-0 w-11/12 mx-auto text-gray-400">
-            {/* <h3 className="ml-5 mb-1 md:ml-12 md:mb-10 lg:mb-0 lg:ml-20 xl:mb-0 xl:ml-24 bg-yellow-100 w-11/12 items-center"> */}
+          <h3 className="mb-1 md:mb-0 lg:mb-0 xl:mb-0 lg:w-10/12 w-11/12 mx-auto text-gray-400 text-sm">
             칵테일 정보 {">"}{" "}
             <span className="text-[#333]">{product.name}</span>
           </h3>
@@ -265,32 +264,3 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     },
   };
 };
-
-// export const getStaticPaths: GetStaticPaths = async (context) => {
-//   console.log("context", context);
-
-//   const res = await fetch("http://localhost:3000/api/products");
-//   const posts = await res.json();
-
-//   const paths = posts.data.map((post) => ({
-//     params: { id: post.id },
-//   }));
-//   console.log("getStaticPaths", paths);
-
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// };
-
-// export const getStaticProps: GetStaticProps = async (props) => {
-//   console.log("getStaticProps", props);
-
-//     const res = await fetch(`http://localhost:3000/api/products/${params.id}`);
-//     const post = await res.json();
-//   return {
-//     props: {
-//         post,
-//     },
-//   };
-// };

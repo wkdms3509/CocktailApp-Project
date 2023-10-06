@@ -3,15 +3,20 @@ import {
   RecommendProductDescriptionType,
   RecommendProductReturnType,
 } from "@/src/constants/productTypes";
+import { RootState2 } from "@/src/reducer";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
-export default function Result({ allProductList }: AllCocktailListProps) {
+export default function Result() {
   const router = useRouter();
-  const userInput = router.query;
+  const { alcohol, sugar, sourness, bitter } = router.query;
   const regex = /[^0-9]/g;
+  const allProductList = useSelector(
+    (state: RootState2) => state.products.products
+  );
 
   const checkedProductListNull = allProductList.map((item) => {
     if (
@@ -34,7 +39,12 @@ export default function Result({ allProductList }: AllCocktailListProps) {
   });
 
   const filterdProductList = checkedProductListNull.filter(
-    (item): item is RecommendProductReturnType => item !== undefined
+    (item): item is RecommendProductReturnType =>
+      item !== undefined &&
+      item.alcohol >= alcohol &&
+      item.bitter >= bitter &&
+      item.sugar >= sugar &&
+      item.sourness >= sourness
   );
 
   const getRandomProduct = (productList: RecommendProductReturnType[]) => {

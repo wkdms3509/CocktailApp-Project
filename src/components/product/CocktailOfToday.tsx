@@ -4,24 +4,6 @@ import { useEffect, useState } from "react";
 const CocktailOfToday = () => {
   const [todayCocktail, setTodayCocktail] = useState<string>("");
 
-  //   useEffect(() => {
-  //     try {
-  //       if (cocktails.length === 0) {
-  //         console.log("칵테일 데이터가 없습니다.");
-  //         return;
-  //       }
-  //       const randomItem = getRandomItem(cocktails);
-  //       setTodayCocktail(randomItem);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }, []);
-
-  // 랜덤 값 추출
-  //   const getRandomItem = (allCocktail) => {
-  //     return allCocktail[Math.floor(Math.random() * allCocktail.length)];
-  //   };
-
   let today = new Date();
   let tomorrow = new Date(today.setDate(today.getDate() + 1));
 
@@ -124,21 +106,6 @@ const CocktailOfToday = () => {
           </li>
         </ul>
       </div>
-
-      {/*   서버에서 받은 칵테일에서 랜덤 */}
-      {/* <h3 className="title_name text-[#d1cbc1]">{todayCocktail.name}</h3> 
-      {todayCocktail ? (
-        <Image
-          alt={todayCocktail.name}
-          src={todayCocktail.img}
-          width="150"
-          height="150"
-        />
-      ) : (
-        <div className="text-[#d1cbc1] font-light">
-          데이터를 찾지 못했습니다.
-        </div>
-      )} */}
     </div>
   );
 };

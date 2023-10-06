@@ -1,19 +1,29 @@
+import { useSession } from "next-auth/react";
 import Head from "next/head";
+import { useEffect } from "react";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
+import LoginForm from "./user/LoginForm";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
+  const { data: session, status } = useSession();
   return (
     <>
-      <Head>
+      {/* <Head>
         <title>Cocktail</title>
-      </Head>
-      <Navbar />
-      <div className="bg-center bg-fixed bg-cover w-full overflow-x-hidden">
-        {/* <div className="absolute left-0 right-0 bg-center bg-fixed bg-cover"> */}
-        {children}
-      </div>
-      <Footer />
+      </Head> */}
+
+      {status === "authenticated" ? (
+        <>
+          <Navbar />
+          <div className="bg-center bg-fixed bg-cover w-full overflow-x-hidden">
+            {children}
+          </div>
+          <Footer />
+        </>
+      ) : (
+        <LoginForm />
+      )}
     </>
   );
 };

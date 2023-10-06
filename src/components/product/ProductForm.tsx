@@ -232,22 +232,3 @@ export default function ProductForm() {
     </div>
   );
 }
-
-// 이미지 업로드
-// const [image, setImage] = useState("");
-// const [imageInput, setImageInput] = useState("");
-
-// const handleImage = (e) => {
-//   const file = e.target.files[0];
-//   setImageInput(file);
-//   const reader = new FileReader();
-//   reader.onload = function (e) {
-//     setImage(e.target.result);
-//   };
-//   fileReader.readAsDataURL(file);
-// };
-
-// const handleImage = (e) => {
-//   setSelectedFile(e.target.files[0])
-//   console.log(selectedFile)
-// }

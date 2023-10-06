@@ -8,7 +8,7 @@ import {
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { MdLockOutline } from "react-icons/md";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { getCsrfToken, signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -23,6 +23,7 @@ import {
 } from "next";
 import wrapper, { persistor, store } from "@/src/reducer";
 import { getServerSideProps } from "@/pages";
+import { browserPreventEvent } from "@/src/hooks/browserPreventEvent";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -52,6 +53,18 @@ export default function LoginForm() {
       router.push(status.url);
     }
   };
+
+  // useEffect(() => {
+  //   history.pushState(null, "", location.href);
+  //   window.addEventListener("popstate", () => {
+  //     browserPreventEvent();
+  //   });
+  //   return () => {
+  //     window.removeEventListener("popstate", () => {
+  //       browserPreventEvent();
+  //     });
+  //   };
+  // }, []);
 
   return (
     <div className="login_container">
@@ -151,26 +164,3 @@ export default function LoginForm() {
     </div>
   );
 }
-
-// export async const getServerSiseProps = (context: GetServerSidePropsContext) => {
-//   return {
-//     props: {
-//       csrfToken: await getCsrfToken(context)
-//     }
-//   }
-// }
-
-// export const getServerSideProp = wrapper.getServerSideProps(
-//   (store) => async (context) => {
-//     const storeInfo = store.getState()
-//     console.log("storeInfo", storeInfo);
-
-//     return {
-//       props: {
-//         selectUser,
-//       },
-//     };
-//   }
-// );
-
-// export default LoginForm;

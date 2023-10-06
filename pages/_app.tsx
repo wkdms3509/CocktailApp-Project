@@ -21,7 +21,10 @@ export default function App({
   return (
     <Provider store={store}>
       <SessionProvider session={pageProps.session}>
-        <PersistGate persistor={persistor} loading={<div>loading ...</div>}>
+        <PersistGate
+          persistor={persistor}
+          loading={<div className="w-full text-center mx-auto">Loading...</div>}
+        >
           <Layout>
             <Component {...pageProps} />
           </Layout>
