@@ -9,10 +9,17 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const { data: session, status } = useSession();
   return (
     <>
-      {/* <Head>
+      <Head>
         <title>Cocktail</title>
-      </Head> */}
-
+        <meta
+          name="description"
+          content="다양한 칵테일 종류를 확인하고, 취향에 맞는 칵테일을 추천 받을 수 있는 앱"
+        />
+        <meta
+          name="viewport"
+          content="initial-scale=1.0, width=device-width, user-scalable=yes"
+        />
+      </Head>
       {status === "authenticated" ? (
         <>
           <Navbar />

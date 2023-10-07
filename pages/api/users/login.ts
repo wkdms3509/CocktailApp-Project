@@ -22,9 +22,6 @@ export default async function handler(
 
 const postLogin = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   try {
-    // console.log("postLogin", req);
-    // console.log("postLogin", req);
-
     const { username, password }: RequestUserData = req.body;
 
     const [result, field]: [UserQueryType[], FieldPacket[]] = await pool.query(

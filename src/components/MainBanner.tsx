@@ -21,10 +21,10 @@ const MainBanner = () => {
           <div className="main_img1"></div>
         </div>
         <div>
-          <div className="main_img2"></div>
+          <div className="main_img1"></div>
         </div>
         <div>
-          <div className="main_img3"></div>
+          <div className="main_img1"></div>
         </div>
       </Slider>
     </div>

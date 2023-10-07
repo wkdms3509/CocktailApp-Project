@@ -14,7 +14,12 @@ const IsLogin = () => {
   if (session) {
     return (
       <>
-        <button onClick={() => handleLogout()}>로그아웃</button>
+        <button
+          onClick={() => handleLogout()}
+          className="hover:text-gray-300 duration-500"
+        >
+          로그아웃
+        </button>
       </>
     );
   }

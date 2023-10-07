@@ -20,6 +20,7 @@ const Footer = () => {
         <input
           className="w-1/4 mb-8 mt-5 outline-none p-2 md:p-3 lg:p-3 text-sm md:text-base lg:text-base xl:text-base"
           placeholder="Your email address .."
+          name="이메일 입력란"
         />
         <button className="text-white ml-3 border border-white p-2 md:p-3 lg:p-3 text-sm md:text-base lg:text-base xl:text-base">
           Subscribe

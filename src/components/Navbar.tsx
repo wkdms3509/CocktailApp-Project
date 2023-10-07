@@ -81,11 +81,13 @@ const Navbar = () => {
                     {session.user.auth}
                   </li>
                 ) : (
-                  <li className="side_category_menu font-semibold">
+                  <li className="side_category_menu font-semibold border-r border-black">
                     {session.user?.name} 님
                   </li>
                 )}
-                <li className="side_category_menu">관심상품</li>
+                <li className="side_category_menu border-r border-black hover:text-gray-300 duration-500 cursor-pointer">
+                  <Link href="/auth/mypage">관심상품</Link>
+                </li>
                 <li className="side_category_menu">
                   <IsLogin />
                 </li>
@@ -99,7 +101,7 @@ const Navbar = () => {
                 <div className="lg:hidden flex items-center">
                   {/* <li className="category_right_menu hidden lg:list-item"> */}
                   <Link href="/products/search">
-                    <BsSearch size={20} className="mr-3" />
+                    <BsSearch size={20} className="mr-3" title="검색" />
                     {/* <HeaderSearch /> */}
                   </Link>
                   {/* </li> */}
@@ -189,6 +191,12 @@ const Navbar = () => {
                 <Link href="/products/today" className="nav_category_menu_link">
                   <li className="nav_category_menu">
                     <span>Today`s Cocktail</span>
+                    <span className="absolute -bottom-1 left-0 w-0 transition-all h-1 bg-blue-500"></span>
+                  </li>
+                </Link>
+                <Link href={`/category`} className="nav_category_menu_link">
+                  <li className="sub_category_menu one active text-sm md:text-base lg:text-base xl:text-base">
+                    <span>ALL</span>
                     <span className="absolute -bottom-1 left-0 w-0 transition-all h-1 bg-blue-500"></span>
                   </li>
                 </Link>

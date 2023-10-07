@@ -41,10 +41,10 @@ export default function Result() {
   const filterdProductList = checkedProductListNull.filter(
     (item): item is RecommendProductReturnType =>
       item !== undefined &&
-      item.alcohol >= alcohol &&
-      item.bitter >= bitter &&
-      item.sugar >= sugar &&
-      item.sourness >= sourness
+      Number(item.alcohol) >= Number(alcohol) &&
+      Number(item.bitter) >= Number(bitter) &&
+      Number(item.sugar) >= Number(sugar) &&
+      Number(item.sourness) >= Number(sourness)
   );
 
   const getRandomProduct = (productList: RecommendProductReturnType[]) => {

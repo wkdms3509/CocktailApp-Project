@@ -1,6 +1,6 @@
-import { pool } from "../../../../src/config/db";
+import { pool } from "@/src/mysql/config/db";
 import { NextApiRequest, NextApiResponse } from "next";
-
+pool;
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse

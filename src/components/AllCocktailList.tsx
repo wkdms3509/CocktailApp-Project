@@ -1,7 +1,7 @@
 import axios from "axios";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { AllCocktailListProps, Product } from "../constants/productTypes";
 import wrapper from "../reducer";
 import Pagination from "./Pagination";
@@ -9,9 +9,15 @@ import ProductCard from "./product/ProductCard_pc";
 import ProductCard2 from "./product/ProductCard_mobile";
 
 const AllCocktailList = ({ allProductList }: AllCocktailListProps) => {
-  const [limit, setLimit] = useState<number>(9);
+  const [limit, setLimit] = useState<number>(10);
   const [page, setPage] = useState<number>(1);
   const offset = (page - 1) * limit;
+
+  const [slicedProductList, setSlicedProductList] = useState([]);
+
+  useEffect(() => {
+    setSlicedProductList(allProductList.slice(0, 15));
+  }, [allProductList]);
 
   return (
     <>
@@ -21,10 +27,16 @@ const AllCocktailList = ({ allProductList }: AllCocktailListProps) => {
             All
           </span>
           <Link
-            href="/"
-            className="hidden px-10 py-3 border border-black text-black hover:text-white hover:bg-black lg:inline-block"
+            href="/category"
+            className="hidden px-10 py-3 border border-black text-black hover:text-white hover:bg-black lg:inline-block duration-500"
           >
             Shop Now
+          </Link>
+          <Link
+            href="/category"
+            className="text-xs py-2 text-black hover:text-gray-400 lg:hidden"
+          >
+            더보기
           </Link>
         </div>
         <div className="ml-2 mb-3 hidden lg:block">
@@ -35,21 +47,22 @@ const AllCocktailList = ({ allProductList }: AllCocktailListProps) => {
               value={limit.toString()}
               onChange={({ target: { value } }) => setLimit(Number(value))}
               className="bg-transparent"
+              name="아이템 노출 개수"
             >
-              <option value="9">9</option>
-              <option value="18">18</option>
-              <option value="27">27</option>
-              <option value="36">36</option>
-              <option value="45">45</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+              <option value="40">40</option>
+              <option value="50">50</option>
             </select>
           </label>
         </div>
 
         {/* pc */}
-        <div className="hidden overflow-x-auto lg:flex lg:flex-wrap mx-auto justify-around gap-x-2 lg:gap-x-0">
+        <div className="hidden overflow-x-auto lg:flex lg:flex-wrap mx-auto justify-around gap-x-2 lg:gap-x-3">
           {allProductList.length > 0
             ? allProductList
-                .slice(offset, offset + limit)
+                .slice(offset, offset + limit) // 10, 20 //
                 .map((product: Product) => (
                   <ProductCard key={product.id} product={product} />
                 ))
@@ -58,8 +71,8 @@ const AllCocktailList = ({ allProductList }: AllCocktailListProps) => {
 
         {/* 모바일 반응형 */}
         <div className="grid grid-flow-col grid-rows-1 auto-rows-auto mx-auto gap-x-2 overflow-x-auto lg:hidden xl:hidden">
-          {allProductList.length > 0
-            ? allProductList.map((product: Product) => (
+          {slicedProductList.length > 0
+            ? slicedProductList.map((product: Product) => (
                 <ProductCard2 key={product.id} product={product} />
               ))
             : "no exist data"}

@@ -54,17 +54,27 @@ export default function LoginForm() {
     }
   };
 
-  // useEffect(() => {
-  //   history.pushState(null, "", location.href);
-  //   window.addEventListener("popstate", () => {
-  //     browserPreventEvent();
-  //   });
-  //   return () => {
-  //     window.removeEventListener("popstate", () => {
-  //       browserPreventEvent();
-  //     });
-  //   };
-  // }, []);
+  const onAlertModalOpen = () => {
+    console.log("뒤로가기 할 수 없습니다.");
+    return;
+  };
+
+  const browserPreventEvent = (event: () => void) => {
+    history.pushState(null, "", location.href);
+    event();
+  };
+
+  useEffect(() => {
+    history.pushState(null, "", location.href);
+    window.addEventListener("popstate", () => {
+      browserPreventEvent(onAlertModalOpen);
+    });
+    return () => {
+      window.removeEventListener("popstate", () => {
+        browserPreventEvent(onAlertModalOpen);
+      });
+    };
+  }, []);
 
   return (
     <div className="login_container">

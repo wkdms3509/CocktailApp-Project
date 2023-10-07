@@ -10,8 +10,8 @@
 }
 
 .main_img2 {
-  /* background-image: url('https://shakit.co.kr/data/apms/background/Main_%EC%A4%80%EB%B2%85_PC.jpg'); */
-  background-image: url("https://shakit.co.kr/data/apms/background/Beershakit2_PC.jpg");
+  /* background-image: url("https://shakit.co.kr/data/apms/background/Beershakit2_PC.jpg"); */
+  background-image: url("https://drink818.com/cdn/shop/files/Our_Story_Hero_DK.jpg?width=1600");
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 67vh;
@@ -53,6 +53,7 @@
   width: 100%;
   z-index: 2;
   font-family: var(--font-mono);
+  font-display: swap;
 }
 
 .description a {
@@ -74,6 +75,7 @@
 .code {
   font-weight: 700;
   font-family: var(--font-mono);
+  font-display: swap;
 }
 
 .grid {

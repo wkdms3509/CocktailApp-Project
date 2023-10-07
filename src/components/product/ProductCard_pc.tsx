@@ -15,25 +15,38 @@ const ProductCard = (props: ProductCardType) => {
   return (
     // w-1/3
     <div
-      className="lg:flex-auto px-2 pb-12 lg:w-1/3 "
+      className="lg:flex-auto lg:w-2/12"
       onClick={() => router.push(`/products/${product.id}`)}
     >
       <div className="">
-        <div key={product.id}>
+        <div key={product.id} className=" h-80">
           {/* <Link href={`/products/${product.id}`} key={product.id}> */}
-          <div key={product.id} className="relative">
+          <div
+            key={product.id}
+            className="relative w-full h-72 overflow-hidden"
+          >
             <Image
               src={product.img}
               alt={product.name}
-              width="400"
-              height="300"
-              className="h-100 w-full scale-100 object-cover hover:scale-105 duration-300 md:w-64 lg:w-96"
-              priority
+              fill
+              sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
+              loading="lazy"
+              className="cursor-pointer hover:scale-105 duration-300 scale-100 object-cover pb-11"
+              onMouseEnter={(e) => {
+                e.currentTarget.classList.add("hover:scale-110");
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.classList.remove("hover:scale-105");
+              }}
             />
-            <h3 className="text-xs font-bold text-[#222] pt-3">
+            <h3 className="absolute left-0 bottom-5 text-xs font-semibold text-[#222]">
               {product.type}
             </h3>
-            <h2 className="text-base text-[#222]">{product.name}</h2>
+            <h2 className="absolute left-0 bottom-0 text-sm font-light text-[#222]">
+              {product.name}
+            </h2>
           </div>
           {/* </Link> */}
         </div>

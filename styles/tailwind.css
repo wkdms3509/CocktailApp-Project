@@ -101,7 +101,7 @@ html {
   }
 
   .side_category_menu {
-    @apply text-xs pl-5 -mt-4 text-gray-600;
+    @apply text-xs px-2 -mt-4 text-gray-600;
   }
 
   .main_category {
@@ -113,7 +113,7 @@ html {
   }
 
   .category_right_menu {
-    @apply my-2 lg:px-4 cursor-pointer text-sm md:text-base lg:text-base xl:text-base font-medium;
+    @apply my-2 lg:px-4 cursor-pointer text-sm md:text-base lg:text-base xl:text-base font-medium duration-500;
   }
 
   .category_right_menu:hover {
@@ -159,7 +159,7 @@ html {
 
   /* 배너 카테고리 */
   .banner_item {
-    @apply h-20 text-center border border-gray-300 items-center rounded-md flex-1 py-8 cursor-pointer bg-black text-white text-xs md:h-auto lg:h-auto md:text-xl lg:text-2xl hover:text-black hover:bg-gray-300;
+    @apply h-20 text-center border-2 border-black items-center rounded-md flex-1 py-8 cursor-pointer bg-black text-white text-xs md:h-auto lg:h-auto md:text-xl lg:text-2xl hover:text-black hover:bg-white duration-500;
   }
 
   .main_img1 {

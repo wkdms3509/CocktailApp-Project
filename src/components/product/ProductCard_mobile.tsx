@@ -8,7 +8,7 @@ const ProductCard2 = (props: ProductCardType) => {
   return (
     // w-1/3
     <div className="w-44">
-      <div className="">
+      <div>
         <div key={product.id}>
           <Link href={`/products/${product.id}`} key={product.id}>
             <div key={product.id}>
@@ -17,13 +17,13 @@ const ProductCard2 = (props: ProductCardType) => {
                 alt={product.name}
                 width="400"
                 height="300"
-                className="h-60 scale-100 hover:scale-105 duration-300 w-full"
-                priority
+                className="h-60 w-full"
+                loading="lazy"
               />
-              <h3 className="text-xs font-bold text-[#222] pt-3">
+              <h3 className="text-xs font-semibold text-[#222] pt-2">
                 {product.type}
               </h3>
-              <h2 className="text-[#222] text-sm md:text-base lg:text-base xl:text-base">
+              <h2 className="text-[#222] text-sm font-light md:text-sm lg:text-sm xl:text-sm">
                 {product.name}
               </h2>
             </div>
