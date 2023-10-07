@@ -13,7 +13,7 @@ const AllCocktailList = ({ allProductList }: AllCocktailListProps) => {
   const [page, setPage] = useState<number>(1);
   const offset = (page - 1) * limit;
 
-  const [slicedProductList, setSlicedProductList] = useState([]);
+  const [slicedProductList, setSlicedProductList] = useState<Product[]>([]);
 
   useEffect(() => {
     setSlicedProductList(allProductList.slice(0, 15));

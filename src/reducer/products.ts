@@ -85,7 +85,6 @@ export default function productReducer(
     case ADD_ITEM:
       return {
         ...state,
-        // products: [...state.products, action.payload.item],
         products: [
           ...state.products,
           (action.payload as { item: Product }).item,

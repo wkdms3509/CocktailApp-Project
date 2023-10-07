@@ -4,7 +4,7 @@ import "../styles/tailwind.css";
 import type { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
 import { createStore } from "redux";
-import rootReducer, { persistor } from "@/src/reducer";
+import rootReducer from "@/src/reducer";
 import { Provider } from "react-redux";
 // import { wrapper } from "@/src/reducer/test";
 import { PersistGate } from "redux-persist/integration/react";
@@ -16,6 +16,7 @@ export default function App({
   pageProps: { session, ...pageProps },
 }: AppProps) {
   const { store, props } = wrapper.useWrappedStore(pageProps);
+
   const persistor = persistStore(store);
 
   return (

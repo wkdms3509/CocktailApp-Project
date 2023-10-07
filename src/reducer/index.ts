@@ -21,10 +21,8 @@ import {
   REGISTER,
   REHYDRATE,
 } from "redux-persist";
-import storage from "redux-persist/lib/storage/session";
+// import storage from "redux-persist/lib/storage/session";
 import storageSession from "redux-persist/lib/storage/session";
-
-// console.log("storage", storage);
 
 const persistConfig = {
   key: "root",
@@ -43,7 +41,7 @@ export const store = configureStore({
   reducer: (state, action) => {
     switch (action.type) {
       case HYDRATE:
-        console.log("HYDRATE", action);
+        // console.log("HYDRATE", action);
         return { ...state, ...action.payload };
       default:
         return persistedReducer(state, action);

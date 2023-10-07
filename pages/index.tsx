@@ -35,9 +35,8 @@ import { sessionUserType } from "@/src/constants/userType";
 
 export default function Home({ allProductList }: AllCocktailListProps) {
   const { data: session, status } = useSession();
-  const dispatch = useDispatch();
 
-  const store = useSelector((state: RootState2) => state.products.products);
+  // const store = useSelector((state: RootState2) => state.products.products);
 
   return (
     <>
@@ -50,10 +49,10 @@ export default function Home({ allProductList }: AllCocktailListProps) {
             <Catecory />
           </section>
           <section className="p-3 md:p-5 lg:p-32">
-            <AllCocktailList allProductList={store} />
+            <AllCocktailList allProductList={allProductList} />
           </section>
           <section className="p-3 md:p-5 lg:p-32 md:hidden">
-            <NonAlcCocktailList allProductList={store} />
+            <NonAlcCocktailList allProductList={allProductList} />
           </section>
         </div>
       ) : (
