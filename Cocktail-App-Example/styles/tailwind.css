@@ -1,0 +1,259 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body,
+html {
+  overflow-x: hidden;
+}
+
+@layer components {
+  /* 메인 레이아웃 */
+  /* .container {
+    @apply w-full mx-auto;
+  } */
+
+  .container {
+    @apply pt-20;
+  }
+
+  /* 로그인 */
+  .login_container {
+    @apply bg-gray-100 flex flex-col items-center justify-center min-h-screen py-2;
+  }
+
+  .login_main_container {
+    @apply flex flex-col items-center justify-center w-full flex-1 text-center md:px-20 lg:px-20;
+  }
+
+  .login_main_form {
+    @apply bg-white rounded-2xl shadow-2xl flex flex-col max-w-4xl w-80 md:w-5/6 md:flex-row lg:w-2/3 lg:flex-row;
+  }
+
+  .login_input {
+    @apply outline-none text-xs leading-5 text-black bg-gray-100 lg:text-sm;
+  }
+
+  .login_signin_btn {
+    @apply inline-block font-bold py-2 px-12 rounded-full border border-solid border-black text-black text-sm md:text-base lg:text-base;
+  }
+
+  .login_signin_btn:hover {
+    @apply text-white bg-black duration-200 ease-in;
+  }
+
+  .login_signup_form {
+    @apply hidden py-48 px-5 bg-black text-white rounded-tr-2xl rounded-br-2xl md:block md:w-2/5 lg:w-2/5 lg:block;
+  }
+
+  .login_signup_btn_one {
+    @apply inline-block rounded-full font-bold bg-black text-white border border-solid border-black mt-1 py-2 px-12 text-sm md:hidden lg:hidden;
+  }
+
+  .login_signup_btn_two {
+    @apply inline-block rounded-full font-bold border border-solid border-white py-2 px-12 duration-200 ease-in text-sm md:text-base lg:text-base;
+  }
+
+  .login_signup_btn_two:hover {
+    @apply bg-white text-black;
+  }
+
+  /* 회원가입 */
+  .register_container {
+    @apply bg-gray-100 flex flex-col items-center justify-center min-h-screen py-2;
+  }
+
+  .register_main_container {
+    @apply flex flex-col items-center justify-center w-full flex-1 px-20 text-center;
+  }
+
+  .register_main_form {
+    @apply rounded-2xl bg-black shadow-2xl flex max-w-4xl justify-center w-80 md:w-5/6 md:flex-row lg:w-2/3 lg:flex-row;
+  }
+
+  .label_name {
+    @apply mb-2 mr-4 text-xs text-white lg:text-sm;
+  }
+
+  .register_input {
+    @apply border-b-2 p-2 text-xs w-full rounded bg-white border-gray-300 outline-none;
+  }
+
+  /* 네비게이션 */
+  .nav {
+    @apply bg-white pb-6 pt-1 md:py-6 px-5 md:px-6 lg:px-10 xl:px-28;
+  }
+
+  .site_name {
+    @apply pt-1 italic font-extrabold text-2xl md:text-2xl lg:text-3xl;
+  }
+
+  .app_banner_top {
+    @apply md:hidden bg-light-gray m-0 w-full h-16 px-4 py-3.5;
+  }
+
+  .app_banner_top_close {
+    @apply hidden;
+  }
+
+  .side_category {
+    @apply flex flex-row justify-end px-4;
+  }
+
+  .side_category_menu {
+    @apply text-xs px-2 -mt-4 text-gray-600;
+  }
+
+  .main_category {
+    @apply w-full py-3 flex flex-col lg:flex-row lg:justify-between;
+  }
+
+  .main_category_right_one {
+    @apply flex flex-col items-center z-10 absolute bg-white w-full left-0 py-4 opacity-0 -top-52 transition-all ease-in duration-300 lg:flex-row lg:w-auto lg:py-0 lg:items-center lg:z-auto lg:static lg:pl-0 lg:opacity-100;
+  }
+
+  .category_right_menu {
+    @apply my-2 lg:px-4 cursor-pointer text-sm md:text-base lg:text-base xl:text-base font-medium duration-500;
+  }
+
+  .category_right_menu:hover {
+    @apply text-gray-300;
+  }
+
+  .sub_category {
+    @apply flex flex-row pt-4 -mb-4;
+    /* sm:overflow-hidden sm:overflow-x-scroll */
+  }
+
+  .sub_category_menu {
+    @apply relative w-max;
+  }
+
+  .nav_category_menu_link:focus {
+    @apply border-b-4 border-blue-500;
+  }
+
+  .nav_category_menu {
+    @apply text-blue-500 relative w-max one text-sm md:text-base lg:text-base xl:text-base;
+  }
+
+  .one:hover span:last-child {
+    @apply w-full;
+  }
+
+  /* 네비게이션 모바일 */
+  .sidebar {
+    @apply flex text-black z-10 ease-in duration-150 lg:hidden;
+  }
+  .sidebar_btn {
+    @apply duration-150 ease-in overflow-hidden py-2;
+  }
+
+  .sidebar_menu {
+    @apply list-none text-left pt-3 text-black;
+  }
+
+  .sidebar_item {
+    @apply block mb-4 py-2 pr-4 pl-3 text-black hover:bg-gray-200 md:hover:bg-transparent md:border-0 md:p-0;
+  }
+
+  /* 배너 카테고리 */
+  .banner_item {
+    @apply h-20 text-center border-2 border-black items-center rounded-md flex-1 py-8 cursor-pointer bg-black text-white text-xs md:h-auto lg:h-auto md:text-xl lg:text-2xl hover:text-black hover:bg-white duration-500;
+  }
+
+  .main_img1 {
+    @apply w-full min-h-1/5 bg-banner1 bg-cover bg-center bg-no-repeat md:min-h-1/2 lg:min-h-3/5;
+  }
+
+  .main_img2 {
+    @apply w-full min-h-1/5 bg-banner2 bg-cover bg-center bg-no-repeat md:min-h-1/2 lg:min-h-3/5;
+  }
+
+  .main_img3 {
+    @apply w-full min-h-1/5 bg-banner3 bg-cover bg-center bg-no-repeat md:min-h-1/2 lg:min-h-3/5;
+  }
+
+  /* 아이템 생성, 수정 */
+  .form_content {
+    @apply w-4/5 md:w-3/5 flex flex-col;
+  }
+
+  .form_item_label {
+    @apply text-white text-sm lg:text-base text-left;
+  }
+
+  .form_item_input {
+    @apply border rounded flex-1 md:w-1/4 lg:w-full xl:w-full my-4 p-1.5 bg-gray-200 border-none outline-none focus:bg-white focus:ring-2 ring-blue-600;
+  }
+
+  .form_item_option {
+    @apply list-none flex flex-col flex-1;
+  }
+
+  .form_item_option_label {
+    @apply text-white text-sm lg:text-base text-left;
+  }
+
+  .form_item_option_select {
+    @apply bg-white w-full my-4 p-1.5 text-center rounded border-none outline-none focus:bg-gray-50 focus:ring-1 ring-black;
+  }
+
+  /* 차트 그래프 */
+  .smallRangeBar_light {
+    @apply appearance-none w-2/4 border border-gray-900 rounded h-6 sm:h-7 pointer-events-none px-2;
+  }
+
+  .smallRangeBar_light::-webkit-slider-thumb {
+    @apply h-4 w-4 sm:h-5 sm:w-5 border rounded-full appearance-none bg-black;
+  }
+  /* 상품 목록 페이지네이션 */
+}
+
+/* ------recommand-------- */
+
+.RangeBar {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background-color: #000;
+  border: 1px solid #000;
+  border-radius: 5px;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.RangeBar::-webkit-slider-thumb {
+  height: 30px;
+  width: 30px;
+  height: 40px;
+  border-radius: 20%;
+  border: 2px solid #000;
+  background-color: #fff;
+  -webkit-appearance: none;
+}
+
+.smallRangeBar {
+  -webkit-appearance: none;
+  width: 50%;
+  background-color: #71223e;
+  border: 1px solid #ff5203;
+  height: 30px;
+  border-radius: 5px;
+  pointer-events: none;
+  padding: 0 8px;
+}
+
+.smallRangeBar::-webkit-slider-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: black;
+  -webkit-appearance: none;
+}
+
+.ProductCardImg:hover {
+  transform: scale(1.05);
+  transition: all 200ms;
+}

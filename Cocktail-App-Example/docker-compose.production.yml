@@ -1,0 +1,29 @@
+services:
+  frontend:
+    container_name: frontend
+    image: next_server
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    ports:
+      - 3000:3000
+      - 3306:3306
+    volumes:
+      - ./app:/app/app
+
+  mysql:
+    container_name: mysql_db
+    image: mysql:latest
+    restart: always
+    ports: -3306:3306
+    volumes: -./mysql:/app/lib/mysql
+    environment:
+      - MYSQL_PORT_PASSWORD=sorksnrnrp
+      - MYSQL_DATABASE=testcocktailsdb
+# > cocktail-app
+#   > frontend
+#     > mysql
+#     - Dockerfile
+#   > crawler
+#     - Dockerfile
+#   - docker-compose.yml
