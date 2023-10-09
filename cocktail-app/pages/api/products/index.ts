@@ -1,5 +1,6 @@
-import { pool } from "../../../src/mysql/config/db";
+// import { pool } from "../../../src/mysql/config/db";
 import { Product } from "@/src/constants/apiQueryTypes";
+import { pool } from "@/src/mysql/config/db";
 import { FieldPacket, OkPacket, ResultSetHeader, RowDataPacket } from "mysql2";
 import { NextApiRequest, NextApiResponse } from "next";
 
