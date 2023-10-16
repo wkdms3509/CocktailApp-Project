@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import styles from "@/styles/Home.module.css";
+// import styles from "@/styles/Home.module.css";
 import MainBanner from "@/src/components/MainBanner";
 import Catecory from "@/src/components/Catecory";
 import AllCocktailList from "@/src/components/AllCocktailList";
