@@ -6,6 +6,6 @@ app.get('/', (req, res) => {
   res.send('Hello, World')
 })
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   console.log(`서버가 http://localhost:${port} 에서 실행 중입니다.`)
 })
