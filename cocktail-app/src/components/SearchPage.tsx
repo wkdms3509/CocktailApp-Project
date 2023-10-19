@@ -39,12 +39,14 @@ const SearchPage = () => {
     } catch (error) {
       console.log(error);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
   const handleSearchValue = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setSearch(e.target.value.toLowerCase());
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [search]
   );
 

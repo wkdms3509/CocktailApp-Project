@@ -89,7 +89,7 @@ const ProductPage = ({ product }: ProductCardType) => {
     if (itemList === null) {
       getBookmarkList();
     }
-  }, [itemList]);
+  }, [itemList, getBookmarkList]);
 
   return (
     <>

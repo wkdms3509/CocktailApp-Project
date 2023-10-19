@@ -37,7 +37,7 @@ export default function ProductForm() {
     if (router.query.id && typeof router.query.id === "string") {
       getProduct(router.query.id);
     }
-  }, []);
+  }, [router.query.id]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
