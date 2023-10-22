@@ -89,7 +89,8 @@ const ProductPage = ({ product }: ProductCardType) => {
     if (itemList === null) {
       getBookmarkList();
     }
-  }, [itemList, getBookmarkList]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [itemList]);
 
   return (
     <>
