@@ -8,11 +8,18 @@ RUN apk add --no-cache libc6-compat
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
+# Install dependencies based on the preferred package manager
+COPY package.json yarn.lock ./
+
+RUN \
+  if [ -f yarn.lock ]; then yarn install --frozen-lockfile; \
+  elif [ -f package-lock.json ]; then npm ci; \
+  else echo "Lockfile not found." && exit 1; \
+  fi
 
 # RUN npm ci --production
-RUN npm install -g npm@latest
-RUN npm ci
+# RUN npm install -g npm@latest
+# RUN npm ci
 
 FROM base AS builder
 
@@ -24,7 +31,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 # RUN npm ci
-RUN npm run build
+RUN yarn build
 
 FROM base AS runner
 WORKDIR /app
