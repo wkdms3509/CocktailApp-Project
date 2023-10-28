@@ -7,8 +7,6 @@ services:
       # dockerfile: Dockerfile.production
     tty: true
     restart: always
-    depends_on:
-      - mysql
     command: npm run dev
     environment:
       - "SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub"
