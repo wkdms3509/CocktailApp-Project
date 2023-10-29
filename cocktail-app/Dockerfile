@@ -11,9 +11,10 @@ COPY package.json yarn.lock ./
 
 RUN \
   if [ -f yarn.lock ]; then yarn install --frozen-lockfile; \
-  elif [ -f package-lock.json ]; then npm ci; \
+  # elif [ -f package-lock.json ]; then npm ci; \
   else echo "Lockfile not found." && exit 1; \
   fi
+RUN rm -rf ./.next/cache
 
 # RUN npm ci --production
 # RUN npm install -g npm@latest
