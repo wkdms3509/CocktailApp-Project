@@ -2,9 +2,9 @@ services:
   web:
     container_name: web
     image: nextjs:latest-230818
-    build:
-      context: ./cocktail-app
-      # dockerfile: Dockerfile.production
+    # build:
+    #   context: ./cocktail-app
+    #   dockerfile: Dockerfile.production
     tty: true
     restart: always
     command: npm run dev
@@ -20,7 +20,7 @@ services:
   mysql:
     container_name: mysql
     platform: linux/x86_64
-    image: mysql:8.0.34
+    # image: mysql:8.0.34
     restart: always
     volumes:
       - ./cocktail-app/src/mysql/init.d:/docker-entrypoint-initdb.d
