@@ -2,9 +2,9 @@ services:
   web:
     container_name: web
     image: nextjs:latest-230818
-    # build:
-    #   context: ./cocktail-app
-    #   dockerfile: Dockerfile.production
+    build:
+      context: ./cocktail-app
+      dockerfile: Dockerfile.production
     tty: true
     restart: always
     command: npm run dev
