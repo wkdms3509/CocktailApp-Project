@@ -4,7 +4,7 @@ services:
     # image: nextjs:latest-230818
     build:
       context: ./cocktail-app
-      dockerfile: Dockerfile.production
+      # dockerfile: Dockerfile.production
     tty: true
     restart: always
     command: npm run dev
