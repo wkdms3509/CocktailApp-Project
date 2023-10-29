@@ -1,7 +1,7 @@
 services:
   web:
     container_name: web
-    image: nextjs:latest-230818
+    # image: nextjs:latest-230818
     build:
       context: ./cocktail-app
       dockerfile: Dockerfile.production
