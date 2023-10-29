@@ -1,7 +1,7 @@
 services:
   web:
     container_name: web
-    # image: nextjs:latest-230818
+    image: nextjs:latest-230818
     # build:
     #   context: ./cocktail-app
     #   dockerfile: Dockerfile.production
@@ -20,7 +20,7 @@ services:
   mysql:
     container_name: mysql
     platform: linux/x86_64
-    # image: mysql:8.0.34
+    image: mysql:8.0.34
     restart: always
     volumes:
       - ./cocktail-app/src/mysql/init.d:/docker-entrypoint-initdb.d
@@ -40,18 +40,18 @@ services:
     networks:
       - my-bridge-network
 
-  # selenium:
-  #   container_name: selenium_chrome
-  #   build:
-  #     context: ./crawler
-  #   shm_size: 2gb
-  #   environment:
-  #     - TZ=Asia/Seoul
-  #   ports:
-  #     - "4444:4444"
-  #     - "7900:7900"
-  #   networks:
-  #     - my-bridge-network
+  selenium:
+    container_name: selenium_chrome
+    build:
+      context: ./crawler
+    shm_size: 2gb
+    environment:
+      - TZ=Asia/Seoul
+    ports:
+      - "4444:4444"
+      - "7900:7900"
+    networks:
+      - my-bridge-network
 
 networks:
   my-bridge-network:
