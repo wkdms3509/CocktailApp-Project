@@ -21,8 +21,8 @@ services:
   mysql:
     container_name: mysql
     platform: linux/x86_64
-    # image: mysql:8.0.34
-    image: wkdms3509/docker-hub-test:mysql-8.0.34
+    image: mysql:8.0.34
+    # image: wkdms3509/docker-hub-test:mysql-8.0.34
     restart: always
     volumes:
       - ./cocktail-app/src/mysql/init.d:/docker-entrypoint-initdb.d
