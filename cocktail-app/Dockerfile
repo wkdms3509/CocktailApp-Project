@@ -3,7 +3,7 @@ FROM node:16-alpine AS base
 FROM base AS deps
 
 ENV NODE_ENV=production
-# development
+# production / development
 
 RUN apk add --no-cache libc6-compat
 
