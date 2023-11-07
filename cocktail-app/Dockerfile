@@ -50,7 +50,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 USER nextjs
 
-CMD ["node", "server.js"]
+CMD ["next", "start"]
 
 # FROM node:20-alpine
 
