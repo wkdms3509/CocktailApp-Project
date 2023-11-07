@@ -19,10 +19,6 @@ RUN \
   fi
 RUN rm -rf ./.next/cache
 
-# RUN npm ci --production
-# RUN npm install -g npm@latest
-# RUN npm ci
-
 FROM base AS builder
 
 ENV NODE_ENV=production
@@ -50,7 +46,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 USER nextjs
 
-CMD ["next", "start"]
+CMD ["npm", "start"]
 
 # FROM node:20-alpine
 
