@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 node:16-alpine AS base
+FROM --platform=linux/arm64 node:16-alpine AS base
 
 FROM base AS deps
 
