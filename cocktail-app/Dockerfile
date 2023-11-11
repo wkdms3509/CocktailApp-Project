@@ -14,10 +14,10 @@ COPY package.json yarn.lock ./
 
 RUN \
   if [ -f yarn.lock ]; then yarn install --frozen-lockfile; \
-  # elif [ -f package-lock.json ]; then npm ci; \
+  elif [ -f package-lock.json ]; then npm ci; \
+  elif [ -f pnpm-lock.yaml ]; then yarn global add pnpm && pnpm i; \
   else echo "Lockfile not found." && exit 1; \
   fi
-RUN rm -rf ./.next/cache
 
 FROM base AS builder
 
@@ -30,6 +30,8 @@ COPY . .
 
 # RUN npm ci
 RUN yarn build
+
+RUN ls -la .next
 
 FROM base AS runner
 WORKDIR /app
@@ -46,7 +48,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 USER nextjs
 
-CMD ["npm", "start"]
+CMD ["yarn", "start"]
 
 # FROM node:20-alpine
 
