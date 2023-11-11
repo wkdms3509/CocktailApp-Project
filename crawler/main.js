@@ -207,8 +207,6 @@ async function getItemDesc(selector) {
   }
 }
 
-// 아래 번호 300번 새로 추가했고 집가서 다시 실행 해보기.
-
 async function crawlItemDetail(ms, element, num) {
   try {
     wrapSlept(ms)
