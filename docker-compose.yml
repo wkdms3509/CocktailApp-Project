@@ -1,8 +1,8 @@
 services:
   web:
     container_name: web
-    image: nextjs:latest-230818
-    # image: wkdms3509/docker-hub-test:nextjs-latest-230818
+    # image: nextjs:latest-230818
+    image: wkdms3509/docker-hub-test:nextjs-230818
     build:
       context: ./cocktail-app
       # dockerfile: Dockerfile.production
@@ -20,8 +20,8 @@ services:
   mysql:
     container_name: mysql
     platform: linux/x86_64
-    image: mysql:8.0.34
-    # image: wkdms3509/docker-hub-test:mysql-8.0.34
+    # image: mysql:8.0.34
+    image: wkdms3509/docker-hub-test:mysql-8.0.34
     restart: always
     volumes:
       - ./cocktail-app/src/mysql/init.d:/docker-entrypoint-initdb.d
@@ -43,7 +43,7 @@ services:
 
   selenium:
     container_name: selenium_chrome
-    # image: wkdms3509/docker-hub-test:seleniarm-latest
+    image: wkdms3509/docker-hub-test:selenium-latest
     build:
       context: ./crawler
     shm_size: 2gb
