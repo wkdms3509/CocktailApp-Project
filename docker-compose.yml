@@ -41,19 +41,19 @@ services:
     networks:
       - my-bridge-network
 
-  selenium:
-    container_name: selenium_chrome
-    # image: wkdms3509/docker-hub-test:selenium-latest
-    build:
-      context: ./crawler
-    shm_size: 2gb
-    environment:
-      - TZ=Asia/Seoul
-    ports:
-      - "4444:4444"
-      - "7900:7900"
-    networks:
-      - my-bridge-network
+  # selenium:
+  #   container_name: selenium_chrome
+  #   # image: wkdms3509/docker-hub-test:selenium-latest
+  #   build:
+  #     context: ./crawler
+  #   shm_size: 2gb
+  #   environment:
+  #     - TZ=Asia/Seoul
+  #   ports:
+  #     - "4444:4444"
+  #     - "7900:7900"
+  #   networks:
+  #     - my-bridge-network
 
 networks:
   my-bridge-network:
