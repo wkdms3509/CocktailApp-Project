@@ -1,21 +1,21 @@
 services:
-  # web:
-  #   container_name: web
-  #   # image: nextjs:latest-230818
-  #   image: wkdms3509/docker-hub-test:nextjs-230818
-  #   build:
-  #     context: ./cocktail-app
-  #     # dockerfile: Dockerfile.production
-  #   tty: true
-  #   restart: always
-  #   environment:
-  #     - "SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub"
-  #   volumes:
-  #     - "./cocktail-app:/app"
-  #   ports:
-  #     - "3000:3000"
-  #   networks:
-  #     - my-bridge-network
+  web:
+    container_name: web
+    # image: nextjs:latest-230818
+    # image: wkdms3509/docker-hub-test:nextjs-230818
+    build:
+      context: ./cocktail-app
+      # dockerfile: Dockerfile.production
+    tty: true
+    restart: always
+    environment:
+      - "SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub"
+    volumes:
+      - "./cocktail-app:/app"
+    ports:
+      - "3000:3000"
+    networks:
+      - my-bridge-network
 
   mysql:
     container_name: mysql
@@ -41,19 +41,19 @@ services:
     networks:
       - my-bridge-network
 
-  # selenium:
-  #   container_name: selenium_chrome
-  #   # image: wkdms3509/docker-hub-test:selenium-latest
-  #   build:
-  #     context: ./crawler
-  #   shm_size: 2gb
-  #   environment:
-  #     - TZ=Asia/Seoul
-  #   ports:
-  #     - "4444:4444"
-  #     - "7900:7900"
-  #   networks:
-  #     - my-bridge-network
+  selenium:
+    container_name: selenium_chrome
+    # image: wkdms3509/docker-hub-test:selenium-latest
+    build:
+      context: ./crawler
+    shm_size: 2gb
+    environment:
+      - TZ=Asia/Seoul
+    ports:
+      - "4444:4444"
+      - "7900:7900"
+    networks:
+      - my-bridge-network
 
 networks:
   my-bridge-network:
