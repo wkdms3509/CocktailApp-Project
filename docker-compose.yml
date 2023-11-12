@@ -43,7 +43,7 @@ services:
 
   selenium:
     container_name: selenium_chrome
-    image: wkdms3509/docker-hub-test:selenium-latest
+    # image: wkdms3509/docker-hub-test:selenium-latest
     build:
       context: ./crawler
     shm_size: 2gb
