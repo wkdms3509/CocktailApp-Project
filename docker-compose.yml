@@ -2,7 +2,7 @@ services:
   web:
     container_name: web
     # image: nextjs:latest-230818
-    image: wkdms3509/docker-hub-test:nextjs
+    image: wkdms3509/docker-hub-test:nextjs-230818
     build:
       context: ./cocktail-app
       # dockerfile: Dockerfile.production
