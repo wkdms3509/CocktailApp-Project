@@ -37,4 +37,6 @@ COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-CMD ["node", "/app/server.js"]
+WORKDIR /app
+
+CMD ["node", "server.js"]
