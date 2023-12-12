@@ -1,8 +1,8 @@
 services:
   web:
     container_name: web
-    # image: nextjs:latest-230818
-    image: wkdms3509/docker-hub-test:nextjs
+    image: nextjs:latest-230818
+    # image: wkdms3509/docker-hub-test:nextjs
     build:
       context: ./cocktail-app
       dockerfile: prod.Dockerfile
@@ -47,7 +47,7 @@ services:
 
   # selenium:
   #   container_name: selenium_chrome
-  #   image: wkdms3509/docker-hub-test:selenium
+  #   # image: wkdms3509/docker-hub-test:selenium
   #   build:
   #     context: ./crawler
   #   shm_size: 2gb
