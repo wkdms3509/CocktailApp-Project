@@ -1,10 +1,11 @@
-import { pool } from "../../../src/mysql/config/db";
+// import { pool } from "../../../src/mysql/config/db";
 import { Data, RequestUserData, User } from "@/src/constants/apiTypes";
 import { UserQueryType } from "@/src/constants/apiQueryTypes";
 import crypto from "crypto";
 import { FieldPacket, RowDataPacket } from "mysql2";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getToken } from "next-auth/jwt";
+import { pool } from "@/src/mysql/config/db";
 
 export default async function handler(
   req: NextApiRequest,
@@ -12,6 +13,7 @@ export default async function handler(
 ) {
   switch (req.method) {
     case "POST":
+      await pool;
       return await postLogin(req, res);
       break;
 
