@@ -141,7 +141,7 @@ export default function LoginForm() {
                   <button className="login_signin_btn" type="submit">
                     Sign in
                   </button>
-                  <Link href="https://drinkpedia.kro.kr/auth/register">
+                  <Link href="/auth/register">
                     <span className="login_signup_btn_one">Sign up</span>
                   </Link>
                   <div className="flex">
@@ -165,7 +165,7 @@ export default function LoginForm() {
             <p className="mb-6 text-sm md:text-base lg:text-base">
               Don`t have an account?
             </p>
-            <Link href="https://drinkpedia.kro.kr/auth/register">
+            <Link href="/auth/register">
               <span className="login_signup_btn_two">Sign up</span>
             </Link>
           </div>
