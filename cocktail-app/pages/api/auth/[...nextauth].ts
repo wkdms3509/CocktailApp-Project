@@ -146,7 +146,7 @@ export const authOptions: NextAuthOptions = {
           }
 
           const userResult = await fetchUserInfo<RequestUserData>(
-            "http://localhost:3000/api/users/login",
+            "https://drinkpedia.kro.kr/api/users/login",
             { username, password }
           );
 
