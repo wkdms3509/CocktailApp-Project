@@ -45,6 +45,13 @@ services:
     networks:
       - my-bridge-network
 
+  # nginx:
+  #   build: ./cocktail-app/nginx
+  #   ports:
+  #     - 80:80
+  #   depends_on:
+  #     - web
+
   # selenium:
   #   container_name: selenium_chrome
   #   # image: wkdms3509/docker-hub-test:selenium
