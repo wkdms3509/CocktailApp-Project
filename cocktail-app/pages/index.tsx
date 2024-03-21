@@ -65,7 +65,7 @@ export default function Home({ allProductList }: AllCocktailListProps) {
 export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps((store) => async (context) => {
     const { data }: AxiosResponse<GetProductListResult> = await axios.get(
-      "http://localhost:3000/api/products"
+      `${process.env.NEXTAUTH_URL}/api/products`
     );
 
     store.dispatch(initializeItems(data.data));

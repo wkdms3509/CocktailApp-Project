@@ -28,16 +28,20 @@ const RegisterForm = () => {
 
   const handleIdCheck = async (id: string) => {
     try {
-      await axios.get("/api/users/register", { params: { id } }).then((res) => {
-        if (res.status === 200 && userInput.id) {
-          setCheckId(true);
-          alert("사용 가능한 아이디입니다.");
-        }
-        if (res.status === 400 || !userInput.id) {
-          setCheckId(false);
-          alert("아이디를 다시 확인해주세요.");
-        }
-      });
+      await axios
+        .get(`${process.env.NEXTAUTH_URL}/api/users/register`, {
+          params: { id },
+        })
+        .then((res) => {
+          if (res.status === 200 && userInput.id) {
+            setCheckId(true);
+            alert("사용 가능한 아이디입니다.");
+          }
+          if (res.status === 400 || !userInput.id) {
+            setCheckId(false);
+            alert("아이디를 다시 확인해주세요.");
+          }
+        });
     } catch (error) {
       alert("아이디를 다시 확인해주세요.");
     }
@@ -53,13 +57,15 @@ const RegisterForm = () => {
       // if (!userInput.email || !userInput.password || !userInput.name) {
       //   return alert("")
       // }
-      await axios.post("/api/users/register", userInput).then((res) => {
-        if (res.status === 200) {
-          console.log("회원가입이 되었습니다.");
-          dispatch(register("회원가입이 되었습니다."));
-          router.push("/");
-        }
-      });
+      await axios
+        .post(`${process.env.NEXTAUTH_URL}/api/users/register`, userInput)
+        .then((res) => {
+          if (res.status === 200) {
+            console.log("회원가입이 되었습니다.");
+            dispatch(register("회원가입이 되었습니다."));
+            router.push("/");
+          }
+        });
     } catch (error) {
       console.log(error);
       alert("회원가입에 실패하였습니다.");

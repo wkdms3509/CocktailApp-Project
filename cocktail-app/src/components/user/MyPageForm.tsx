@@ -26,7 +26,9 @@ export default function MyPageForm() {
 
   const getBookmarkList = async () => {
     try {
-      const response = await axios("/api/products/bookmark/get-bookmark");
+      const response = await axios(
+        `${process.env.NEXTAUTH_URL}/api/products/bookmark/get-bookmark`
+      );
       setItemList(response.data.items);
     } catch (error) {
       console.log(error);
@@ -89,7 +91,7 @@ export default function MyPageForm() {
                 <div key={item.id} className="">
                   <Link
                     key={item.id}
-                    href={`/products/${item.id}`}
+                    href={`${process.env.NEXTAUTH_URL}/products/${item.id}`}
                     className="scale-100"
                   >
                     <Image

@@ -23,7 +23,9 @@ export default function ProductForm() {
   useEffect(() => {
     const getProduct = async (id: string) => {
       try {
-        const result = await axios.get(`/api/products/${id}`);
+        const result = await axios.get(
+          `${process.env.NEXTAUTH_URL}/api/products/${id}`
+        );
         const resData: GetProductListResult = result.data;
 
         const productInfo: NewProductInputType = resData.data[0];
@@ -43,10 +45,16 @@ export default function ProductForm() {
     e.preventDefault();
     try {
       if (router.query.id) {
-        await axios.patch(`/api/products/${router.query.id}`, productForm);
-        router.push(`/products/${router.query.id}`);
+        await axios.patch(
+          `${process.env.NEXTAUTH_URL}/api/products/${router.query.id}`,
+          productForm
+        );
+        router.push(`${process.env.NEXTAUTH_URL}/products/${router.query.id}`);
       } else {
-        await axios.post("/api/products", productForm);
+        await axios.post(
+          `${process.env.NEXTAUTH_URL}/api/products`,
+          productForm
+        );
         router.push("/");
       }
     } catch (error) {
