@@ -248,9 +248,7 @@ export default ProductPage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const productPath = context.query.id;
-  const res = await fetch(
-    `https://drinkpedia.kro.kr/api/products/${productPath}`
-  );
+  const res = await fetch(`http://localhost:3000/api/products/${productPath}`);
   const result: GetProductListResult = await res.json();
 
   if (!result.is_success) {

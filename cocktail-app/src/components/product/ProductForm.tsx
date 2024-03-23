@@ -66,6 +66,10 @@ export default function ProductForm() {
     setProductForm({ ...productForm, [e.target.name]: e.target.value });
   };
 
+  const handleClickBack = () => {
+    router.back();
+  };
+
   return (
     <div className="container w-full mx-auto text-center py-20 mb-14 font-light ">
       <h1 className="font-light text-2xl text-black dark:text-black">
@@ -225,9 +229,17 @@ export default function ProductForm() {
             </select>
           </li>
         </div>
-        <button className="px-6 py-1.5 my-12 border rounded-full hover:bg-white hover:text-black duration-200 hover:bg-[#d1cbc1] text-white">
-          {router.query.id ? "수정" : "생성"}
-        </button>
+        <div className="flex gap-5">
+          <button
+            onClick={() => handleClickBack()}
+            className="px-6 py-1.5 my-12 border rounded-full hover:bg-white hover:text-black duration-200 hover:bg-[#d1cbc1] text-white"
+          >
+            {router.query.id ? "수정" : "생성"}
+          </button>
+          <button className="px-6 py-1.5 my-12 border rounded-full hover:bg-white hover:text-black duration-200 hover:bg-[#d1cbc1] text-white">
+            취소
+          </button>
+        </div>
       </form>
     </div>
   );
