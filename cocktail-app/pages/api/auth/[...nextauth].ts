@@ -146,8 +146,7 @@ export const authOptions: NextAuthOptions = {
           }
 
           const userResult = await fetchUserInfo<RequestUserData>(
-            // "http://localhost:3000/api/users/login",
-            "/api/users/login",
+            "http://localhost:3000/api/users/login",
             { username, password }
           );
 
