@@ -10,6 +10,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
 import wrapper from "@/src/reducer";
+import Loader from "@/src/components/Loader";
 
 export default function App({
   Component,
@@ -22,7 +23,8 @@ export default function App({
   return (
     <Provider store={store}>
       <SessionProvider session={pageProps.session}>
-        <PersistGate persistor={persistor} loading={null}>
+        {/* <PersistGate persistor={persistor} loading={null}> */}
+        <PersistGate persistor={persistor} loading={<Loader />}>
           <Layout>
             <Component {...pageProps} />
           </Layout>

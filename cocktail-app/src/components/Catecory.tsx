@@ -34,6 +34,9 @@ const Catecory = () => {
         <Link href={`category/${type.whiskey}`} className="banner_item">
           <li>WHISKY</li>
         </Link>
+        <Link href={`/auth/register`} className="banner_item">
+          <li>WHISKY</li>
+        </Link>
       </ul>
     </div>
   );

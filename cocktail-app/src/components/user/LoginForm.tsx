@@ -64,6 +64,12 @@ export default function LoginForm() {
     event();
   };
 
+  const moveSignUpPage = () => {
+    console.log("클릭");
+
+    router.push("/auth/register");
+  };
+
   useEffect(() => {
     history.pushState(null, "", location.href);
     window.addEventListener("popstate", () => {
@@ -165,9 +171,16 @@ export default function LoginForm() {
             <p className="mb-6 text-sm md:text-base lg:text-base">
               Don`t have an account?
             </p>
-            <Link href="/auth/register">
-              <span className="login_signup_btn_two">Sign up</span>
-            </Link>
+            <button
+              className="login_signup_btn_two"
+              onClick={() => router.push("/auth/register")}
+            >
+              Sign up
+            </button>
+            {/* <Link href={`/auth/register`}>
+              <li className="login_signup_btn_two">Sign up</li>
+            </Link> */}
+            {/* <Link to="/auth/register">Sign up</Link> */}
           </div>
         </div>
       </main>

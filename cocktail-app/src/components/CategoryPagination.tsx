@@ -26,8 +26,10 @@ const Pagination = (props: PaginationInfo) => {
 
   const handleNext = () => {
     if (page + 10 <= numPages) {
-      setPage(page + 1); // 다음 버튼을 누를 때 현재 페이지에서 10을 더하여 다음 페이지로 이동
+      console.log("변경 전", page);
+      setPage(page + 10); // 다음 버튼을 누를 때 현재 페이지에서 10을 더하여 다음 페이지로 이동
       setStartPage(page + 1); // 시작 페이지 업데이트
+      console.log("변경 후", page);
     } else {
       setPage(numPages); // 다음 페이지가 총 페이지 수를 넘어갈 경우 마지막 페이지로 이동
       setStartPage(Math.max(1, numPages - 9)); // 시작 페이지 업데이트 (최대 10개 페이지를 유지하기 위해)
@@ -37,15 +39,13 @@ const Pagination = (props: PaginationInfo) => {
   const renderPagination = () => {
     const pages = [];
     for (let i = startPage; i < Math.min(startPage + 10, numPages + 1); i++) {
-      // console.log("startPage", startPage);
-      console.log("page", page);
-
       pages.push(
         <PageNum
           key={i}
           onClick={() => handleClick(i)}
-          aria-current={page === i ? "page" : undefined}
-          selected={page === i}
+          aria-current={startPage === i ? "page" : undefined}
+          selected={startPage === i}
+          key={i + 1}
         >
           {i}
         </PageNum>
@@ -72,6 +72,37 @@ const Pagination = (props: PaginationInfo) => {
         &gt;
       </Button>
     </div>
+
+    // <div className="flex justify-center items-center gap-x-4 mt-14 mb-8 text-sm mx-10 md:mx-0 lg:mx-0 xl:mx-0">
+    //   <Button
+    //     onClick={() => setPage(page - 1)}
+    //     disabled={page === 1}
+    //     // selected={page === page - 1}
+    //   >
+    //     &lt;
+    //   </Button>
+    //   <div>
+    //     {Array(numPages)
+    //       .fill(undefined)
+    //       .map((_, i) => (
+    //         <PageNum
+    //           key={i + 1}
+    //           onClick={() => setPage(i + 1)}
+    //           aria-current={page === i + 1 ? "page" : undefined}
+    //           selected={page === i + 1}
+    //         >
+    //           {i + 1}
+    //         </PageNum>
+    //       ))}
+    //   </div>
+    //   <Button
+    //     onClick={() => setPage(page + 1)}
+    //     disabled={page === numPages}
+    //     className="next_btn"
+    //   >
+    //     &gt;
+    //   </Button>
+    // </div>
   );
 };
 

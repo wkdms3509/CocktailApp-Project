@@ -24,6 +24,7 @@ import {
 // import storage from "redux-persist/lib/storage/session";
 // import storageSession from "redux-persist/lib/storage/session";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
+
 const createNoopStorage = () => {
   return {
     getItem(_key: any) {
@@ -43,13 +44,14 @@ const storage =
     : createNoopStorage();
 
 const persistConfig = {
+  timeout: 100,
   key: "root",
   storage,
   // storage: storageSession,
   whitelist: ["userReducer"],
 };
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   user: userReducer,
   products: productReducer,
 });
@@ -60,7 +62,7 @@ export const store = configureStore({
   reducer: (state, action) => {
     switch (action.type) {
       case HYDRATE:
-        // console.log("HYDRATE", action);
+        console.log("이거는 HYDRATE임", action);
         return { ...state, ...action.payload };
       default:
         return persistedReducer(state, action);
