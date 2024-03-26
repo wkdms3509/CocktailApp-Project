@@ -62,7 +62,6 @@ export const store = configureStore({
   reducer: (state, action) => {
     switch (action.type) {
       case HYDRATE:
-        console.log("이거는 HYDRATE임", action);
         return { ...state, ...action.payload };
       default:
         return persistedReducer(state, action);

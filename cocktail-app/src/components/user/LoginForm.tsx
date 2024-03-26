@@ -171,15 +171,15 @@ export default function LoginForm() {
             <p className="mb-6 text-sm md:text-base lg:text-base">
               Don`t have an account?
             </p>
-            <button
+            {/* <button
               className="login_signup_btn_two"
               onClick={() => router.push("/auth/register")}
             >
               Sign up
-            </button>
-            {/* <Link href={`/auth/register`}>
+            </button> */}
+            <Link href={`/auth/register`}>
               <li className="login_signup_btn_two">Sign up</li>
-            </Link> */}
+            </Link>
             {/* <Link to="/auth/register">Sign up</Link> */}
           </div>
         </div>
