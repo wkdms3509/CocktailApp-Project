@@ -1,3 +1,4 @@
 # CocktailApp-Project
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=wkdms3509)](https://github.com/anuraghazra/github-readme-stats)
+노션에 상세하게 정리해놓았습니다. 아래 링크를 통해 확인하실 수 있습니다.
+https://www.notion.so/7716b432221e43eb83d1252420bf0b32?pvs=4
