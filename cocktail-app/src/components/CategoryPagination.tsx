@@ -55,54 +55,54 @@ const Pagination = (props: PaginationInfo) => {
   };
 
   return (
-    <div className="flex justify-center items-center gap-x-4 mt-14 mb-8 text-sm mx-10 md:mx-0 lg:mx-0 xl:mx-0">
-      <Button
-        onClick={() => handlePrev(page - 1)}
-        disabled={page === 1}
-        // selected={page === page - 1}
-      >
-        &lt;
-      </Button>
-      <div>{renderPagination()}</div>
-      <Button
-        onClick={handleNext}
-        disabled={page === numPages}
-        className="next_btn"
-      >
-        &gt;
-      </Button>
-    </div>
-
     // <div className="flex justify-center items-center gap-x-4 mt-14 mb-8 text-sm mx-10 md:mx-0 lg:mx-0 xl:mx-0">
     //   <Button
-    //     onClick={() => setPage(page - 1)}
+    //     onClick={() => handlePrev(page - 1)}
     //     disabled={page === 1}
     //     // selected={page === page - 1}
     //   >
     //     &lt;
     //   </Button>
-    //   <div>
-    //     {Array(numPages)
-    //       .fill(undefined)
-    //       .map((_, i) => (
-    //         <PageNum
-    //           key={i + 1}
-    //           onClick={() => setPage(i + 1)}
-    //           aria-current={page === i + 1 ? "page" : undefined}
-    //           selected={page === i + 1}
-    //         >
-    //           {i + 1}
-    //         </PageNum>
-    //       ))}
-    //   </div>
+    //   <div>{renderPagination()}</div>
     //   <Button
-    //     onClick={() => setPage(page + 1)}
+    //     onClick={handleNext}
     //     disabled={page === numPages}
     //     className="next_btn"
     //   >
     //     &gt;
     //   </Button>
     // </div>
+
+    <div className="flex justify-center items-center gap-x-4 mt-14 mb-8 text-sm mx-10 md:mx-0 lg:mx-0 xl:mx-0">
+      <Button
+        onClick={() => setPage(page - 1)}
+        disabled={page === 1}
+        // selected={page === page - 1}
+      >
+        &lt;
+      </Button>
+      <div>
+        {Array(numPages)
+          .fill(undefined)
+          .map((_, i) => (
+            <PageNum
+              key={i + 1}
+              onClick={() => setPage(i + 1)}
+              aria-current={page === i + 1 ? "page" : undefined}
+              selected={page === i + 1}
+            >
+              {i + 1}
+            </PageNum>
+          ))}
+      </div>
+      <Button
+        onClick={() => setPage(page + 1)}
+        disabled={page === numPages}
+        className="next_btn"
+      >
+        &gt;
+      </Button>
+    </div>
   );
 };
 
