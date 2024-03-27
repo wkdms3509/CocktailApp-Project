@@ -14,45 +14,45 @@ const Pagination = (props: PaginationInfo) => {
     setPage(pageNumber); // 페이지 번호를 클릭하면 해당 페이지로 이동
   };
 
-  const handlePrev = () => {
-    if (page - 10 >= 1) {
-      setPage(page - 10); // 이전 버튼을 누를 때 현재 페이지에서 10을 빼서 이전 페이지로 이동
-      setStartPage(startPage - 10); // 시작 페이지 업데이트
-    } else {
-      setPage(1); // 이전 페이지가 1보다 작아질 경우 첫 번째 페이지로 이동
-      setStartPage(1); // 시작 페이지도 1로 설정
-    }
-  };
+  // const handlePrev = () => {
+  //   if (page - 10 >= 1) {
+  //     setPage(page - 10); // 이전 버튼을 누를 때 현재 페이지에서 10을 빼서 이전 페이지로 이동
+  //     setStartPage(startPage - 10); // 시작 페이지 업데이트
+  //   } else {
+  //     setPage(1); // 이전 페이지가 1보다 작아질 경우 첫 번째 페이지로 이동
+  //     setStartPage(1); // 시작 페이지도 1로 설정
+  //   }
+  // };
 
-  const handleNext = () => {
-    if (page + 10 <= numPages) {
-      console.log("변경 전", page);
-      setPage(page + 10); // 다음 버튼을 누를 때 현재 페이지에서 10을 더하여 다음 페이지로 이동
-      setStartPage(page + 1); // 시작 페이지 업데이트
-      console.log("변경 후", page);
-    } else {
-      setPage(numPages); // 다음 페이지가 총 페이지 수를 넘어갈 경우 마지막 페이지로 이동
-      setStartPage(Math.max(1, numPages - 9)); // 시작 페이지 업데이트 (최대 10개 페이지를 유지하기 위해)
-    }
-  };
+  // const handleNext = () => {
+  //   if (page + 10 <= numPages) {
+  //     console.log("변경 전", page);
+  //     setPage(page + 10); // 다음 버튼을 누를 때 현재 페이지에서 10을 더하여 다음 페이지로 이동
+  //     setStartPage(page + 1); // 시작 페이지 업데이트
+  //     console.log("변경 후", page);
+  //   } else {
+  //     setPage(numPages); // 다음 페이지가 총 페이지 수를 넘어갈 경우 마지막 페이지로 이동
+  //     setStartPage(Math.max(1, numPages - 9)); // 시작 페이지 업데이트 (최대 10개 페이지를 유지하기 위해)
+  //   }
+  // };
 
-  const renderPagination = () => {
-    const pages = [];
-    for (let i = startPage; i < Math.min(startPage + 10, numPages + 1); i++) {
-      pages.push(
-        <PageNum
-          key={i}
-          onClick={() => handleClick(i)}
-          aria-current={startPage === i ? "page" : undefined}
-          selected={startPage === i}
-          key={i + 1}
-        >
-          {i}
-        </PageNum>
-      );
-    }
-    return pages;
-  };
+  // const renderPagination = () => {
+  //   const pages = [];
+  //   for (let i = startPage; i < Math.min(startPage + 10, numPages + 1); i++) {
+  //     pages.push(
+  //       <PageNum
+  //         key={i}
+  //         onClick={() => handleClick(i)}
+  //         aria-current={startPage === i ? "page" : undefined}
+  //         selected={startPage === i}
+  //         key={i + 1}
+  //       >
+  //         {i}
+  //       </PageNum>
+  //     );
+  //   }
+  //   return pages;
+  // };
 
   return (
     // <div className="flex justify-center items-center gap-x-4 mt-14 mb-8 text-sm mx-10 md:mx-0 lg:mx-0 xl:mx-0">
