@@ -23,7 +23,9 @@ import {
 } from "redux-persist";
 // import storage from "redux-persist/lib/storage/session";
 // import storageSession from "redux-persist/lib/storage/session";
-import createWebStorage from "redux-persist/lib/storage/createWebStorage";
+
+// import createWebStorage from "redux-persist/lib/storage/createWebStorage";
+import storage from "redux-persist/lib/storage";
 
 const createNoopStorage = () => {
   return {
@@ -38,21 +40,24 @@ const createNoopStorage = () => {
     },
   };
 };
-const storage =
-  typeof window !== "undefined"
-    ? createWebStorage("session")
-    : createNoopStorage();
+
+// const storage =
+//   typeof window !== "undefined"
+//     ? createWebStorage("session")
+//     : createNoopStorage();
 
 const persistConfig = {
-  timeout: 100,
+  // timeout: 10000,
+  // timeout: null,
   key: "root",
   storage,
+  // debug: true,
   // storage: storageSession,
   whitelist: ["userReducer"],
 };
 
 export const rootReducer = combineReducers({
-  user: userReducer,
+  userReducer,
   products: productReducer,
 });
 
@@ -72,6 +77,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
+      // serializableCheck: false
     }).concat(logger),
   devTools: process.env.NEXT_PUBLIC_NODE_ENV !== "production",
 });
