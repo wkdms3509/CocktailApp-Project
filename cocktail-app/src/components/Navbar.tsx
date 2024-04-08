@@ -45,7 +45,6 @@ const Navbar = () => {
 
   return (
     <>
-      {/* {status === "authenticated" ? ( */}
       <header>
         {/* <div className="md:hidden bg-light-gray m-0 w-full h-16 px-4 py-3.5"> */}
         <div
@@ -75,21 +74,31 @@ const Navbar = () => {
         </div>
         <nav className="nav z-20">
           <div className="hidden lg:block">
-            <ul className="side_category">
-              {session?.user && isUserAuthenticated ? (
+            {session?.user && isUserAuthenticated ? (
+              <ul className="side_category">
                 <li className="side_category_menu text-blue-700">
                   {session.user.auth}
                 </li>
-              ) : (
-                <li className="side_category_menu font-semibold border-black"></li>
-              )}
-              <li className="side_category_menu border-r border-black hover:text-gray-300 duration-300 cursor-pointer">
-                <Link href="/auth/mypage">관심상품</Link>
-              </li>
-              <li className="side_category_menu hover:text-gray-300 duration-300 cursor-pointer">
-                <Link href="/auth/login">로그인</Link>
-              </li>
-            </ul>
+                <li className="side_category_menu border-r border-black hover:text-gray-300 duration-300 cursor-pointer">
+                  <Link href="/auth/mypage">관심상품</Link>
+                </li>
+                <li
+                  onClick={() => signOut({ callbackUrl: "/" })}
+                  className="side_category_menu hover:text-gray-300 duration-300 cursor-pointer"
+                >
+                  로그아웃
+                </li>
+              </ul>
+            ) : (
+              <ul className="side_category">
+                <li className="side_category_menu border-r text-gray-300 border-black cursor-default">
+                  관심상품
+                </li>
+                <li className="side_category_menu hover:text-gray-300 duration-300 cursor-pointer">
+                  <Link href="/auth/login">로그인</Link>
+                </li>
+              </ul>
+            )}
           </div>
           <div className="main_category">
             <div className="flex items-center justify-between z-30">
@@ -238,9 +247,6 @@ const Navbar = () => {
           </div>
         </nav>
       </header>
-      {/* ) : (
-         ""
-       )} */}
     </>
   );
 };

@@ -211,7 +211,7 @@ export const authOptions: NextAuthOptions = {
   },
   pages: {
     signIn: "/auth/login",
-    newUser: "/register",
+    newUser: "/auth/register",
   },
   secret: process.env.SECRET,
 };
