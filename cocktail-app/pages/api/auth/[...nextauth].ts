@@ -165,7 +165,8 @@ export const authOptions: NextAuthOptions = {
             idx: user.idx ?? null,
           } as User;
         } catch (error) {
-          throw new Error(error.response.data);
+          // throw new Error(e.response.data.msg);
+          return null;
         }
         return null;
       },
@@ -211,7 +212,7 @@ export const authOptions: NextAuthOptions = {
   },
   pages: {
     signIn: "/auth/login",
-    newUser: "/auth/register",
+    newUser: "/register",
   },
   secret: process.env.SECRET,
 };
