@@ -1,4 +1,4 @@
-import Pagination from "@/src/components/CategoryPagination";
+import Pagination from "../../src/components/Pagination";
 import { RootState2 } from "@/src/reducer";
 import Image from "next/image";
 import Link from "next/link";
