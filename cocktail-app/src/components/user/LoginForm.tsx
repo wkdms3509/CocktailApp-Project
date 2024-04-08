@@ -111,7 +111,7 @@ export default function LoginForm() {
               </p>
               <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="flex flex-col items-center">
-                  <div className="bg-white p-2 flex border items-center mb-2 w-4/6 md:w-4/6 lg:w-64">
+                  <div className="bg-white p-2 flex border items-center mb-2 lg:w-60 w-48 md:w-52">
                     <FaRegEnvelope className="text-gray-400 mr-2" />
                     <input
                       type="text"
@@ -124,7 +124,7 @@ export default function LoginForm() {
                       //   {...formik.getFieldProps("username")}
                     />
                   </div>
-                  <div className="bg-white p-2 flex border items-center w-4/6 md:w-4/6 lg:w-64">
+                  <div className="bg-white p-2 flex border items-center mb-2 lg:w-60 w-48 md:w-52">
                     <MdLockOutline className="text-gray-400 mr-2" />
                     <input
                       type="password"
