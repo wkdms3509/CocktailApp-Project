@@ -165,7 +165,7 @@ export const authOptions: NextAuthOptions = {
             idx: user.idx ?? null,
           } as User;
         } catch (error) {
-          throw new Error(e.response.data.msg);
+          throw new Error(error.response.data.msg);
         }
         return null;
       },
