@@ -162,16 +162,28 @@ const Navbar = () => {
                 ""
               )}
               {status === "authenticated" ? (
-                <Link href="/auth/mypage">
-                  <li
-                    className="category_right_menu font-normal"
-                    onClick={handleClickMenu}
-                  >
-                    MY
-                  </li>
-                </Link>
+                <>
+                  <Link href="/auth/mypage">
+                    <li
+                      className="category_right_menu font-normal"
+                      onClick={handleClickMenu}
+                    >
+                      MY
+                    </li>
+                  </Link>
+                  <Link href="/auth/mypage">
+                    <li
+                      className="category_right_menu font-normal lg:hidden"
+                      onClick={() => signOut({ callbackUrl: "/" })}
+                    >
+                      LOGOUT
+                    </li>
+                  </Link>
+                </>
               ) : (
-                ""
+                <li className="category_right_menu lg:hidden">
+                  <Link href="/auth/login">LOGIN</Link>
+                </li>
               )}
               <li className="category_right_menu hidden lg:list-item">
                 <Link href="/products/search">
@@ -179,17 +191,6 @@ const Navbar = () => {
                   {/* <HeaderSearch /> */}
                 </Link>
               </li>
-
-              {session ? (
-                <li
-                  className="category_right_menu lg:hidden"
-                  onClick={() => signOut({ callbackUrl: "/" })}
-                >
-                  LOGOUT
-                </li>
-              ) : (
-                ""
-              )}
             </ul>
           </div>
           <div>

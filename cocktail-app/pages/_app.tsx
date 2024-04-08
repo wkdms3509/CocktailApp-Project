@@ -21,13 +21,13 @@ export default function App({
 
   return (
     <Provider store={store}>
-      <SessionProvider session={pageProps.session}>
-        <PersistGate persistor={persistor} loading={null}>
+      <PersistGate persistor={persistor} loading={null}>
+        <SessionProvider session={pageProps.session}>
           <Layout>
             <Component {...pageProps} />
           </Layout>
-        </PersistGate>
-      </SessionProvider>
+        </SessionProvider>
+      </PersistGate>
     </Provider>
   );
 }
