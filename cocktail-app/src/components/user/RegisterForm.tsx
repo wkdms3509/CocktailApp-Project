@@ -70,14 +70,14 @@ const RegisterForm = () => {
     <div className="register_container">
       <main className="register_main_container">
         <div className="register_main_form">
-          <div className="py-10">
-            <Link href="/">
+          <div className="py-10 p-5">
+            <Link href="/auth/login">
               <BiArrowBack
-                className="text-white md:-ml-28 lg:-ml-52 mb-6"
+                className="text-black xs:-ml-0 sm:-ml-10 md:-ml-0 lg:ml-3 mb-6"
                 size="20"
               />
             </Link>
-            <h2 className="text-white font-bold mb-2 text-lg md:text-2xl lg:text-3xl">
+            <h2 className="text-black font-bold mb-2 text-lg md:text-2xl lg:text-3xl">
               Sign up
             </h2>
             <form
@@ -126,10 +126,10 @@ const RegisterForm = () => {
                   <button
                     type="button"
                     onClick={() => handleIdCheck(userInput.id)}
-                    className="flex-0.5 w-1/5 border rounded p-1.5 py-2 text-xs ml-2 text-white hover:border-gray-500 hover:text-gray-500 duration-100"
+                    className="flex-0.5 w-1/5 border rounded p-1.5 py-2 text-xs ml-2 text-gray-300 hover:border-gray-500 hover:text-gray-500 duration-100"
                   >
                     {checkId ? (
-                      <AiOutlineCheck className="mx-auto" />
+                      <AiOutlineCheck className="mx-auto text-blue-700" />
                     ) : (
                       <BsCheckLg className="mx-auto" size="15" />
                     )}
@@ -157,12 +157,12 @@ const RegisterForm = () => {
               userInput.name &&
               userInput.password &&
               checkId ? (
-                <button className="border-2 border-white items-center text-white rounded-full px-12 mt-5 p-2 inline-block font-semibold hover:bg-white hover:text-black duration-150 ">
-                  sign up
+                <button className="border-2 border-black items-center text-black rounded-full px-12 mt-5 p-2 inline-block font-semibold hover:bg-black hover:text-white duration-200 ease-in">
+                  sign upd
                 </button>
               ) : (
-                <button className="border-2 text-gray-500 items-center border-gray-500 rounded-full px-12 mt-5 p-2 inline-block font-semibold cursor-default duration-150 ">
-                  sign up
+                <button className="border-2 text-gray-300 items-center border-gray-300 rounded-full px-12 mt-5 p-2 inline-block font-semibold cursor-default duration-150 ">
+                  sign ups
                 </button>
               )}
             </form>
