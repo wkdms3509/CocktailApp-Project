@@ -20,17 +20,17 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           content="initial-scale=1.0, width=device-width, user-scalable=yes"
         />
       </Head>
-      {status === "authenticated" ? (
-        <>
-          <Navbar />
-          <div className="bg-center bg-fixed bg-cover w-full overflow-x-hidden">
-            {children}
-          </div>
-          <Footer />
-        </>
-      ) : (
+      {/* {status === "authenticated" ? ( */}
+      <>
+        <Navbar />
+        <div className="bg-center bg-fixed bg-cover w-full overflow-x-hidden">
+          {children}
+        </div>
+        <Footer />
+      </>
+      {/* ) : (
         <LoginForm />
-      )}
+      )} */}
     </>
   );
 };

@@ -19,23 +19,23 @@ html {
 
   /* 로그인 */
   .login_container {
-    @apply bg-gray-100 flex flex-col items-center justify-center min-h-screen py-2;
+    @apply bg-white flex flex-col items-center justify-center min-h-screen py-5 pb-12;
   }
 
   .login_main_container {
-    @apply flex flex-col items-center justify-center w-full flex-1 text-center md:px-20 lg:px-20;
+    @apply flex items-center justify-center w-full text-center my-0 md:my-14 lg:my-10 md:px-20 lg:px-20;
   }
 
   .login_main_form {
-    @apply bg-white rounded-2xl shadow-2xl flex flex-col max-w-4xl w-80 md:w-5/6 md:flex-row lg:w-2/3 lg:flex-row;
+    @apply bg-white rounded-2xl shadow-2xl flex flex-col max-w-4xl w-2/3 sm:w-2/4 md:w-2/4 lg:w-1/3 md:flex-row lg:flex-row;
   }
 
   .login_input {
-    @apply outline-none text-xs leading-5 text-black bg-gray-100 lg:text-sm;
+    @apply outline-none text-xs leading-5 text-black bg-white lg:text-xs;
   }
 
   .login_signin_btn {
-    @apply inline-block font-bold py-2 px-12 rounded-full border border-solid border-black text-black text-sm md:text-base lg:text-base;
+    @apply inline-block font-bold py-2 mt-3 px-12 rounded-full border border-solid border-black text-black text-sm md:text-base lg:text-base;
   }
 
   .login_signin_btn:hover {
@@ -50,12 +50,11 @@ html {
     @apply inline-block rounded-full font-bold bg-black text-white border border-solid border-black mt-1 py-2 px-12 text-sm md:hidden lg:hidden;
   }
 
-  .login_signup_btn_two {
-    @apply inline-block rounded-full font-bold border border-solid border-white py-2 px-12 duration-200 ease-in text-sm md:text-base lg:text-base;
+  .signup_btn {
+    @apply mt-3 text-black px-4 py-1 pt-3 border-b-2 inline-block text-xs;
   }
-
-  .login_signup_btn_two:hover {
-    @apply bg-white text-black;
+  .signup_btn:hover {
+    @apply font-bold border-b-2 border-black duration-100 ease-in;
   }
 
   /* 회원가입 */

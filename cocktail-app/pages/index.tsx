@@ -40,24 +40,20 @@ export default function Home({ allProductList }: AllCocktailListProps) {
 
   return (
     <>
-      {status === "authenticated" ? (
-        <div className="w-full mx-auto">
-          <section>
-            <MainBanner />
-          </section>
-          <section className="px-3 py-5">
-            <Catecory />
-          </section>
-          <section className="p-3 md:p-5 lg:p-32">
-            <AllCocktailList allProductList={allProductList} />
-          </section>
-          <section className="p-3 md:p-5 lg:p-32 md:hidden">
-            <NonAlcCocktailList allProductList={allProductList} />
-          </section>
-        </div>
-      ) : (
-        <LoginForm />
-      )}
+      <div className="w-full mx-auto">
+        <section>
+          <MainBanner />
+        </section>
+        <section className="px-3 py-5">
+          <Catecory />
+        </section>
+        <section className="p-3 md:p-5 lg:p-32">
+          <AllCocktailList allProductList={allProductList} />
+        </section>
+        <section className="p-3 md:p-5 lg:p-32 md:hidden">
+          <NonAlcCocktailList allProductList={allProductList} />
+        </section>
+      </div>
     </>
   );
 }
