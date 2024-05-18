@@ -163,15 +163,9 @@ html {
   }
 
   .main_img1 {
-    @apply w-full min-h-1/5 bg-banner1 bg-cover bg-center bg-no-repeat md:min-h-1/2 lg:min-h-3/5;
-  }
-
-  .main_img2 {
-    @apply w-full min-h-1/5 bg-banner2 bg-cover bg-center bg-no-repeat md:min-h-1/2 lg:min-h-3/5;
-  }
-
-  .main_img3 {
-    @apply w-full min-h-1/5 bg-banner3 bg-cover bg-center bg-no-repeat md:min-h-1/2 lg:min-h-3/5;
+    /* @apply w-full object-cover; */
+    /* @apply w-full min-h-1/5 bg-cover bg-center bg-no-repeat md:min-h-1/2 lg:min-h-3/5; */
+    /* bg-banner1 */
   }
 
   /* 아이템 생성, 수정 */

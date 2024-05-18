@@ -32,7 +32,8 @@ const ProductCard = (props: ProductCardType) => {
               sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
               33vw"
-              loading="lazy"
+              // loading="lazy"
+              priority="true"
               className="cursor-pointer hover:scale-105 duration-300 scale-100 object-cover pb-11"
               onMouseEnter={(e) => {
                 e.currentTarget.classList.add("hover:scale-110");

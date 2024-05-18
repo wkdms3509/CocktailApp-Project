@@ -1,7 +1,7 @@
 /* ------------------- */
 /* ------ Banner ------ */
 
-.main_img {
+/* .main_img {
   background-image: url("https://cdn.shopify.com/s/files/1/0603/4895/6804/files/Homepage_8R_Static_DK_cb3a85f3-0d80-44fc-960d-8a46bf6eb772.jpg?v=1677780733&width=1600");
   background-size: cover;
   background-repeat: no-repeat;
@@ -10,7 +10,6 @@
 }
 
 .main_img2 {
-  /* background-image: url("https://shakit.co.kr/data/apms/background/Beershakit2_PC.jpg"); */
   background-image: url("https://drink818.com/cdn/shop/files/Our_Story_Hero_DK.jpg?width=1600");
   background-size: cover;
   background-repeat: no-repeat;
@@ -24,7 +23,7 @@
   background-repeat: no-repeat;
   min-height: 67vh;
   width: 100%;
-}
+} */
 
 .container {
   padding: 0 8rem;

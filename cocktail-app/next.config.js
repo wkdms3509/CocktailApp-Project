@@ -7,6 +7,14 @@ module.exports = {
   },
   output: 'standalone',
   images: {
-    domains: ['images.unsplash.com', 'cocktailclub.com', 'kitchenswagger.com'],
+    domains: [
+      'images.unsplash.com',
+      'cocktailclub.com',
+      'kitchenswagger.com',
+      'cdn.shopify.com',
+      'drink818.com',
+      'shakit.co.kr',
+    ],
+    formats: ['image/avif', 'image/webp'],
   },
 }
