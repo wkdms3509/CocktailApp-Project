@@ -61,8 +61,8 @@ export default function Home({ allProductList }: AllCocktailListProps) {
 export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps((store) => async (context) => {
     const { data }: AxiosResponse<GetProductListResult> = await axios.get(
-      // "https://cocktail-app-project.vercel.app/api/products"
-      "http://localhost:3000/api/products"
+      "https://cocktail-app-project.vercel.app/api/products"
+      // "http://localhost:3000/api/products"
     );
 
     store.dispatch(initializeItems(data.data));
