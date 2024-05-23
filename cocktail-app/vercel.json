@@ -1,0 +1,11 @@
+{
+  "regions": ["icn1"],
+  "functions": {
+    "api/**/*": {
+      "maxDuration": 300
+    },
+    "api/*": {
+      "maxDuration": 300
+    }
+  }
+}
